@@ -9,8 +9,15 @@ import com.ume.studentsystem.model.StudentSubject;
 import com.ume.studentsystem.model.enums.StudentStatus;
 import com.ume.studentsystem.repository.*;
 import com.ume.studentsystem.service.StudentSubjectService;
+import com.ume.studentsystem.util.PageResponse;
+import com.ume.studentsystem.util.SortResponse;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -83,11 +90,28 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
     }
 
     @Override
-    public List<StudentSubjectResponse> getSubjectsByStudent(Long studentId) {
-        return studentSubjectRepository.findByStudentClassroomStudent_Id(studentId)
-                .stream()
-                .map(ssMapper::toResponse)
-                .toList();
+    public PageResponse<StudentSubjectResponse> getSubjectsByStudent(Long studentId, String studentName, String studentCode, Integer semester, String sortBy, String sortAs, Integer page, Integer size) {
+        Specification<StudentSubject> spec = ((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (studentId != null){
+                predicates.add(cb.equal(root.join("studentClassroom").get("student").get("id"), studentId));
+            }
+            if (studentName != null){
+                predicates.add(cb.like(root.join("studentClassroom").get("student").get("fullName"),"%" + studentName + "%"));
+            }
+            if (studentCode != null){
+                predicates.add(cb.like(root.join("studentClassroom").get("student").get("studentCode"), "%" +studentCode + "%"));
+            }
+            if (semester != null){
+                predicates.add(cb.equal(root.join("studentClassroom").get("classroom").get("semester"),"%" + semester + "%"));
+            }
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
+        List<String> allowSort = List.of("studentClassroom.student.studentId","studentClassroom.student.fullName","studentClassroom.student.studentCode","studentClassroom.classroom.semester");
+        var sort = SortResponse.sortResponse(sortBy,sortAs,allowSort);
+        Pageable pageable = PageRequest.of(page -1 ,size,sort);
+        Page<StudentSubject> subjectPage = studentSubjectRepository.findAll(spec,pageable);
+        return PageResponse.from(subjectPage,ssMapper::toResponse);
     }
 
     @Override

@@ -11,7 +11,7 @@ public record StudentSubjectResponse(
         String subjectTitle,
 
         String classroomName,
-        String semester,
+        Integer semester,
 
         LocalDate enrollDate,
         StudentStatus status

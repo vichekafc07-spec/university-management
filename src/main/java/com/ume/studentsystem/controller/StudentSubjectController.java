@@ -4,6 +4,7 @@ import com.ume.studentsystem.dto.request.AssignStudentSubjectRequest;
 import com.ume.studentsystem.dto.response.StudentSubjectResponse;
 import com.ume.studentsystem.service.StudentSubjectService;
 import com.ume.studentsystem.util.APIResponse;
+import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,16 @@ public class StudentSubjectController {
     }
 
     @GetMapping("/student/{studentId}")
-    public ResponseEntity<APIResponse<List<StudentSubjectResponse>>> getByStudent(@PathVariable Long studentId){
-        return ResponseEntity.ok(APIResponse.ok(studentSubjectService.getSubjectsByStudent(studentId)));
+    public ResponseEntity<APIResponse<PageResponse<StudentSubjectResponse>>> getByStudent(@PathVariable Long studentId,
+                                                                                          @RequestParam(required = false) String studentName,
+                                                                                          @RequestParam(required = false) String studentCode,
+                                                                                          @RequestParam(required = false) Integer semester,
+                                                                                          @RequestParam(required = false) String sortBy,
+                                                                                          @RequestParam(required = false) String sortAs,
+                                                                                          @RequestParam(required = false , defaultValue = "1") Integer page,
+                                                                                          @RequestParam(required = false , defaultValue = "5") Integer size
+                                                                                          ){
+        return ResponseEntity.ok(APIResponse.ok(studentSubjectService.getSubjectsByStudent(studentId,studentName,studentCode,semester,sortBy,sortAs,page,size)));
     }
 
     @GetMapping("/subject/{subjectId}")
