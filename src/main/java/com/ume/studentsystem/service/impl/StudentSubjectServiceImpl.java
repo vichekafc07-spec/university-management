@@ -1,0 +1,100 @@
+package com.ume.studentsystem.service.impl;
+
+import com.ume.studentsystem.dto.request.AssignStudentSubjectRequest;
+import com.ume.studentsystem.dto.response.StudentSubjectResponse;
+import com.ume.studentsystem.exceptions.BadRequestException;
+import com.ume.studentsystem.exceptions.ResourceNotFoundException;
+import com.ume.studentsystem.mapper.StudentSubjectMapper;
+import com.ume.studentsystem.model.StudentSubject;
+import com.ume.studentsystem.model.enums.StudentStatus;
+import com.ume.studentsystem.repository.*;
+import com.ume.studentsystem.service.StudentSubjectService;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class StudentSubjectServiceImpl implements StudentSubjectService {
+
+    private final StudentClassroomRepository scRepository;
+    private final SubjectRepository subjectRepository;
+    private final StudentSubjectRepository studentSubjectRepository;
+    private final StudentSubjectMapper ssMapper;
+
+    @Transactional
+    @Override
+    public List<StudentSubjectResponse> assignSubjects(AssignStudentSubjectRequest request) {
+
+        var studentClassrooms = new HashSet<>(scRepository.findAllWithFullStudentInfo(request.studentId(),request.classroomId()));
+
+        if (studentClassrooms.size() != request.studentId().size()){
+            throw new BadRequestException("Some student are not assigned to classroom Id " + request.classroomId());
+        }
+
+        if (studentClassrooms.isEmpty()) {
+            throw new ResourceNotFoundException("No valid Student found");
+        }
+
+        var subjects = new HashSet<>(subjectRepository.findAllById(request.subjectIds()));
+        if (subjects.isEmpty()) {
+            throw new ResourceNotFoundException("No valid subjects found");
+        }
+
+        var existing = studentSubjectRepository.findByStudentClassroom_Student_IdInAndSubjectIdIn(request.studentId(),request.subjectIds());
+
+        Set<String> existingPairs = existing.stream()
+                .map(es -> es.getStudentClassroom().getStudent().getId() + "-" + es.getSubject().getId())
+                .collect(Collectors.toSet());
+
+        List<StudentSubject> toSave = new ArrayList<>();
+
+        for (var sc : studentClassrooms) {
+            for (var subject : subjects) {
+
+                String key = sc.getStudent().getId() + "-" + subject.getId();
+                if (existingPairs.contains(key)) {
+                    continue;
+                }
+
+                var ss = new StudentSubject();
+                ss.setStudentClassroom(sc);
+                ss.setSubject(subject);
+                ss.setClassroom(sc.getClassroom());
+                ss.setEnrollDate(LocalDate.now());
+                ss.setStatus(StudentStatus.ACTIVE);
+
+                toSave.add(ss);
+            }
+        }
+
+        var saved = studentSubjectRepository.saveAll(toSave);
+
+        return saved.stream()
+                .map(ssMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<StudentSubjectResponse> getSubjectsByStudent(Long studentId) {
+        return studentSubjectRepository.findByStudentClassroomStudent_Id(studentId)
+                .stream()
+                .map(ssMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<StudentSubjectResponse> getStudentBySubject(Long subjectId) {
+        return studentSubjectRepository.findBySubject_Id(subjectId)
+                .stream()
+                .map(ssMapper::toResponse)
+                .toList();
+    }
+}

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: StudentSystem
+  datasource:
+    url: jdbc:postgresql://localhost:5432/university
+    username: sorl_vichika
+    password: admin
+  jwt:
+    secretKey: ${JWT_SECRET}
+    accessExpiration: ${ACCESS_EXPIRATION}
+    refreshExpiration: ${REFRESH_EXPIRATION}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
