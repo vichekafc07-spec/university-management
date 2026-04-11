@@ -38,8 +38,14 @@ public class StudentSubjectController {
     }
 
     @GetMapping("/subject/{subjectId}")
-    public ResponseEntity<APIResponse<List<StudentSubjectResponse>>> getBySubject(@PathVariable Long subjectId){
-        return ResponseEntity.ok(APIResponse.ok(studentSubjectService.getStudentBySubject(subjectId)));
+    public ResponseEntity<APIResponse<PageResponse<StudentSubjectResponse>>> getBySubject(@PathVariable Long subjectId,
+                                                                                          @RequestParam(required = false) Integer semester,
+                                                                                          @RequestParam(required = false) String sortBy,
+                                                                                          @RequestParam(required = false) String sortAs,
+                                                                                          @RequestParam(required = false , defaultValue = "1") Integer page,
+                                                                                          @RequestParam(required = false , defaultValue = "5") Integer size
+    ){
+        return ResponseEntity.ok(APIResponse.ok(studentSubjectService.getStudentBySubject(subjectId,semester,sortBy,sortAs,page,size)));
     }
 
 }

@@ -82,12 +82,10 @@ public class AuthController {
         var claims = jwtService.parseToken(token);
         if (claims == null) return ResponseEntity.badRequest().body("Invalid token");
 
-        // add to blacklist
         blackListedTokenRepository.save(
                 new BlackListedToken(null, token, claims.getExpiration())
         );
 
-        // remove refresh token cookie
         Cookie clear = new Cookie("refreshToken", null);
         clear.setPath("/api/v1/auth/refresh");
         clear.setHttpOnly(true);

@@ -55,10 +55,10 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
             throw new ResourceNotFoundException("No valid subjects found");
         }
 
-        var existing = studentSubjectRepository.findByStudentClassroom_Student_IdInAndSubjectIdIn(request.studentId(),request.subjectIds());
+        var existing = studentSubjectRepository.findByStudentClassroomStudent_IdInAndSubjectIdIn(request.studentId(),request.subjectIds());
 
         Set<String> existingPairs = existing.stream()
-                .map(es -> es.getStudentClassroom().getStudent().getId() + "-" + es.getSubject().getId())
+                .map(es -> es.getStudentClassroom().getId() + "-" + es.getSubject().getId())
                 .collect(Collectors.toSet());
 
         List<StudentSubject> toSave = new ArrayList<>();
@@ -66,9 +66,9 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
         for (var sc : studentClassrooms) {
             for (var subject : subjects) {
 
-                String key = sc.getStudent().getId() + "-" + subject.getId();
+                String key = sc.getId() + "-" + subject.getId();
                 if (existingPairs.contains(key)) {
-                    continue;
+                    throw new BadRequestException("Some student already assign to this subject");
                 }
 
                 var ss = new StudentSubject();
@@ -81,7 +81,6 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
                 toSave.add(ss);
             }
         }
-
         var saved = studentSubjectRepository.saveAll(toSave);
 
         return saved.stream()
@@ -115,10 +114,21 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
     }
 
     @Override
-    public List<StudentSubjectResponse> getStudentBySubject(Long subjectId) {
-        return studentSubjectRepository.findBySubject_Id(subjectId)
-                .stream()
-                .map(ssMapper::toResponse)
-                .toList();
+    public PageResponse<StudentSubjectResponse> getStudentBySubject(Long subjectId,Integer semester, String sortBy, String sortAs, Integer page, Integer size) {
+        Specification<StudentSubject> spec = ((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (subjectId != null){
+                predicates.add(cb.equal(root.join("subject").get("id"), subjectId));
+            }
+            if (semester != null){
+                predicates.add(cb.equal(root.join("studentClassroom").get("classroom").get("semester"), semester));
+            }
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
+        List<String> allowSort = List.of("subject.id","studentClassroom.classroom.semester");
+        var sort = SortResponse.sortResponse(sortBy,sortAs,allowSort);
+        Pageable pageable = PageRequest.of(page - 1 ,size,sort);
+        Page<StudentSubject> subjectPage = studentSubjectRepository.findAll(spec,pageable);
+        return PageResponse.from(subjectPage,ssMapper::toResponse);
     }
 }

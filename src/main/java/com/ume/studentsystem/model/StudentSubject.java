@@ -22,7 +22,7 @@ public class StudentSubject {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id",foreignKey = @ForeignKey(name = "fk_student_subjects_student"))
+    @JoinColumn(name = "student_classroom_id",foreignKey = @ForeignKey(name = "fk_student_subjects_student-classroom"))
     private StudentClassroom studentClassroom;
 
     @ManyToOne

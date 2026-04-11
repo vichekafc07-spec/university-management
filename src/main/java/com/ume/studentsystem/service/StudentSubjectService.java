@@ -11,5 +11,5 @@ public interface StudentSubjectService {
 
     PageResponse<StudentSubjectResponse> getSubjectsByStudent(Long studentId, String studentName, String studentCode, Integer semester, String sortBy, String sortAs, Integer page, Integer size);
 
-    List<StudentSubjectResponse> getStudentBySubject(Long subjectId);
+    PageResponse<StudentSubjectResponse> getStudentBySubject(Long subjectId,Integer semester, String sortBy, String sortAs, Integer page, Integer size);
 }
