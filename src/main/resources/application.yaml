@@ -2,9 +2,9 @@ spring:
   application:
     name: StudentSystem
   datasource:
-    url: jdbc:postgresql://localhost:5432/university
-    username: sorl_vichika
-    password: admin
+    url: ${DB_URL}
+    username: ${DB_NAME}
+    password: ${DB_PASS}
   jwt:
     secretKey: ${JWT_SECRET}
     accessExpiration: ${ACCESS_EXPIRATION}
