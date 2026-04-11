@@ -1,6 +1,7 @@
 package com.ume.studentsystem.controller;
 
 import com.ume.studentsystem.dto.request.AssignStudentSubjectRequest;
+import com.ume.studentsystem.dto.request.UpdateStudentStatus;
 import com.ume.studentsystem.dto.response.StudentSubjectResponse;
 import com.ume.studentsystem.service.StudentSubjectService;
 import com.ume.studentsystem.util.APIResponse;
@@ -46,6 +47,17 @@ public class StudentSubjectController {
                                                                                           @RequestParam(required = false , defaultValue = "5") Integer size
     ){
         return ResponseEntity.ok(APIResponse.ok(studentSubjectService.getStudentBySubject(subjectId,semester,sortBy,sortAs,page,size)));
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<APIResponse<StudentSubjectResponse>> updateStatus(@PathVariable Long id, @RequestBody UpdateStudentStatus status){
+        return ResponseEntity.ok(APIResponse.ok(studentSubjectService.updateStatus(id,status)));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        studentSubjectService.deleteStudentSubject(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -33,17 +33,20 @@ public class StaffController {
         return ResponseEntity.ok(APIResponse.ok(staffService.updateStaff(request,id)));
     }
 
-    @PutMapping("/activate/{id}")
+    @PatchMapping("/activate/{id}")
+    @PreAuthorize("hasAuthority('user:write')")
     public ResponseEntity<APIResponse<String>> activate(@PathVariable Long id){
         return ResponseEntity.ok(APIResponse.ok(staffService.activate(id)));
     }
 
-    @PutMapping("/deactivate/{id}")
+    @PatchMapping("/deactivate/{id}")
+    @PreAuthorize("hasAuthority('user:write')")
     public ResponseEntity<APIResponse<String>> deactivate(@PathVariable Long id){
         return ResponseEntity.ok(APIResponse.ok(staffService.deactivate(id)));
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<APIResponse<PageResponse<StaffResponse>>> getAll(@RequestParam(required = false) Long id,
                                                               @RequestParam(required = false) String fullName,
                                                               @RequestParam(required = false) String position,
@@ -58,16 +61,19 @@ public class StaffController {
     }
 
     @GetMapping("/department/{id}")
+    @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<APIResponse<List<StaffResponse>>> getByDepartment(@PathVariable Integer id) {
         return ResponseEntity.ok(APIResponse.ok(staffService.getByDepartment(id)));
     }
 
     @GetMapping("/faculty/{id}")
+    @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<APIResponse<List<StaffResponse>>> getByFaculty(@PathVariable Byte id) {
         return ResponseEntity.ok(APIResponse.ok(staffService.getByFaculty(id)));
     }
 
     @GetMapping("/lecturers")
+    @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<APIResponse<List<StaffResponse>>> getLecturers() {
         return ResponseEntity.ok(APIResponse.ok(staffService.getLecturers()));
     }

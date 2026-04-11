@@ -1,6 +1,7 @@
 package com.ume.studentsystem.service.impl;
 
 import com.ume.studentsystem.dto.request.AssignStudentSubjectRequest;
+import com.ume.studentsystem.dto.request.UpdateStudentStatus;
 import com.ume.studentsystem.dto.response.StudentSubjectResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
@@ -130,5 +131,21 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
         Pageable pageable = PageRequest.of(page - 1 ,size,sort);
         Page<StudentSubject> subjectPage = studentSubjectRepository.findAll(spec,pageable);
         return PageResponse.from(subjectPage,ssMapper::toResponse);
+    }
+
+    @Override
+    public StudentSubjectResponse updateStatus(Long id, UpdateStudentStatus request) {
+        var ss = studentSubjectRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student subject not found"));
+        ss.setStatus(request.status());
+        var saved = studentSubjectRepository.save(ss);
+        return ssMapper.toResponse(saved);
+    }
+
+    @Override
+    public void deleteStudentSubject(Long id) {
+        var ss = studentSubjectRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+        studentSubjectRepository.delete(ss);
     }
 }
