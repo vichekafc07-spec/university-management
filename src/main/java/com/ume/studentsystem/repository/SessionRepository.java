@@ -2,13 +2,14 @@ package com.ume.studentsystem.repository;
 
 import com.ume.studentsystem.model.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
-public interface SessionRepository extends JpaRepository<Session, Long> {
+public interface SessionRepository extends JpaRepository<Session, Long> , JpaSpecificationExecutor<Session> {
 
 
     @Query("""

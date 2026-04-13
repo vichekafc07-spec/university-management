@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 public record SessionRequest(
 
-        @NotNull(message = "LecturerAssignment is required")
+        @NotNull(message = "Lecturer Assignment is required")
         Long lecturerAssignmentId,
 
         @NotNull(message = "Room is required")

@@ -10,10 +10,18 @@ import com.ume.studentsystem.repository.LecturerAssignmentRepository;
 import com.ume.studentsystem.repository.RoomRepository;
 import com.ume.studentsystem.repository.SessionRepository;
 import com.ume.studentsystem.service.SessionService;
+import com.ume.studentsystem.util.PageResponse;
+import com.ume.studentsystem.util.SortResponse;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +32,7 @@ public class SessionServiceImpl implements SessionService {
     private final SessionRepository sessionRepository;
     private final LecturerAssignmentRepository lecturerAssignmentRepository;
     private final RoomRepository roomRepository;
-    private final SessionMapper mapper;
+    private final SessionMapper sessionMapper;
 
     public SessionResponse create(SessionRequest request) {
 
@@ -69,14 +77,29 @@ public class SessionServiceImpl implements SessionService {
 
         sessionRepository.save(session);
 
-        return mapper.toResponse(session);
+        return sessionMapper.toResponse(session);
     }
 
-    public List<SessionResponse> getAll() {
-        return sessionRepository.findAll()
-                .stream()
-                .map(mapper::toResponse)
-                .toList();
+    public PageResponse<SessionResponse> getAll(String subjectName, String roomName, String day, String sortBy, String sortAs, Integer page, Integer size) {
+        Specification<Session> spec = ((root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (subjectName != null) {
+                predicates.add(cb.like(cb.lower(root.join("lecturerAssignment").get("subject").get("title")), "%" + subjectName.toLowerCase() + "%"));
+            }
+            if (roomName != null) {
+                predicates.add(cb.like(cb.lower(root.join("room").get("name")), "%" + roomName.toLowerCase() + "%"));
+            }
+            if (day != null) {
+                predicates.add(cb.like(cb.lower(root.get("day")), "%" + day.toLowerCase() + "%" ));
+            }
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
+        List<String> allowSort = List.of("lecturerAssignment.subject.title","room.name","day");
+        var sort = SortResponse.sortResponse(sortBy,sortAs,allowSort);
+        Pageable pageable = PageRequest.of(page -1 ,size,sort);
+        Page<Session> sessionPage = sessionRepository.findAll(spec,pageable);
+        return PageResponse.from(sessionPage,sessionMapper::toResponse);
     }
 
     public void delete(Long id) {

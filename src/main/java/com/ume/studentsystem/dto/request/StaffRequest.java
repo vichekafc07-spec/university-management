@@ -19,7 +19,7 @@ public record StaffRequest(
         GenderStatus gender,
         @NotNull(message = "Dob is required")
         LocalDate dob,
-        boolean active,
+        Boolean active,
         @NotNull(message = "Faculty Id is required")
         Byte facultyId,
         @NotNull(message = "Department Id is required")

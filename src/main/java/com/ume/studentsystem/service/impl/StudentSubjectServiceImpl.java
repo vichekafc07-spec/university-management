@@ -56,7 +56,7 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
             throw new ResourceNotFoundException("No valid subjects found");
         }
 
-        var existing = studentSubjectRepository.findByStudentClassroomStudent_IdInAndSubjectIdIn(request.studentId(),request.subjectIds());
+        var existing = studentSubjectRepository.findByStudentClassroomIdInAndSubjectIdIn(request.studentId(),request.subjectIds());
 
         Set<String> existingPairs = existing.stream()
                 .map(es -> es.getStudentClassroom().getId() + "-" + es.getSubject().getId())

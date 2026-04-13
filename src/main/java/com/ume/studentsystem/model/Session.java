@@ -29,7 +29,9 @@ public class Session {
     @JoinColumn(name = "room_id", foreignKey = @ForeignKey(name = "fk_session_room"))
     private Room room;
 
+    @Enumerated(EnumType.STRING)
     private DayOfWeek day;
+
     private LocalTime startTime;
     private LocalTime endTime;
 }

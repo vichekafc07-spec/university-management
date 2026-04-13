@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface StudentSubjectRepository extends JpaRepository<StudentSubject, Long>, JpaSpecificationExecutor<StudentSubject> {
 
-    List<StudentSubject> findByStudentClassroomStudent_IdInAndSubjectIdIn(Set<Long> studentClassroomIds, Set<Long> subjectIds);
+    List<StudentSubject> findByStudentClassroomIdInAndSubjectIdIn(Set<Long> studentClassroomIds, Set<Long> subjectIds);
 
     List<StudentSubject> findByStudentClassroom_Student_Id(Long studentClassroomId);
 
