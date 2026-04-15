@@ -34,6 +34,7 @@ public class SessionServiceImpl implements SessionService {
     private final RoomRepository roomRepository;
     private final SessionMapper sessionMapper;
 
+    @Override
     public SessionResponse create(SessionRequest request) {
 
         var la = lecturerAssignmentRepository.findById(request.lecturerAssignmentId())
@@ -80,6 +81,26 @@ public class SessionServiceImpl implements SessionService {
         return sessionMapper.toResponse(session);
     }
 
+    @Override
+    public SessionResponse update(Long id, SessionRequest request) {
+        var session = sessionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Session not found with id " + id));
+        var la = lecturerAssignmentRepository.findById(request.lecturerAssignmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Lecturer not found with id " + request.lecturerAssignmentId()));
+        var room = roomRepository.findById(request.roomId())
+                .orElseThrow(() -> new ResourceNotFoundException("Room not found with id " + request.roomId()));
+        session.setLecturerAssignment(la);
+        session.setRoom(room);
+        session.setDay(request.day());
+        session.setStartTime(request.startTime());
+        session.setEndTime(request.endTime());
+
+        var saved = sessionRepository.save(session);
+
+        return sessionMapper.toResponse(saved);
+    }
+
+    @Override
     public PageResponse<SessionResponse> getAll(String subjectName, String roomName, String day, String sortBy, String sortAs, Integer page, Integer size) {
         Specification<Session> spec = ((root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
@@ -102,6 +123,7 @@ public class SessionServiceImpl implements SessionService {
         return PageResponse.from(sessionPage,sessionMapper::toResponse);
     }
 
+    @Override
     public void delete(Long id) {
         if (!sessionRepository.existsById(id)) {
             throw new ResourceNotFoundException("Session not found");

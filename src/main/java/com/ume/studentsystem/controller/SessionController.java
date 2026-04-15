@@ -24,8 +24,7 @@ public class SessionController {
     }
 
     @GetMapping
-    public ResponseEntity<APIResponse<PageResponse<SessionResponse>>> getAll(
-                                                                             @RequestParam(required = false) String subjectName,
+    public ResponseEntity<APIResponse<PageResponse<SessionResponse>>> getAll(@RequestParam(required = false) String subjectName,
                                                                              @RequestParam(required = false) String roomName,
                                                                              @RequestParam(required = false) String day,
                                                                              @RequestParam(required = false) String sortBy,
@@ -36,8 +35,14 @@ public class SessionController {
         return ResponseEntity.ok(APIResponse.ok(sessionService.getAll(subjectName,roomName,day,sortBy,sortAs,page,size)));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<APIResponse<SessionResponse>> update(@PathVariable Long id,
+                                                               @Valid @RequestBody SessionRequest request){
+        return ResponseEntity.ok(APIResponse.ok(sessionService.update(id,request)));
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<APIResponse<String>> delete(@PathVariable Long id) {
+    public ResponseEntity<APIResponse<?>> delete(@PathVariable Long id) {
         sessionService.delete(id);
         return ResponseEntity.ok(APIResponse.ok("Deleted successfully"));
     }
