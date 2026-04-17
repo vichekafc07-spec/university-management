@@ -1,6 +1,7 @@
 package com.ume.studentsystem.service.impl;
 
 import com.ume.studentsystem.dto.request.AttendanceRequest;
+import com.ume.studentsystem.dto.request.UpdateAttendanceStatus;
 import com.ume.studentsystem.dto.response.AttendanceResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
@@ -25,7 +26,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final AttendanceRepository attendanceRepository;
     private final SessionRepository sessionRepository;
     private final StudentSubjectRepository studentSubjectRepository;
-    private final AttendanceMapper mapper;
+    private final AttendanceMapper attendanceMapper;
 
     @Override
     public List<AttendanceResponse> markAttendance(AttendanceRequest request) {
@@ -62,20 +63,20 @@ public class AttendanceServiceImpl implements AttendanceService {
         var saved = attendanceRepository.saveAll(toSave);
 
         return saved.stream()
-                .map(mapper::toResponse)
+                .map(attendanceMapper::toResponse)
                 .toList();
     }
 
     @Override
     public List<AttendanceResponse> getByStudent(Long studentId) {
         return attendanceRepository.findByStudentSubject_StudentClassroom_Student_Id(studentId)
-                .stream().map(mapper::toResponse).toList();
+                .stream().map(attendanceMapper::toResponse).toList();
     }
 
     @Override
     public List<AttendanceResponse> getBySubject(Long subjectId) {
         return attendanceRepository.findByStudentSubject_Subject_Id(subjectId)
-                .stream().map(mapper::toResponse).toList();
+                .stream().map(attendanceMapper::toResponse).toList();
     }
 
     @Override
@@ -84,5 +85,14 @@ public class AttendanceServiceImpl implements AttendanceService {
             throw new ResourceNotFoundException("Attendance not found");
         }
         attendanceRepository.deleteById(id);
+    }
+
+    @Override
+    public AttendanceResponse updateAttendanceStatus(Long id, UpdateAttendanceStatus request) {
+        var attendance = attendanceRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Attendance not found with id " + id));
+        attendance.setStatus(request.status());
+        var saved = attendanceRepository.save(attendance);
+        return attendanceMapper.toResponse(saved);
     }
 }

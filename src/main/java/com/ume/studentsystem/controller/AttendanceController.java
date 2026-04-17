@@ -1,6 +1,7 @@
 package com.ume.studentsystem.controller;
 
 import com.ume.studentsystem.dto.request.AttendanceRequest;
+import com.ume.studentsystem.dto.request.UpdateAttendanceStatus;
 import com.ume.studentsystem.dto.response.AttendanceResponse;
 import com.ume.studentsystem.service.AttendanceService;
 import com.ume.studentsystem.util.APIResponse;
@@ -31,6 +32,12 @@ public class AttendanceController {
     @GetMapping("/subject/{subjectId}")
     public ResponseEntity<APIResponse<List<AttendanceResponse>>> getBySubject(@PathVariable Long subjectId) {
         return ResponseEntity.ok(APIResponse.ok(attendanceService.getBySubject(subjectId)));
+    }
+
+    @PatchMapping("/status/{id}")
+    public ResponseEntity<APIResponse<AttendanceResponse>> updateStatus(@PathVariable Long id,
+                                                                        @RequestBody UpdateAttendanceStatus status){
+        return ResponseEntity.ok(APIResponse.ok(attendanceService.updateAttendanceStatus(id,status)));
     }
 
     @DeleteMapping("/{id}")
