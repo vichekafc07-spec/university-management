@@ -26,10 +26,15 @@ public class GradeServiceImpl implements GradeService {
     private final GradeMapper gradeMapper;
 
     @Override
+    @Transactional
     public GradeResponse create(GradeRequest request) {
 
         var ss = studentSubjectRepository.findById(request.studentSubjectId())
-                .orElseThrow(() -> new ResourceNotFoundException("StudentSubject not found"));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("StudentSubject not found"));
+
+        Grade grades = gradeRepository.findByStudentSubject_Id(request.studentSubjectId())
+                .orElse(new Grade());
 
         if (request.assignmentScore() > 30 ||
                 request.midtermScore() > 30 ||
@@ -37,23 +42,20 @@ public class GradeServiceImpl implements GradeService {
             throw new BadRequestException("Invalid score range");
         }
 
-        Double total = request.assignmentScore()
-                + request.midtermScore()
-                + request.finalScore();
+        Double total = request.assignmentScore() + request.midtermScore() + request.finalScore();
 
         GradeStatus gradeStatus = calculateGrade(total);
         Double gpa = calculateGPA(gradeStatus);
 
-        var grades = gradeRepository.findByStudentSubject_Id(ss.getId())
-                .orElse(new Grade());
-
-        grades = gradeMapper.toEntity(request);
         grades.setStudentSubject(ss);
-        grades.setGpa(gpa);
+        grades.setAssignmentScore(request.assignmentScore());
+        grades.setMidtermScore(request.midtermScore());
+        grades.setFinalScore(request.finalScore());
         grades.setTotalScore(total);
         grades.setGrade(gradeStatus);
-        gradeRepository.save(grades);
-        return gradeMapper.toResponse(grades);
+        grades.setGpa(gpa);
+        var saved = gradeRepository.save(grades);
+        return gradeMapper.toResponse(saved);
     }
 
     public List<GradeResponse> getByStudent(Long studentId) {
@@ -62,6 +64,14 @@ public class GradeServiceImpl implements GradeService {
                 .filter(g -> g.getStudentSubject().getStudentClassroom().getStudent().getId().equals(studentId))
                 .map(gradeMapper::toResponse)
                 .toList();
+    }
+
+    @Override
+    public void delete(Long id){
+        if (!gradeRepository.existsById(id)){
+            throw new ResourceNotFoundException("Grade not found");
+        }
+        gradeRepository.deleteById(id);
     }
 
     private GradeStatus calculateGrade(Double total) {
