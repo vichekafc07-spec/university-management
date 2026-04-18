@@ -8,6 +8,7 @@ public record GradeResponse(
         String studentName,
         String subjectTitle,
 
+        Double attendanceScore,
         Double assignmentScore,
         Double midtermScore,
         Double finalScore,

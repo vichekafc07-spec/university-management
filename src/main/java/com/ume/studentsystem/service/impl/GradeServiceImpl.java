@@ -6,7 +6,9 @@ import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.GradeMapper;
 import com.ume.studentsystem.model.Grade;
+import com.ume.studentsystem.model.enums.AttendanceStatus;
 import com.ume.studentsystem.model.enums.GradeStatus;
+import com.ume.studentsystem.repository.AttendanceRepository;
 import com.ume.studentsystem.repository.GradeRepository;
 import com.ume.studentsystem.repository.StudentSubjectRepository;
 import com.ume.studentsystem.service.GradeService;
@@ -24,6 +26,7 @@ public class GradeServiceImpl implements GradeService {
     private final GradeRepository gradeRepository;
     private final StudentSubjectRepository studentSubjectRepository;
     private final GradeMapper gradeMapper;
+    private final AttendanceRepository attendanceRepository;
 
     @Override
     @Transactional
@@ -36,18 +39,21 @@ public class GradeServiceImpl implements GradeService {
         Grade grades = gradeRepository.findByStudentSubject_Id(request.studentSubjectId())
                 .orElse(new Grade());
 
+        double attendanceScore = calculateAttendanceScore(request.studentSubjectId());
+
         if (request.assignmentScore() > 30 ||
                 request.midtermScore() > 30 ||
                 request.finalScore() > 40) {
             throw new BadRequestException("Invalid score range");
         }
 
-        Double total = request.assignmentScore() + request.midtermScore() + request.finalScore();
+        Double total = attendanceScore + request.assignmentScore() + request.midtermScore() + request.finalScore();
 
         GradeStatus gradeStatus = calculateGrade(total);
         Double gpa = calculateGPA(gradeStatus);
 
         grades.setStudentSubject(ss);
+        grades.setAttendanceScore(attendanceScore);
         grades.setAssignmentScore(request.assignmentScore());
         grades.setMidtermScore(request.midtermScore());
         grades.setFinalScore(request.finalScore());
@@ -72,6 +78,19 @@ public class GradeServiceImpl implements GradeService {
             throw new ResourceNotFoundException("Grade not found");
         }
         gradeRepository.deleteById(id);
+    }
+
+    private double calculateAttendanceScore(Long studentSubjectId){
+        long absent = attendanceRepository.countByStudentSubject_IdAndStatus(studentSubjectId, AttendanceStatus.ABSENT);
+        long permission = attendanceRepository.countByStudentSubject_IdAndStatus(studentSubjectId, AttendanceStatus.PERMISSION);
+        long late = attendanceRepository.countByStudentSubject_IdAndStatus(studentSubjectId,AttendanceStatus.LATE);
+        long deduction = 0;
+        deduction += absent;
+        deduction += permission / 2;
+        deduction += late / 3;
+
+        double score = 10 - deduction;
+        return Math.max(score,0);
     }
 
     private GradeStatus calculateGrade(Double total) {

@@ -25,6 +25,8 @@ public class Grade {
     @JoinColumn(name = "student_subject_id",foreignKey = @ForeignKey(name = "fk_grade_student-subject"))
     private StudentSubject studentSubject;
 
+    private Double attendanceScore;
+
     private Double assignmentScore;
     private Double midtermScore;
     private Double finalScore;

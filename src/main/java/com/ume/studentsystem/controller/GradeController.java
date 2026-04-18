@@ -27,4 +27,11 @@ public class GradeController {
     public ResponseEntity<APIResponse<List<GradeResponse>>> getByStudent(@PathVariable Long studentId) {
         return ResponseEntity.ok(APIResponse.ok(gradeService.getByStudent(studentId)));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        gradeService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
