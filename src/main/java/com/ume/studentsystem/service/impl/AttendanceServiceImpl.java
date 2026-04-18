@@ -69,7 +69,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public List<AttendanceResponse> getByStudent(Long studentId) {
-        return attendanceRepository.findByStudentSubject_StudentClassroom_Student_Id(studentId)
+        return attendanceRepository.findByStudentSubject_StudentClassroomId(studentId)
                 .stream().map(attendanceMapper::toResponse).toList();
     }
 
