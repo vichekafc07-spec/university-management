@@ -2,7 +2,7 @@ package com.ume.studentsystem.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ume.studentsystem.helper.SpringContext;
-import com.ume.studentsystem.model.AuditLog;
+import com.ume.studentsystem.model.audit.AuditLog;
 import com.ume.studentsystem.repository.AuditLogRepository;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PostRemove;

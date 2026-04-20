@@ -1,6 +1,7 @@
 package com.ume.studentsystem.model;
 
 import com.ume.studentsystem.config.EntityAuditListener;
+import com.ume.studentsystem.model.audit.AuditEntity;
 import com.ume.studentsystem.model.enums.StudyTime;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

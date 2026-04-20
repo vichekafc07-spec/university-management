@@ -1,5 +1,6 @@
 package com.ume.studentsystem.model;
 
+import com.ume.studentsystem.model.audit.AuditEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +18,7 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE rooms SET deleted = true, deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @Where(clause = "deleted = false")
-public class Room extends AuditEntity{
+public class Room extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

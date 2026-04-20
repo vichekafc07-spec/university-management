@@ -1,6 +1,7 @@
 package com.ume.studentsystem.model;
 
 import com.ume.studentsystem.config.EntityAuditListener;
+import com.ume.studentsystem.model.audit.AuditEntity;
 import com.ume.studentsystem.model.enums.GenderStatus;
 import com.ume.studentsystem.model.enums.StaffPosition;
 import jakarta.persistence.*;
@@ -22,7 +23,7 @@ import java.time.LocalDate;
 @Setter
 @SQLDelete(sql = "UPDATE staffs SET deleted = true, deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @Where(clause = "deleted = false")
-public class Staff extends AuditEntity{
+public class Staff extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

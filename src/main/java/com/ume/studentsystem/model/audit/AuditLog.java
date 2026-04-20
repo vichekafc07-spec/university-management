@@ -1,4 +1,4 @@
-package com.ume.studentsystem.model;
+package com.ume.studentsystem.model.audit;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
