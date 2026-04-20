@@ -24,7 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public DepartmentResponse addDepartment(DepartmentRequest request) {
         departmentRepository.findDepartmentByName(request.name()).ifPresent(e -> {
-            throw new DuplicateResourceException("Student already exists with name: " + request.name());
+            throw new DuplicateResourceException("Department already exists with name: " + request.name());
         });
         var faculty = getFacultyId(request.facultyId());
         var dept = departmentMapper.toEntity(request);

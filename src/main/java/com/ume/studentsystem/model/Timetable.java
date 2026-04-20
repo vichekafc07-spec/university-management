@@ -26,19 +26,19 @@ public class Timetable {
     private AcademicTerm term;
 
     @ManyToOne
-    @JoinColumn(name = "classroom_id",foreignKey = @ForeignKey(name = "fk_classroom_term"))
+    @JoinColumn(name = "classroom_id",foreignKey = @ForeignKey(name = "fk_timetable_classroom"))
     private Classroom classroom;
 
     @ManyToOne
-    @JoinColumn(name = "subject_id",foreignKey = @ForeignKey(name = "fk_subject_term"))
+    @JoinColumn(name = "subject_id",foreignKey = @ForeignKey(name = "fk_timetable_subject"))
     private Subject subject;
 
     @ManyToOne
-    @JoinColumn(name = "lecturer_id",foreignKey = @ForeignKey(name = "fk_lecturer_term"))
+    @JoinColumn(name = "lecturer_id",foreignKey = @ForeignKey(name = "fk_timetable_lecturer"))
     private Staff lecturer;
 
     @ManyToOne
-    @JoinColumn(name = "room_id",foreignKey = @ForeignKey(name = "fk_timetable_term"))
+    @JoinColumn(name = "room_id",foreignKey = @ForeignKey(name = "fk_timetable_room"))
     private Room room;
 
     @Enumerated(EnumType.STRING)

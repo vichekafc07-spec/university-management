@@ -1,12 +1,15 @@
 package com.ume.studentsystem.dto.response;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public record TimetableResponse(
         Long id,
         Integer year,
         Integer semester,
+        LocalDate startDate,
+        LocalDate endDate,
 
         String classroomName,
         String subjectTitle,

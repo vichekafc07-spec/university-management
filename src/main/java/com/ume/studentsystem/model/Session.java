@@ -22,7 +22,7 @@ public class Session {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lecturer_assignmet_id" , foreignKey = @ForeignKey(name = "session-assignment"))
+    @JoinColumn(name = "lecturer_assignmet_id" , foreignKey = @ForeignKey(name = "fk_session-assignment"))
     private LecturerAssignment lecturerAssignment;
 
     @ManyToOne(fetch = FetchType.LAZY)

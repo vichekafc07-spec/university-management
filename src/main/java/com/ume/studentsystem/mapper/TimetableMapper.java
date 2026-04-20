@@ -13,6 +13,8 @@ public interface TimetableMapper {
 
     @Mapping(source = "term.year", target = "year")
     @Mapping(source = "term.semester", target = "semester")
+    @Mapping(source = "term.startDate", target = "startDate")
+    @Mapping(source = "term.endDate", target = "endDate")
 
     @Mapping(source = "classroom.name", target = "classroomName")
     @Mapping(source = "subject.title", target = "subjectTitle")
