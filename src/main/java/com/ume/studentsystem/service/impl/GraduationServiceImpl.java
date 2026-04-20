@@ -1,11 +1,10 @@
 package com.ume.studentsystem.service.impl;
 
-import com.ume.studentsystem.dto.response.TranscriptItemResponse;
-import com.ume.studentsystem.dto.response.TranscriptResponse;
+import com.ume.studentsystem.dto.response.GraduationResponse;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.model.enums.GradeStatus;
 import com.ume.studentsystem.repository.GradeRepository;
-import com.ume.studentsystem.service.TranscriptService;
+import com.ume.studentsystem.service.GraduationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,71 +15,73 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class TranscriptServiceImpl implements TranscriptService {
+public class GraduationServiceImpl implements GraduationService {
 
     private final GradeRepository gradeRepository;
 
+    private static final int REQUIRED_CREDITS = 120;
+    private static final double MIN_CGPA = 2.0;
+
     @Override
-    public TranscriptResponse getTranscript(Long studentId) {
+    public GraduationResponse checkEligibility(Long studentId) {
 
         var grades = gradeRepository
                 .findByStudentSubject_StudentClassroom_Student_Id(studentId);
 
         if (grades.isEmpty()) {
-            throw new ResourceNotFoundException("No transcript found");
+            throw new ResourceNotFoundException("No academic record found");
         }
 
-        var first = grades.getFirst();
-        var student = first.getStudentSubject()
+        var student = grades.getFirst()
+                .getStudentSubject()
                 .getStudentClassroom()
                 .getStudent();
 
-        List<TranscriptItemResponse> items = new ArrayList<>();
-
         int totalCredits = 0;
         double totalPoints = 0;
-
-        int passed = 0;
-        int failed = 0;
+        int failedSubjects = 0;
 
         for (var g : grades) {
 
-            var subject = g.getStudentSubject().getSubject();
-            int credit = subject.getCredit();
-
-            items.add(new TranscriptItemResponse(
-                            subject.getCode(),
-                            subject.getTitle(),
-                            credit,
-                            g.getTotalScore(),
-                            g.getGrade(),
-                            g.getGpa())
-            );
+            int credit = g.getStudentSubject()
+                    .getSubject()
+                    .getCredit();
 
             totalCredits += credit;
-            totalPoints += (credit * g.getGpa());
+            totalPoints += credit * g.getGpa();
 
             if (g.getGrade() == GradeStatus.F) {
-                failed++;
-            } else {
-                passed++;
+                failedSubjects++;
             }
         }
 
         double cgpa = totalCredits == 0 ? 0 : totalPoints / totalCredits;
 
-        return new TranscriptResponse(
+        List<String> reasons = new ArrayList<>();
+
+        if (totalCredits < REQUIRED_CREDITS) {
+            reasons.add("Not enough credits");
+        }
+
+        if (cgpa < MIN_CGPA) {
+            reasons.add("CGPA below minimum");
+        }
+
+        if (failedSubjects > 0) {
+            reasons.add("Has failed subjects");
+        }
+
+        boolean eligible = reasons.isEmpty();
+
+        return new GraduationResponse(
                 student.getId(),
                 student.getFullName(),
                 student.getStudentCode(),
-
-                items,
-
                 totalCredits,
                 round(cgpa),
-                round(cgpa),
-                passed,
-                failed
+                failedSubjects,
+                eligible,
+                reasons
         );
     }
 
