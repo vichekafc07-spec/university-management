@@ -23,23 +23,23 @@ public class Exam {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "term_id")
+    @JoinColumn(name = "term_id",foreignKey = @ForeignKey(name = "fk_exam_term"))
     private AcademicTerm term;
 
     @ManyToOne
-    @JoinColumn(name = "classroom_id")
+    @JoinColumn(name = "classroom_id",foreignKey = @ForeignKey(name = "fk_exam_classroom"))
     private Classroom classroom;
 
     @ManyToOne
-    @JoinColumn(name = "subject_id")
+    @JoinColumn(name = "subject_id",foreignKey = @ForeignKey(name = "fk_exam_subject"))
     private Subject subject;
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id",foreignKey = @ForeignKey(name = "fk_exam_room"))
     private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "invigilator_id")
+    @JoinColumn(name = "invigilator_id",foreignKey = @ForeignKey(name = "fk_exam_invigilator"))
     private Staff invigilator;
 
     @Enumerated(EnumType.STRING)
