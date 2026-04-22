@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/grades")
@@ -26,6 +27,16 @@ public class GradeController {
     @GetMapping("/student/{studentId}")
     public ResponseEntity<APIResponse<List<GradeResponse>>> getByStudent(@PathVariable Long studentId) {
         return ResponseEntity.ok(APIResponse.ok(gradeService.getByStudent(studentId)));
+    }
+
+    @PostMapping("/auto/{studentSubjectId}")
+    public ResponseEntity<APIResponse<GradeResponse>> autoCalculate(@PathVariable Long studentSubjectId){
+        return ResponseEntity.ok(APIResponse.ok(gradeService.autoCalculate(studentSubjectId)));
+    }
+
+    @PostMapping("/auto-bulk")
+    public ResponseEntity<APIResponse<List<GradeResponse>>> bulk(@RequestBody Set<Long> ids){
+        return ResponseEntity.ok(APIResponse.ok(gradeService.autoCalculateBulk(ids)));
     }
 
     @DeleteMapping("/{id}")

@@ -9,6 +9,7 @@ import com.ume.studentsystem.model.Grade;
 import com.ume.studentsystem.model.enums.AttendanceStatus;
 import com.ume.studentsystem.model.enums.GradeStatus;
 import com.ume.studentsystem.repository.AttendanceRepository;
+import com.ume.studentsystem.repository.ExamResultRepository;
 import com.ume.studentsystem.repository.GradeRepository;
 import com.ume.studentsystem.repository.StudentSubjectRepository;
 import com.ume.studentsystem.service.GradeService;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +29,7 @@ public class GradeServiceImpl implements GradeService {
     private final StudentSubjectRepository studentSubjectRepository;
     private final GradeMapper gradeMapper;
     private final AttendanceRepository attendanceRepository;
+    private final ExamResultRepository examResultRepository;
 
     @Override
     @Transactional
@@ -78,6 +81,63 @@ public class GradeServiceImpl implements GradeService {
             throw new ResourceNotFoundException("Grade not found");
         }
         gradeRepository.deleteById(id);
+    }
+
+    @Override
+    public GradeResponse autoCalculate(Long studentSubjectId) {
+        var ss = studentSubjectRepository.findById(studentSubjectId)
+                .orElseThrow(() ->new ResourceNotFoundException("StudentSubject not found"));
+
+        double attendanceScore = calculateAttendanceScore(studentSubjectId);
+
+        double quiz = 0;
+        double midterm = 0;
+        double fin = 0;
+
+        var results = examResultRepository.findByStudentSubject_Id(studentSubjectId);
+
+        for (var r : results) {
+
+            switch (r.getExam().getExamType()) {
+
+                case QUIZ -> quiz += r.getScore();
+
+                case MIDTERM -> midterm += r.getScore();
+
+                case FINAL -> fin += r.getScore();
+
+                default -> {}
+            }
+        }
+
+        double total = attendanceScore + quiz + midterm + fin;
+
+        GradeStatus gradeStatus = calculateGrade(total);
+        double gpa = calculateGPA(gradeStatus);
+
+        var grade = gradeRepository
+                .findByStudentSubject_Id(studentSubjectId)
+                .orElse(new Grade());
+
+        grade.setStudentSubject(ss);
+        grade.setAttendanceScore(attendanceScore);
+        grade.setAssignmentScore(quiz);
+        grade.setMidtermScore(midterm);
+        grade.setFinalScore(fin);
+        grade.setTotalScore(total);
+        grade.setGrade(gradeStatus);
+        grade.setGpa(gpa);
+
+        gradeRepository.save(grade);
+
+        return gradeMapper.toResponse(grade);
+    }
+
+    @Override
+    public List<GradeResponse> autoCalculateBulk(Set<Long> studentSubjectIds) {
+        return studentSubjectIds.stream()
+                .map(this::autoCalculate)
+                .toList();
     }
 
     private double calculateAttendanceScore(Long studentSubjectId){
