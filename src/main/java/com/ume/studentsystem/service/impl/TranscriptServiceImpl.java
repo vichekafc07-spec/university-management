@@ -73,6 +73,9 @@ public class TranscriptServiceImpl implements TranscriptService {
                 student.getId(),
                 student.getFullName(),
                 student.getStudentCode(),
+                student.getFaculty().getName(),
+                student.getDepartment().getName(),
+                student.getMajor(),
 
                 items,
 

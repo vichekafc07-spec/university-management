@@ -8,6 +8,10 @@ public record TranscriptResponse(
         String studentName,
         String studentCode,
 
+        String faculty,
+        String department,
+        String major,
+
         List<TranscriptItemResponse> subjects,
 
         Integer totalCredits,

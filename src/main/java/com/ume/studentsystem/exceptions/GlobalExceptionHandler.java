@@ -7,6 +7,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -81,5 +82,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(APIResponse.error(ex.getMessage() != null ? ex.getMessage() : "You do not have permission to access this resource",
                         HttpStatus.FORBIDDEN));
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<APIResponse<Object>> handleMissingParam(
+            MissingServletRequestParameterException ex
+    ) {
+        return ResponseEntity.badRequest()
+                .body(APIResponse.error(ex.getMessage(),
+                        HttpStatus.BAD_REQUEST));
     }
 }

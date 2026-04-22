@@ -55,6 +55,8 @@ public class Student{
 
     private Integer generation;
 
+    private String photoUrl;
+
     @Enumerated(EnumType.STRING)
     private StudyTime studyTime;
 

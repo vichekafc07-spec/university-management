@@ -3,57 +3,57 @@ package com.ume.studentsystem.dto.request;
 import com.ume.studentsystem.model.enums.GenderStatus;
 import com.ume.studentsystem.model.enums.PaymentType;
 import com.ume.studentsystem.model.enums.ProgramType;
+import com.ume.studentsystem.model.enums.StudyTime;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
+
 public record StudentRequest(
+
         @NotBlank(message = "Full name is required")
         String fullName,
 
         @NotBlank(message = "Student code is required")
         String studentCode,
 
+        @NotNull(message = "Gender is required")
+        GenderStatus gender,
+
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         @NotNull(message = "Date of birth is required")
         LocalDate dateOfBirth,
 
         @NotBlank(message = "Phone is required")
-        @Size(min = 8 , max = 20)
         String phone,
 
-        @NotBlank(message = "Study time is required")
-        String studyTime,
-
-        @Email(message = "Invalid email format")
+        @Email(message = "Invalid email")
         String email,
 
-        @NotNull(message = "Generate is required")
-        Integer generation,
-
-        @NotNull(message = "Gender is required")
-        GenderStatus gender,
-
-        @NotNull(message = "Program type is required")
+        @NotNull
         ProgramType programType,
 
-        @NotNull(message = "Payment type is required")
+        @NotNull
         PaymentType paymentType,
 
-        @NotNull(message = "Faculty ID is required")
+        @NotNull
         Byte facultyId,
 
-        @NotNull(message = "Department ID is required")
+        @NotNull
         Integer departmentId,
 
-        @NotBlank(message = "Major is required")
+        @NotBlank
         String major,
 
-        @NotBlank(message = "Enrollment year is required")
+        @NotBlank
         String enrollmentYear,
 
-        @NotNull(message = "Status is required")
-        String status
+        @NotNull
+        Integer generation,
+
+        @NotNull
+        StudyTime studyTime
 ) {}

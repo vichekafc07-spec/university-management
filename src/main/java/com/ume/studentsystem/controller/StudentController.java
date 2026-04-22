@@ -7,8 +7,14 @@ import com.ume.studentsystem.util.APIResponse;
 import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.ByteArrayInputStream;
 
 @RestController
 @RequestMapping("/api/v1/students")
@@ -17,14 +23,15 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    @PostMapping
-    public ResponseEntity<APIResponse<StudentResponse>> create(@Valid @RequestBody StudentRequest request) {
-        return ResponseEntity.ok(APIResponse.create(studentService.create(request)));
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<APIResponse<StudentResponse>> create(@Valid @ModelAttribute StudentRequest request,
+                                                               @RequestParam MultipartFile photo
+    ) {
+        return ResponseEntity.ok(APIResponse.create(studentService.create(request, photo)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<APIResponse<StudentResponse>> update(@PathVariable Long id,
-                                                  @Valid @RequestBody StudentRequest request) {
+    public ResponseEntity<APIResponse<StudentResponse>> update(@PathVariable Long id, @Valid @RequestBody StudentRequest request) {
         return ResponseEntity.ok(APIResponse.ok(studentService.update(id, request)));
     }
 
@@ -48,6 +55,17 @@ public class StudentController {
                                                                              @RequestParam(required = false , defaultValue = "1") Integer page,
                                                                              @RequestParam(required = false , defaultValue = "5") Integer size) {
         return ResponseEntity.ok(APIResponse.ok(studentService.getAll(id,fullName,studentCode,faculty,major,generation,payment,programType,status,sortBy,sortAs,page,size)));
+    }
+
+    @GetMapping("/reports/pdf")
+    public ResponseEntity<InputStreamResource> pdf(@RequestParam Integer generation){
+        ByteArrayInputStream in = studentService.exportByGeneration(generation);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition","inline; filename=student.pdf");
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(in));
     }
 
     @DeleteMapping("/{id}")
