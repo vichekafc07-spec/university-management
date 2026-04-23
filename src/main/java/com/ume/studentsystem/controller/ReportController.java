@@ -38,4 +38,26 @@ public class ReportController {
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(new InputStreamResource(file));
     }
+
+    @GetMapping("/sessions/{id}/attendance")
+    public ResponseEntity<InputStreamResource> attendance(@PathVariable Long id) {
+
+        ByteArrayInputStream pdf = reportService.attendanceSheet(id);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=attendance-sheet.pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdf));
+    }
+
+    @GetMapping("/exams/{examId}/seat-list")
+    public ResponseEntity<InputStreamResource> generateSeatList(@PathVariable Long examId) {
+        ByteArrayInputStream pdf = reportService.generateSeatList(examId);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=exam-seat-list.pdf");
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdf));
+    }
 }

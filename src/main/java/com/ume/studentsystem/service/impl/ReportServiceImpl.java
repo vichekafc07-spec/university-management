@@ -5,6 +5,8 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
+import com.ume.studentsystem.repository.ExamRepository;
+import com.ume.studentsystem.repository.SessionRepository;
 import com.ume.studentsystem.repository.StudentClassroomRepository;
 import com.ume.studentsystem.service.ReportService;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +16,15 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.*;
 
 @Service
 @RequiredArgsConstructor
 public class ReportServiceImpl implements ReportService {
 
     private final StudentClassroomRepository studentClassroomRepository;
+    private final SessionRepository sessionRepository;
+    private final ExamRepository examRepository;
 
     @Override
     public ByteArrayInputStream classroomStudentList(Long classroomId) {
@@ -160,6 +163,154 @@ public class ReportServiceImpl implements ReportService {
         } catch (Exception e) {
             throw new RuntimeException("Excel export failed");
         }
+    }
+
+    @Override
+    public ByteArrayInputStream attendanceSheet(Long sessionId) {
+
+        var session = sessionRepository.findById(sessionId)
+                .orElseThrow(() -> new ResourceNotFoundException("Session not found"));
+
+        var students = studentClassroomRepository.findByClassroomId(session.getLecturerAssignment().getClassroom().getId());
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try {
+
+            Document document = new Document(PageSize.A4.rotate());
+            PdfWriter.getInstance(document, out);
+
+            document.open();
+
+            Font title = new Font(Font.HELVETICA, 16, Font.BOLD);
+            Font text = new Font(Font.HELVETICA, 10);
+
+            // Header
+            document.add(new Paragraph("MY UNIVERSITY", title));
+            document.add(new Paragraph("ATTENDANCE SHEET", text));
+
+            document.add(new Paragraph(" "));
+
+            // Session Info
+            document.add(new Paragraph("Subject: " + session.getLecturerAssignment().getSubject().getTitle(), text));
+
+            document.add(new Paragraph("Classroom: " + session.getLecturerAssignment().getClassroom().getName(), text));
+
+            document.add(new Paragraph("Date: " + session.getDay(), text));
+
+            document.add(new Paragraph(
+                    "Time: " + session.getStartTime()
+                            + " - " + session.getEndTime(),
+                    text));
+
+            document.add(new Paragraph("Room: " + session.getRoom().getName(), text));
+
+            document.add(new Paragraph(" "));
+
+            // Table
+            PdfPTable table = new PdfPTable(7);
+            table.setWidthPercentage(100);
+
+            table.setWidths(new float[]{1, 3, 5, 2, 2, 2, 3});
+
+            addHeader(table, "No");
+            addHeader(table, "Code");
+            addHeader(table, "Full Name");
+            addHeader(table, "Present");
+            addHeader(table, "Absent");
+            addHeader(table, "Late");
+            addHeader(table, "Signature");
+
+            int no = 1;
+
+            for (var sc : students) {
+
+                var s = sc.getStudent();
+
+                table.addCell(String.valueOf(no++));
+                table.addCell(s.getStudentCode());
+                table.addCell(s.getFullName());
+
+                table.addCell(" ");
+                table.addCell(" ");
+                table.addCell(" ");
+                table.addCell(" ");
+            }
+
+            document.add(table);
+
+            document.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Attendance sheet generation failed");
+        }
+
+        return new ByteArrayInputStream(out.toByteArray());
+    }
+
+    @Override
+    public ByteArrayInputStream generateSeatList(Long examId) {
+
+        var exam = examRepository.findById(examId)
+                .orElseThrow(() -> new ResourceNotFoundException("Exam not found"));
+
+        var students = studentClassroomRepository.findStudents(exam.getClassroom().getId());
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try {
+            Document document = new Document(PageSize.A4);
+
+            PdfWriter.getInstance(document, out);
+
+            document.open();
+
+            Font title = new Font(Font.HELVETICA, 16, Font.BOLD);
+
+            Font text = new Font(Font.HELVETICA, 10);
+            // Header
+            document.add(new Paragraph("MY UNIVERSITY", title));
+            document.add(new Paragraph("EXAM SEATING LIST", text));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Subject: " + exam.getSubject().getTitle(), text));
+            document.add(new Paragraph("Classroom: " + exam.getClassroom().getName(), text));
+            document.add(new Paragraph("Room: " + exam.getRoom().getName(), text));
+            document.add(new Paragraph("Date: " + exam.getExamDate(), text));
+            document.add(new Paragraph("Time: " + exam.getStartTime() + " - " + exam.getEndTime(), text));
+            document.add(new Paragraph(" "));
+
+            // Table
+            PdfPTable table = new PdfPTable(4);
+            table.setWidthPercentage(100);
+
+            table.setWidths(new float[]{1, 3, 5, 3});
+
+            addHeader(table, "Seat No");
+            addHeader(table, "Student Code");
+            addHeader(table, "Full Name");
+            addHeader(table, "Signature");
+
+            int seat = 1;
+
+            for (var sc : students) {
+
+                var s = sc.getStudent();
+
+                table.addCell(String.valueOf(seat++));
+                table.addCell(s.getStudentCode());
+                table.addCell(s.getFullName());
+                table.addCell(" ");
+            }
+
+            document.add(table);
+
+            document.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Exam seat list generation failed");
+        }
+
+        return new ByteArrayInputStream(out.toByteArray());
     }
 
     private void addHeader(PdfPTable table, String title) {

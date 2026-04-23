@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface SessionRepository extends JpaRepository<Session, Long> , JpaSpecificationExecutor<Session> {
 
@@ -41,4 +42,15 @@ public interface SessionRepository extends JpaRepository<Session, Long> , JpaSpe
             LocalTime start,
             LocalTime end
     );
+
+    @Query("""
+    SELECT s FROM Session s
+    JOIN FETCH s.lecturerAssignment la
+    JOIN FETCH la.classroom c
+    JOIN FETCH la.subject sub
+    JOIN FETCH la.lecturer lec
+    LEFT JOIN FETCH s.room r
+    WHERE s.id = :id
+    """)
+    Optional<Session> findFullById(Long id);
 }

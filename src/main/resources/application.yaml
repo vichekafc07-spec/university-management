@@ -24,3 +24,5 @@ spring:
   web:
     resources:
       static-locations: file:uploads/
+logging:
+  level.org.springframework: DEBUG

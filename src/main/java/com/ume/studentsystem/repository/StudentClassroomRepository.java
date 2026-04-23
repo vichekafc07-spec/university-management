@@ -40,4 +40,20 @@ public interface StudentClassroomRepository extends JpaRepository<StudentClassro
         """)
     List<StudentClassroom> findAllByClassroomId(@Param("classroomId") Long classroomId);
 
+    @Query("""
+    SELECT sc FROM StudentClassroom sc
+    JOIN FETCH sc.student st
+    WHERE sc.classroom.id = :classroomId
+    ORDER BY st.studentCode
+    """)
+    List<StudentClassroom> findStudentsByClassroomId(Long classroomId);
+
+    @Query("""
+    SELECT sc FROM StudentClassroom sc
+    JOIN FETCH sc.student s
+    JOIN FETCH sc.classroom c
+    WHERE c.id = :classroomId
+    ORDER BY s.studentCode
+    """)
+    List<StudentClassroom> findStudents(Long classroomId);
 }
