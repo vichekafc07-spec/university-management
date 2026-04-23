@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 .env
 .env.*
-.uploads.*
+/uploads
 ### STS ###
 .apt_generated
 .classpath

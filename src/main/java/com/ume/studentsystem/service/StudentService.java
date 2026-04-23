@@ -21,4 +21,8 @@ public interface StudentService {
 
     ByteArrayInputStream exportByGeneration(Integer generation);
 
+    StudentResponse updatePhoto(Long id, MultipartFile photo);
+
+    ByteArrayInputStream generateIdCard(Long id);
+
 }

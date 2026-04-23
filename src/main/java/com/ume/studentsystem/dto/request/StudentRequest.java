@@ -1,9 +1,6 @@
 package com.ume.studentsystem.dto.request;
 
-import com.ume.studentsystem.model.enums.GenderStatus;
-import com.ume.studentsystem.model.enums.PaymentType;
-import com.ume.studentsystem.model.enums.ProgramType;
-import com.ume.studentsystem.model.enums.StudyTime;
+import com.ume.studentsystem.model.enums.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -55,5 +52,8 @@ public record StudentRequest(
         Integer generation,
 
         @NotNull
-        StudyTime studyTime
+        StudyTime studyTime,
+
+        @NotNull
+        StudentStatus status
 ) {}

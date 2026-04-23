@@ -1,11 +1,14 @@
 package com.ume.studentsystem.service.impl;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.lowagie.text.*;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.*;
 import com.ume.studentsystem.dto.request.StudentRequest;
 import com.ume.studentsystem.dto.response.StudentResponse;
+import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.model.Department;
@@ -174,6 +177,156 @@ public class StudentServiceImpl implements StudentService {
         return new ByteArrayInputStream(out.toByteArray());
     }
 
+    @Override
+    public StudentResponse updatePhoto(Long id, MultipartFile photo) {
+        var student = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("student not found with id " + id));
+        if (photo == null || photo.isEmpty()){
+            throw new BadRequestException("Photo is required");
+        }
+        deleteOldPhoto(student.getPhotoUrl());
+        String newPath = savePhoto(photo);
+        student.setPhotoUrl(newPath);
+        var saved = studentRepository.save(student);
+        return studentMapper.toResponse(saved);
+    }
+
+    @Override
+    public ByteArrayInputStream generateIdCard(Long id) {
+
+        var student = studentRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Student not found"));
+
+        ByteArrayOutputStream out =
+                new ByteArrayOutputStream();
+
+        try {
+
+            Rectangle card =
+                    new Rectangle(243, 153);
+
+            Document document =
+                    new Document(card, 10, 10, 10, 10);
+
+            PdfWriter writer =
+                    PdfWriter.getInstance(document, out);
+
+            document.open();
+
+            Font title =
+                    new Font(Font.HELVETICA, 12, Font.BOLD);
+
+            Font normal =
+                    new Font(Font.HELVETICA, 8);
+
+            PdfContentByte cb =
+                    writer.getDirectContent();
+
+            // FRONT PAGE
+            document.add(new Paragraph(
+                    "MY UNIVERSITY",
+                    title
+            ));
+
+            document.add(new Paragraph(
+                    "STUDENT ID CARD",
+                    normal
+            ));
+
+            // photo
+            if (student.getPhotoUrl() != null) {
+
+                Image photo =
+                        Image.getInstance(
+                                student.getPhotoUrl()
+                        );
+
+                photo.scaleToFit(60, 70);
+                photo.setAbsolutePosition(15, 45);
+                document.add(photo);
+            }
+
+            ColumnText.showTextAligned(
+                    cb, Element.ALIGN_LEFT,
+                    new Phrase(
+                            "Name: "
+                                    + student.getFullName(),
+                            normal
+                    ),
+                    85, 105, 0
+            );
+
+            ColumnText.showTextAligned(
+                    cb, Element.ALIGN_LEFT,
+                    new Phrase(
+                            "ID: "
+                                    + student.getStudentCode(),
+                            normal
+                    ),
+                    85, 90, 0
+            );
+
+            ColumnText.showTextAligned(
+                    cb, Element.ALIGN_LEFT,
+                    new Phrase(
+                            "Major: "
+                                    + student.getMajor(),
+                            normal
+                    ),
+                    85, 75, 0
+            );
+
+            ColumnText.showTextAligned(cb, Element.ALIGN_LEFT, new Phrase("Gen: " + student.getGeneration(), normal), 85, 60, 0);
+
+            // QR Code
+            Image qr = createQr("http://localhost:8080/api/v1/students/" + student.getId());
+
+            qr.scaleToFit(40, 40);
+            qr.setAbsolutePosition(185, 30);
+
+            document.add(qr);
+
+            // BACK PAGE
+            document.newPage();
+
+            document.add(new Paragraph(
+                    "MY UNIVERSITY",
+                    title
+            ));
+
+            document.add(new Paragraph(
+                    "VALID UNTIL: 2030",
+                    normal
+            ));
+
+            document.add(new Paragraph(
+                    "Signature: __________",
+                    normal
+            ));
+
+            document.add(new Paragraph(
+                    "Emergency: "
+                            + student.getPhone(),
+                    normal
+            ));
+
+            document.add(new Paragraph(
+                    "If found, return to university",
+                    normal
+            ));
+
+            document.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ByteArrayInputStream(
+                out.toByteArray()
+        );
+    }
+
     private void addHeader(PdfPTable table, String title) {
 
         PdfPCell header = new PdfPCell();
@@ -215,6 +368,34 @@ public class StudentServiceImpl implements StudentService {
         }catch (Exception e){
             throw new RuntimeException("Failed to upload file");
         }
+    }
+
+    private void deleteOldPhoto(String oldPath) {
+
+        try {
+
+            if (oldPath == null || oldPath.isBlank()) {
+                return;
+            }
+
+            Path path = Paths.get(oldPath);
+
+            Files.deleteIfExists(path);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Invalid");
+        }
+    }
+
+    private Image createQr(String text) throws Exception {
+
+        BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 150, 150);
+
+        ByteArrayOutputStream png = new ByteArrayOutputStream();
+
+        MatrixToImageWriter.writeToStream(matrix, "PNG", png);
+
+        return Image.getInstance(png.toByteArray());
     }
 
 }

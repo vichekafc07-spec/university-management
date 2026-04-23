@@ -35,6 +35,11 @@ public class StudentController {
         return ResponseEntity.ok(APIResponse.ok(studentService.update(id, request)));
     }
 
+    @PutMapping(value = "/{id}/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<APIResponse<StudentResponse>> updatePhoto(@PathVariable Long id, @RequestParam MultipartFile photo) {
+        return ResponseEntity.ok(APIResponse.ok(studentService.updatePhoto(id, photo)));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse<StudentResponse>> getById(@PathVariable Long id) {
         return ResponseEntity.ok(APIResponse.ok(studentService.getStudentById(id)));
@@ -66,6 +71,17 @@ public class StudentController {
                 .headers(headers)
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(in));
+    }
+
+    @GetMapping("/{id}/id-card")
+    public ResponseEntity<InputStreamResource> generateIdCard(@PathVariable Long id) {
+        ByteArrayInputStream pdf = studentService.generateIdCard(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=student-id-card.pdf");
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdf));
     }
 
     @DeleteMapping("/{id}")
