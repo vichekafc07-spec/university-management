@@ -4,10 +4,10 @@ import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.ume.studentsystem.dto.response.FacultyTopStudentResponse;
+import com.ume.studentsystem.dto.response.RankingResponse;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
-import com.ume.studentsystem.repository.ExamRepository;
-import com.ume.studentsystem.repository.SessionRepository;
-import com.ume.studentsystem.repository.StudentClassroomRepository;
+import com.ume.studentsystem.repository.*;
 import com.ume.studentsystem.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,8 +15,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
-
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,8 @@ public class ReportServiceImpl implements ReportService {
     private final StudentClassroomRepository studentClassroomRepository;
     private final SessionRepository sessionRepository;
     private final ExamRepository examRepository;
+    private final StudentSubjectRepository studentSubjectRepository;
+    private final GradeRepository gradeRepository;
 
     @Override
     public ByteArrayInputStream classroomStudentList(Long classroomId) {
@@ -313,6 +316,118 @@ public class ReportServiceImpl implements ReportService {
         return new ByteArrayInputStream(out.toByteArray());
     }
 
+    @Override
+    public ByteArrayInputStream generateTranscript(Long studentId) {
+
+        var data = studentSubjectRepository.findTranscriptData(studentId);
+
+        if (data.isEmpty()) {
+            throw new ResourceNotFoundException("No transcript data found");
+        }
+
+        var student = data.getFirst()
+                .studentSubject()
+                .getStudentClassroom()
+                .getStudent();
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            Document document = new Document(PageSize.A4);
+            PdfWriter.getInstance(document, out);
+            document.open();
+            Font title = new Font(Font.HELVETICA, 16, Font.BOLD);
+            Font text = new Font(Font.HELVETICA, 10);
+
+            document.add(new Paragraph("MY UNIVERSITY", title));
+            document.add(new Paragraph("OFFICIAL ACADEMIC TRANSCRIPT", text));
+            document.add(new Paragraph(" "));
+
+            document.add(new Paragraph("Student: " + student.getFullName(), text));
+            document.add(new Paragraph("Student Code: " + student.getStudentCode(), text));
+            document.add(new Paragraph("Program: " + student.getProgramType(), text));
+            document.add(new Paragraph("Generation: " + student.getGeneration(), text));
+
+            document.add(new Paragraph(" "));
+
+            PdfPTable table = new PdfPTable(4);
+            table.setWidthPercentage(100);
+            table.setWidths(new float[]{4, 1.5f, 1.5f, 1.5f});
+
+            addHeader(table, "Subject");
+            addHeader(table, "Credit");
+            addHeader(table, "Grade");
+            addHeader(table, "GPA");
+
+            double sem1Point = 0;
+            int sem1Credit = 0;
+
+            double sem2Point = 0;
+            int sem2Credit = 0;
+
+            double overallPoint = 0;
+            int overallCredit = 0;
+
+            for (var row : data) {
+
+                var ss = row.studentSubject();
+                var grade = row.grade();
+                var subject = ss.getSubject();
+
+                Integer semester = ss.getStudentClassroom().getSemester();
+
+                table.addCell(subject.getTitle());
+                table.addCell(String.valueOf(subject.getCredit()));
+
+                if (grade != null) {
+
+                    table.addCell(grade.getGrade().name());
+                    table.addCell(String.valueOf(grade.getGpa()));
+
+                    double point = grade.getGpa() * subject.getCredit();
+
+                    int credit = subject.getCredit();
+
+                    overallPoint += point;
+                    overallCredit += credit;
+
+                    if (semester == 1) {
+                        sem1Point += point;
+                        sem1Credit += credit;
+                    }
+
+                    if (semester == 2) {
+                        sem2Point += point;
+                        sem2Credit += credit;
+                    }
+
+                } else {
+                    table.addCell("-");
+                    table.addCell("-");
+                }
+            }
+
+            document.add(table);
+
+            double sem1Gpa = sem1Credit == 0 ? 0 : sem1Point / sem1Credit;
+
+            double sem2Gpa = sem2Credit == 0 ? 0 : sem2Point / sem2Credit;
+
+            double overallGpa = overallCredit == 0 ? 0 : overallPoint / overallCredit;
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Semester 1 GPA: " + String.format("%.2f", sem1Gpa), text));
+            document.add(new Paragraph("Semester 2 GPA: " + String.format("%.2f", sem2Gpa), text));
+            document.add(new Paragraph("Overall GPA: " + String.format("%.2f", overallGpa), text));
+            document.add(new Paragraph("STATUS: " + (overallGpa >= 2.0 ? "PASS" : "FAIL"), text));
+
+            document.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Transcript generation failed", e);
+        }
+
+        return new ByteArrayInputStream(out.toByteArray());
+    }
+
     private void addHeader(PdfPTable table, String title) {
 
         PdfPCell cell = new PdfPCell(new Phrase(title));
@@ -323,4 +438,69 @@ public class ReportServiceImpl implements ReportService {
 
         table.addCell(cell);
     }
+
+    @Override
+    public List<RankingResponse> rankByClassroom(Long classroomId) {
+
+        var rows = gradeRepository.rankByClassroomRaw(classroomId);
+
+        List<RankingResponse> result = new ArrayList<>();
+
+        int rank = 1;
+
+        for (Object[] row : rows) {
+
+            Long studentId = ((Number) row[0]).longValue();
+
+            String studentName = (String) row[1];
+
+            String studentCode = (String) row[2];
+
+            double totalPoint = ((Number) row[3]).doubleValue();
+
+            int totalCredit = ((Number) row[4]).intValue();
+
+            double gpa = totalCredit == 0 ? 0 : totalPoint / totalCredit;
+
+            result.add(new RankingResponse(
+                            studentId,
+                            studentName,
+                            studentCode,
+                            Math.round(gpa * 100.0) / 100.0,
+                            rank++));
+        }
+
+        return result;
+    }
+
+    public List<FacultyTopStudentResponse> getTopStudentsByFaculty(Long facultyId) {
+
+        var rows =gradeRepository.findTopStudentsByFacultyRaw(facultyId);
+        List<FacultyTopStudentResponse> result = new ArrayList<>();
+        int rank = 1;
+
+        for (Object[] row : rows) {
+
+            Long studentId = ((Number) row[0]).longValue();
+
+            String name = (String) row[1];
+
+            String code = (String) row[2];
+
+            double totalPoint = ((Number) row[3]).doubleValue();
+
+            int credit = ((Number) row[4]).intValue();
+
+            double gpa = credit == 0 ? 0 : totalPoint / credit;
+
+            result.add(new FacultyTopStudentResponse(
+                            studentId,
+                            name,
+                            code,
+                            Math.round(gpa * 100.0) / 100.0,
+                            rank++));
+        }
+        return result;
+    }
+
 }

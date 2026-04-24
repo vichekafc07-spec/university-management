@@ -1,6 +1,9 @@
 package com.ume.studentsystem.controller;
 
+import com.ume.studentsystem.dto.response.FacultyTopStudentResponse;
+import com.ume.studentsystem.dto.response.RankingResponse;
 import com.ume.studentsystem.service.ReportService;
+import com.ume.studentsystem.util.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/reports")
@@ -60,4 +64,29 @@ public class ReportController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(pdf));
     }
+
+    @GetMapping("/students/{studentId}/transcript")
+    public ResponseEntity<InputStreamResource> generate(@PathVariable Long studentId) {
+
+        ByteArrayInputStream pdf = reportService.generateTranscript(studentId);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=transcript.pdf");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdf));
+    }
+
+    @GetMapping("/classrooms/{classroomId}")
+    public ResponseEntity<APIResponse<List<RankingResponse>>> rankingByClassroom(@PathVariable Long classroomId) {
+        return ResponseEntity.ok(APIResponse.ok(reportService.rankByClassroom(classroomId)));
+    }
+
+    @GetMapping("/dean-list/faculties/{facultyId}")
+    public ResponseEntity<APIResponse<List<FacultyTopStudentResponse>>> getTopStudent(@PathVariable Long facultyId){
+        return ResponseEntity.ok(APIResponse.ok(reportService.getTopStudentsByFaculty(facultyId)));
+    }
+
 }
