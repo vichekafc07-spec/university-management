@@ -89,4 +89,19 @@ public class ReportController {
         return ResponseEntity.ok(APIResponse.ok(reportService.getTopStudentsByFaculty(facultyId)));
     }
 
+    @GetMapping("/{paymentId}")
+    public ResponseEntity<InputStreamResource> download(@PathVariable Long paymentId) {
+
+        ByteArrayInputStream pdf = reportService.generateReceipt(paymentId);
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.add("Content-Disposition", "inline; filename=receipt.pdf");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdf));
+    }
+
 }

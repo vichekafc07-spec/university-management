@@ -14,4 +14,5 @@ public interface ReportService {
     ByteArrayInputStream generateTranscript(Long studentId);
     List<RankingResponse> rankByClassroom(Long classroomId);
     List<FacultyTopStudentResponse> getTopStudentsByFaculty(Long facultyId);
+    ByteArrayInputStream generateReceipt(Long paymentId);
 }

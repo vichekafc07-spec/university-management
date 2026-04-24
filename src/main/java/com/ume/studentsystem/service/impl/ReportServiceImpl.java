@@ -28,6 +28,7 @@ public class ReportServiceImpl implements ReportService {
     private final ExamRepository examRepository;
     private final StudentSubjectRepository studentSubjectRepository;
     private final GradeRepository gradeRepository;
+    private final PaymentRepository paymentRepository;
 
     @Override
     public ByteArrayInputStream classroomStudentList(Long classroomId) {
@@ -473,6 +474,7 @@ public class ReportServiceImpl implements ReportService {
         return result;
     }
 
+    @Override
     public List<FacultyTopStudentResponse> getTopStudentsByFaculty(Long facultyId) {
 
         var rows =gradeRepository.findTopStudentsByFacultyRaw(facultyId);
@@ -501,6 +503,56 @@ public class ReportServiceImpl implements ReportService {
                             rank++));
         }
         return result;
+    }
+
+    @Override
+    public ByteArrayInputStream generateReceipt(Long paymentId) {
+
+        var payment = paymentRepository.findById(paymentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Payment not found"));
+        var invoice = payment.getInvoice();
+        var student = invoice.getStudent();
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        try {
+            Document document = new Document(PageSize.A6);
+            PdfWriter.getInstance(document, out);
+            document.open();
+            Font title = new Font(Font.HELVETICA, 14, Font.BOLD);
+            Font text = new Font(Font.HELVETICA, 10);
+            document.add(new Paragraph("MY UNIVERSITY", title));
+            document.add(new Paragraph("PAYMENT RECEIPT", title));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Receipt No: RCPT-" + payment.getId(), text));
+            document.add(new Paragraph("Invoice No: " + invoice.getInvoiceNo(), text));
+            document.add(new Paragraph("Student: " + student.getFullName(), text));
+            document.add(new Paragraph("Student Code: " + student.getStudentCode(), text));
+            document.add(new Paragraph(" "));
+
+            document.add(new Paragraph("Amount Paid: $" + payment.getAmount(), text));
+
+            document.add(new Paragraph("Method: " + payment.getMethod(), text));
+
+            document.add(new Paragraph("Date: " + payment.getPaymentDate(), text));
+
+            document.add(new Paragraph(" "));
+
+            double balance = invoice.getTotalAmount() - invoice.getPaidAmount();
+
+            document.add(new Paragraph("Remaining Balance: $" + balance, text));
+
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Cashier Signature: __________", text));
+
+            document.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to generate receipt", e);
+        }
+
+        return new ByteArrayInputStream(out.toByteArray());
     }
 
 }
