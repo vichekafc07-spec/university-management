@@ -1,6 +1,6 @@
 package com.ume.studentsystem.mapper;
 
-import com.ume.studentsystem.dto.response.StudentClassroomResponse;
+import com.ume.studentsystem.dto.response.student.StudentClassroomResponse;
 import com.ume.studentsystem.model.StudentClassroom;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

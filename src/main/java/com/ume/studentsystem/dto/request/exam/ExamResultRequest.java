@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.request;
+package com.ume.studentsystem.dto.request.exam;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;

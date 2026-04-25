@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.request;
+package com.ume.studentsystem.dto.request.exam;
 
 import com.ume.studentsystem.model.enums.ExamType;
 import jakarta.validation.constraints.NotNull;

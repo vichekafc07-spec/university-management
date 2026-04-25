@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.request;
+package com.ume.studentsystem.dto.request.student;
 
 import java.util.Set;
 

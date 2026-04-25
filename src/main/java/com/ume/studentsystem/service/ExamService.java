@@ -1,7 +1,7 @@
 package com.ume.studentsystem.service;
 
-import com.ume.studentsystem.dto.request.ExamRequest;
-import com.ume.studentsystem.dto.response.ExamResponse;
+import com.ume.studentsystem.dto.request.exam.ExamRequest;
+import com.ume.studentsystem.dto.response.exam.ExamResponse;
 
 import java.util.List;
 

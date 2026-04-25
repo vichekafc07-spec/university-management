@@ -1,7 +1,7 @@
 package com.ume.studentsystem.controller;
 
-import com.ume.studentsystem.dto.request.StudentRequest;
-import com.ume.studentsystem.dto.response.StudentResponse;
+import com.ume.studentsystem.dto.request.student.StudentRequest;
+import com.ume.studentsystem.dto.response.student.StudentResponse;
 import com.ume.studentsystem.service.StudentService;
 import com.ume.studentsystem.util.APIResponse;
 import com.ume.studentsystem.util.PageResponse;

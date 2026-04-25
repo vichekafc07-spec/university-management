@@ -1,8 +1,8 @@
 package com.ume.studentsystem.controller;
 
-import com.ume.studentsystem.dto.request.ExamResultBulkRequest;
-import com.ume.studentsystem.dto.request.ExamResultRequest;
-import com.ume.studentsystem.dto.response.ExamResultResponse;
+import com.ume.studentsystem.dto.request.exam.ExamResultBulkRequest;
+import com.ume.studentsystem.dto.request.exam.ExamResultRequest;
+import com.ume.studentsystem.dto.response.exam.ExamResultResponse;
 import com.ume.studentsystem.service.ExamResultService;
 import com.ume.studentsystem.util.APIResponse;
 import jakarta.validation.Valid;

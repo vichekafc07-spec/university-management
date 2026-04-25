@@ -1,6 +1,6 @@
 package com.ume.studentsystem.mapper;
 
-import com.ume.studentsystem.dto.response.ExamResultResponse;
+import com.ume.studentsystem.dto.response.exam.ExamResultResponse;
 import com.ume.studentsystem.model.ExamResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -3,6 +3,7 @@ package com.ume.studentsystem.repository;
 import com.ume.studentsystem.model.Attendance;
 import com.ume.studentsystem.model.enums.AttendanceStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,4 +17,12 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     List<Attendance> findByStudentSubject_Subject_Id(Long subjectId);
 
     long countByStudentSubject_IdAndStatus(Long studentSubjectId , AttendanceStatus status);
+
+    @Query("""
+    SELECT
+    (COUNT(CASE WHEN a.status = 'PRESENT' THEN 1 END) * 100.0)
+     / COUNT(a)
+    FROM Attendance a
+    """)
+    Double getAttendancePercent();
 }

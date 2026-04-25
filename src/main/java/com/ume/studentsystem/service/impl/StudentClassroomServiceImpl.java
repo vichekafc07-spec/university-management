@@ -2,7 +2,7 @@ package com.ume.studentsystem.service.impl;
 
 import com.ume.studentsystem.dto.request.AssignStudentClassroomRequest;
 import com.ume.studentsystem.dto.request.RemoveStudentClassroomRequest;
-import com.ume.studentsystem.dto.response.StudentClassroomResponse;
+import com.ume.studentsystem.dto.response.student.StudentClassroomResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.StudentClassroomMapper;

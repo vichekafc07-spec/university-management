@@ -1,7 +1,7 @@
 package com.ume.studentsystem.service.impl;
 
-import com.ume.studentsystem.dto.request.ExamRequest;
-import com.ume.studentsystem.dto.response.ExamResponse;
+import com.ume.studentsystem.dto.request.exam.ExamRequest;
+import com.ume.studentsystem.dto.response.exam.ExamResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.ExamMapper;

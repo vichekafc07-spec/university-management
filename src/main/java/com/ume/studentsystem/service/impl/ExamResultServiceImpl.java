@@ -1,8 +1,8 @@
 package com.ume.studentsystem.service.impl;
 
-import com.ume.studentsystem.dto.request.ExamResultBulkRequest;
-import com.ume.studentsystem.dto.request.ExamResultRequest;
-import com.ume.studentsystem.dto.response.ExamResultResponse;
+import com.ume.studentsystem.dto.request.exam.ExamResultBulkRequest;
+import com.ume.studentsystem.dto.request.exam.ExamResultRequest;
+import com.ume.studentsystem.dto.response.exam.ExamResultResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.ExamResultMapper;

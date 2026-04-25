@@ -1,5 +1,6 @@
-package com.ume.studentsystem.dto.request;
+package com.ume.studentsystem.dto.request.exam;
 
+import com.ume.studentsystem.dto.request.student.StudentScoreItem;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 

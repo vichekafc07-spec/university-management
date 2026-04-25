@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.response;
+package com.ume.studentsystem.dto.response.exam;
 
 import com.ume.studentsystem.model.enums.ExamType;
 import java.time.LocalDate;
