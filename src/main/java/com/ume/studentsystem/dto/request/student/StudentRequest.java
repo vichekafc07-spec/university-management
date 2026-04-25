@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.request;
+package com.ume.studentsystem.dto.request.student;
 
 import com.ume.studentsystem.model.enums.*;
 import jakarta.validation.constraints.Email;

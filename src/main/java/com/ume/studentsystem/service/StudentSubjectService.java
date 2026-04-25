@@ -2,7 +2,7 @@ package com.ume.studentsystem.service;
 
 import com.ume.studentsystem.dto.request.AssignStudentSubjectRequest;
 import com.ume.studentsystem.dto.request.UpdateStudentStatus;
-import com.ume.studentsystem.dto.response.StudentSubjectResponse;
+import com.ume.studentsystem.dto.response.student.StudentSubjectResponse;
 import com.ume.studentsystem.util.PageResponse;
 
 import java.util.List;

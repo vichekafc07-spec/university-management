@@ -1,7 +1,7 @@
 package com.ume.studentsystem.mapper;
 
-import com.ume.studentsystem.dto.request.StudentRequest;
-import com.ume.studentsystem.dto.response.StudentResponse;
+import com.ume.studentsystem.dto.request.student.StudentRequest;
+import com.ume.studentsystem.dto.response.student.StudentResponse;
 import com.ume.studentsystem.model.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

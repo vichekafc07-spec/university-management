@@ -1,7 +1,7 @@
 package com.ume.studentsystem.service;
 
-import com.ume.studentsystem.dto.request.StudentRequest;
-import com.ume.studentsystem.dto.response.StudentResponse;
+import com.ume.studentsystem.dto.request.student.StudentRequest;
+import com.ume.studentsystem.dto.response.student.StudentResponse;
 import com.ume.studentsystem.util.PageResponse;
 import org.springframework.web.multipart.MultipartFile;
 

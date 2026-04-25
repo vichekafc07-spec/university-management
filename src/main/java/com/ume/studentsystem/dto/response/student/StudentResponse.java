@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.response;
+package com.ume.studentsystem.dto.response.student;
 
 import com.ume.studentsystem.model.enums.GenderStatus;
 import com.ume.studentsystem.model.enums.PaymentType;

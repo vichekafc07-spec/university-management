@@ -2,7 +2,7 @@ package com.ume.studentsystem.service.impl;
 
 import com.ume.studentsystem.dto.request.AssignStudentSubjectRequest;
 import com.ume.studentsystem.dto.request.UpdateStudentStatus;
-import com.ume.studentsystem.dto.response.StudentSubjectResponse;
+import com.ume.studentsystem.dto.response.student.StudentSubjectResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.StudentSubjectMapper;
