@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-permissions-table
+      author: vichika
+      created: 21-03-2026
+      changes:
+        - createTable:
+            tableName: permissions
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(150)
+
+        - addUniqueConstraint:
+            tableName: permissions
+            columnNames: name
+            constraintName: uk_permissions_name

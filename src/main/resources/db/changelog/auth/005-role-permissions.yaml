@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-create-role-permissions-table
+      author: sorl vichika
+      created: 21-03-2026
+      changes:
+        - createTable:
+            tableName: role_permissions
+            columns:
+              - column:
+                  name: role_id
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: permission_id
+                  type: INT
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: role_permissions
+            columnNames: role_id, permission_id
+            constraintName: pk_role_permissions
+
+        - addForeignKeyConstraint:
+            baseTableName: role_permissions
+            baseColumnNames: role_id
+            referencedTableName: roles
+            referencedColumnNames: id
+            constraintName: fk_role_permissions_role
+
+        - addForeignKeyConstraint:
+            baseTableName: role_permissions
+            baseColumnNames: permission_id
+            referencedTableName: permissions
+            referencedColumnNames: id
+            constraintName: fk_role_permissions_permission

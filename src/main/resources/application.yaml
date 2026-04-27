@@ -16,6 +16,9 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
   servlet:
     multipart:
       enabled: true
@@ -28,7 +31,7 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: vichekafc07@gmail.com
+    username: ${MAIL_NAME}
     password: ${MAIL_PASS}
     properties:
       mail:

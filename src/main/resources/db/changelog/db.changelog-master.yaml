@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/auth/001-users.yaml
+  - include:
+      file: db/changelog/auth/002-roles.yaml
+  - include:
+      file: db/changelog/auth/003-permission.yaml
+  - include:
+      file: db/changelog/auth/004-user-roles.yaml
+  - include:
+      file: db/changelog/auth/005-role-permissions.yaml
