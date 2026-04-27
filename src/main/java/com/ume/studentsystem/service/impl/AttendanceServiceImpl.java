@@ -5,9 +5,13 @@ import com.ume.studentsystem.dto.request.UpdateAttendanceStatus;
 import com.ume.studentsystem.dto.response.AttendanceResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
+import com.ume.studentsystem.helper.NotificationHelper;
 import com.ume.studentsystem.mapper.AttendanceMapper;
 import com.ume.studentsystem.model.Attendance;
+import com.ume.studentsystem.model.enums.AttendanceStatus;
+import com.ume.studentsystem.model.enums.NotificationType;
 import com.ume.studentsystem.repository.AttendanceRepository;
+import com.ume.studentsystem.repository.NotificationRepository;
 import com.ume.studentsystem.repository.SessionRepository;
 import com.ume.studentsystem.repository.StudentSubjectRepository;
 import com.ume.studentsystem.service.AttendanceService;
@@ -24,6 +28,7 @@ import java.util.List;
 public class AttendanceServiceImpl implements AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
+    private final NotificationRepository notificationRepository;
     private final SessionRepository sessionRepository;
     private final StudentSubjectRepository studentSubjectRepository;
     private final AttendanceMapper attendanceMapper;
@@ -61,6 +66,23 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
 
         var saved = attendanceRepository.saveAll(toSave);
+
+        for (var att : saved){
+            if (att.getStatus() == AttendanceStatus.ABSENT){
+                Long studentId = att.getStudentSubject().getStudentClassroom().getStudent().getId();
+                long absentCount = attendanceRepository.countStudentAttendanceStatus(studentId,AttendanceStatus.ABSENT);
+
+                if (absentCount >= 3){
+                    var note = NotificationHelper.send(
+                            studentId,
+                            "Attendance Warning",
+                            "You already have " + absentCount + " absent",
+                            NotificationType.ATTENDANCE
+                    );
+                    notificationRepository.save(note);
+                }
+            }
+        }
 
         return saved.stream()
                 .map(attendanceMapper::toResponse)

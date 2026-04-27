@@ -8,6 +8,7 @@ import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
 import com.ume.studentsystem.dto.request.student.StudentRequest;
 import com.ume.studentsystem.dto.response.student.StudentResponse;
+import com.ume.studentsystem.email.EmailService;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
@@ -47,6 +48,7 @@ public class StudentServiceImpl implements StudentService {
     private final FacultyRepository facultyRepository;
     private final DepartmentRepository departmentRepository;
     private final StudentMapper studentMapper;
+    private final EmailService emailService;
 
     @Override
     public StudentResponse create(StudentRequest request, MultipartFile photo) {
@@ -64,8 +66,23 @@ public class StudentServiceImpl implements StudentService {
         if (photo !=null && !photo.isEmpty()){
             student.setPhotoUrl(savePhoto(photo));
         }
-
         var saved = studentRepository.save(student);
+
+        emailService.send(
+                saved.getEmail(),
+                "Welcome to My University",
+                """
+                Dear %s,
+        
+                Your student account is created.
+        
+                Student Code: %s
+        
+                Welcome.
+                """
+                .formatted(saved.getFullName(), saved.getStudentCode())
+        );
+
         return studentMapper.toResponse(saved);
     }
 

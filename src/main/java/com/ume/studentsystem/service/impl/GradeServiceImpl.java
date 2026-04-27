@@ -4,14 +4,13 @@ import com.ume.studentsystem.dto.request.GradeRequest;
 import com.ume.studentsystem.dto.response.GradeResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
+import com.ume.studentsystem.helper.NotificationHelper;
 import com.ume.studentsystem.mapper.GradeMapper;
 import com.ume.studentsystem.model.Grade;
 import com.ume.studentsystem.model.enums.AttendanceStatus;
 import com.ume.studentsystem.model.enums.GradeStatus;
-import com.ume.studentsystem.repository.AttendanceRepository;
-import com.ume.studentsystem.repository.ExamResultRepository;
-import com.ume.studentsystem.repository.GradeRepository;
-import com.ume.studentsystem.repository.StudentSubjectRepository;
+import com.ume.studentsystem.model.enums.NotificationType;
+import com.ume.studentsystem.repository.*;
 import com.ume.studentsystem.service.GradeService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +29,7 @@ public class GradeServiceImpl implements GradeService {
     private final GradeMapper gradeMapper;
     private final AttendanceRepository attendanceRepository;
     private final ExamResultRepository examResultRepository;
+    private final NotificationRepository notificationRepository;
 
     @Override
     @Transactional
@@ -64,6 +64,15 @@ public class GradeServiceImpl implements GradeService {
         grades.setGrade(gradeStatus);
         grades.setGpa(gpa);
         var saved = gradeRepository.save(grades);
+
+        var note =  NotificationHelper.send(
+                ss.getStudentClassroom().getStudent().getId(),
+                "Grade Released",
+                "You result for " + ss.getSubject().getTitle() + " is now available",
+                NotificationType.GRADE
+        );
+        notificationRepository.save(note);
+
         return gradeMapper.toResponse(saved);
     }
 
