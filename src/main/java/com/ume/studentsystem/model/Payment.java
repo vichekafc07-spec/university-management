@@ -1,17 +1,24 @@
 package com.ume.studentsystem.model;
 
+import com.ume.studentsystem.config.EntityAuditListener;
+import com.ume.studentsystem.model.audit.AuditEntity;
 import com.ume.studentsystem.model.enums.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "payments")
+@EntityListeners(EntityAuditListener.class)
 @Getter
 @Setter
-public class Payment {
+@SQLDelete(sql = "UPDATE payments SET deleted = true, deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
+@Where(clause = "deleted = false")
+public class Payment extends AuditEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
