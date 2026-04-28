@@ -25,7 +25,7 @@ public class StudentController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<APIResponse<StudentResponse>> create(@Valid @ModelAttribute StudentRequest request,
-                                                               @RequestParam MultipartFile photo
+                                                               @RequestParam(required = false) MultipartFile photo
     ) {
         return ResponseEntity.ok(APIResponse.create(studentService.create(request, photo)));
     }

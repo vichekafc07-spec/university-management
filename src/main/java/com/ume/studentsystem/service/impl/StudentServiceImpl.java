@@ -63,8 +63,10 @@ public class StudentServiceImpl implements StudentService {
         student.setFaculty(faculty);
         student.setDepartment(department);
 
-        if (photo !=null && !photo.isEmpty()){
+        if (photo != null && !photo.isEmpty()) {
             student.setPhotoUrl(savePhoto(photo));
+        } else {
+            student.setPhotoUrl("default-profile.png");
         }
         var saved = studentRepository.save(student);
 
