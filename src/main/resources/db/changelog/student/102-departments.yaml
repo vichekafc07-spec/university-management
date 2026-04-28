@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 102-create-departments-table
+      author: vichika
+      created: 25-03-2026
+      changes:
+        - createTable:
+            tableName: departments
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: faculty_id
+                  type: SMALLINT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: departments
+            baseColumnNames: faculty_id
+            referencedTableName: faculties
+            referencedColumnNames: id
+            constraintName: fk_departments_faculty
+
+        - createIndex:
+            tableName: departments
+            indexName: idx_departments_faculty
+            columns:
+              - column:
+                  name: faculty_id
+
+        - addUniqueConstraint:
+            tableName: departments
+            columnNames: name, faculty_id
+            constraintName: uk_departments_name_faculty

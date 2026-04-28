@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 203-staffs-indexes
+      author: sorl vichika
+      created: 28-03-2026
+      changes:
+        - createIndex:
+            tableName: staffs
+            indexName: idx_staffs_full_name
+            columns:
+              - column:
+                  name: full_name
+
+        - createIndex:
+            tableName: staffs
+            indexName: idx_staffs_faculty
+            columns:
+              - column:
+                  name: faculty_id
+
+        - createIndex:
+            tableName: staffs
+            indexName: idx_staffs_department
+            columns:
+              - column:
+                  name: department_id
+
+        - createIndex:
+            tableName: staffs
+            indexName: idx_staffs_active
+            columns:
+              - column:
+                  name: active
+
+        - createIndex:
+            tableName: staffs
+            indexName: idx_staffs_deleted
+            columns:
+              - column:
+                  name: deleted

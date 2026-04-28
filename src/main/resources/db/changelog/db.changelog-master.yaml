@@ -9,3 +9,15 @@ databaseChangeLog:
       file: db/changelog/auth/004-user-roles.yaml
   - include:
       file: db/changelog/auth/005-role-permissions.yaml
+  - include:
+      file: db/changelog/student/101-faculties.yaml
+  - include:
+      file: db/changelog/student/102-departments.yaml
+  - include:
+      file: db/changelog/student/103-students.yaml
+  - include:
+      file: db/changelog/staff/201-staffs.yaml
+  - include:
+      file: db/changelog/staff/202-staffs-fk.yaml
+  - include:
+      file: db/changelog/staff/203-staffs-idx.yaml

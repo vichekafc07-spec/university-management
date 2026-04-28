@@ -1,0 +1,94 @@
+databaseChangeLog:
+  - changeSet:
+      id: 201-create-staffs-table
+      author: sorl vichika
+      created: 28-03-2026
+      changes:
+        - createTable:
+            tableName: staffs
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: full_name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: staff_code
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: personal_email
+                  type: VARCHAR(150)
+
+              - column:
+                  name: phone
+                  type: VARCHAR(30)
+
+              - column:
+                  name: gender
+                  type: VARCHAR(30)
+
+              - column:
+                  name: dob
+                  type: DATE
+
+              - column:
+                  name: position
+                  type: VARCHAR(80)
+
+              - column:
+                  name: active
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: faculty_id
+                  type: SMALLINT
+
+              - column:
+                  name: department_id
+                  type: INT
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: created_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: updated_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP

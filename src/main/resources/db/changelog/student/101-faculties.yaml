@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 101-create-faculties-table
+      author: sorl vichika
+      created: 25-03-2026
+      changes:
+        - createTable:
+            tableName: faculties
+            columns:
+              - column:
+                  name: id
+                  type: SMALLINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: faculties
+            columnNames: name
+            constraintName: uk_faculties_name

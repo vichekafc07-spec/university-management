@@ -1,0 +1,130 @@
+databaseChangeLog:
+  - changeSet:
+      id: 103-create-students-table
+      author: vichika
+      created: 25-03-2026
+      changes:
+        - createTable:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: student_code
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: full_name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: gender
+                  type: VARCHAR(30)
+
+              - column:
+                  name: date_of_birth
+                  type: DATE
+
+              - column:
+                  name: phone
+                  type: VARCHAR(30)
+
+              - column:
+                  name: email
+                  type: VARCHAR(150)
+
+              - column:
+                  name: program_type
+                  type: VARCHAR(50)
+
+              - column:
+                  name: payment_type
+                  type: VARCHAR(50)
+
+              - column:
+                  name: faculty_id
+                  type: SMALLINT
+
+              - column:
+                  name: department_id
+                  type: INT
+
+              - column:
+                  name: major
+                  type: VARCHAR(150)
+
+              - column:
+                  name: enrollment_year
+                  type: VARCHAR(20)
+
+              - column:
+                  name: generation
+                  type: INT
+
+              - column:
+                  name: photo_url
+                  type: VARCHAR(500)
+
+              - column:
+                  name: study_time
+                  type: VARCHAR(50)
+
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+
+
+        - addUniqueConstraint:
+            tableName: students
+            columnNames: student_code
+            constraintName: uk_students_code
+
+        - addUniqueConstraint:
+            tableName: students
+            columnNames: email
+            constraintName: uk_students_email
+
+        - addForeignKeyConstraint:
+            baseTableName: students
+            baseColumnNames: faculty_id
+            referencedTableName: faculties
+            referencedColumnNames: id
+            constraintName: fk_students_faculty
+
+        - addForeignKeyConstraint:
+            baseTableName: students
+            baseColumnNames: department_id
+            referencedTableName: departments
+            referencedColumnNames: id
+            constraintName: fk_students_department
+
+        - createIndex:
+            tableName: students
+            indexName: idx_students_faculty
+            columns:
+              - column:
+                  name: faculty_id
+
+        - createIndex:
+            tableName: students
+            indexName: idx_students_department
+            columns:
+              - column:
+                  name: department_id
+
+        - createIndex:
+            tableName: students
+            indexName: idx_students_name
+            columns:
+              - column:
+                  name: full_name
