@@ -79,10 +79,18 @@ public class StudentServiceImpl implements StudentService {
                 Your student account is created.
         
                 Student Code: %s
+                
+                Major: %s
+                
+                Faculty: %s
+                
+                Department: %s
+                
+                Generation: %d
         
                 Welcome.
                 """
-                .formatted(saved.getFullName(), saved.getStudentCode())
+                .formatted(saved.getFullName(), saved.getStudentCode(),saved.getMajor(),saved.getFaculty().getName(),saved.getDepartment().getName(),saved.getGeneration())
         );
 
         return studentMapper.toResponse(saved);
