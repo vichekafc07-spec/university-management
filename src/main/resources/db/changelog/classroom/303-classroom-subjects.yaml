@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 303-create-classroom-subjects-table
+      author: sorl vichika
+      created: 30-03-2026
+      changes:
+        - createTable:
+            tableName: classroom_subjects
+            columns:
+              - column:
+                  name: classroom_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: classroom_subjects
+            columnNames: classroom_id, subject_id
+            constraintName: pk_classroom_subjects
+
+        - addForeignKeyConstraint:
+            baseTableName: classroom_subjects
+            baseColumnNames: classroom_id
+            referencedTableName: classrooms
+            referencedColumnNames: id
+            constraintName: fk_classroom_subjects_classroom
+
+        - addForeignKeyConstraint:
+            baseTableName: classroom_subjects
+            baseColumnNames: subject_id
+            referencedTableName: subjects
+            referencedColumnNames: id
+            constraintName: fk_classroom_subjects_subject
+
+        - createIndex:
+            tableName: classroom_subjects
+            indexName: idx_classroom_subjects_subject
+            columns:
+              - column:
+                  name: subject_id

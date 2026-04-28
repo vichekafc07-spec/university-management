@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: 301-create-subjects-table
+      author: sorl vichika
+      created: 30-03-2026
+      changes:
+        - createTable:
+            tableName: subjects
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: code
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: credit
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: department_id
+                  type: INT
+
+        - addUniqueConstraint:
+            tableName: subjects
+            columnNames: code
+            constraintName: uk_subjects_code
+
+        - addForeignKeyConstraint:
+            baseTableName: subjects
+            baseColumnNames: department_id
+            referencedTableName: departments
+            referencedColumnNames: id
+            constraintName: fk_subjects_department
+
+        - createIndex:
+            tableName: subjects
+            indexName: idx_subjects_department
+            columns:
+              - column:
+                  name: department_id
+
+        - createIndex:
+            tableName: subjects
+            indexName: idx_subjects_title
+            columns:
+              - column:
+                  name: title

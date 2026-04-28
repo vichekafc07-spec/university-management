@@ -1,0 +1,99 @@
+databaseChangeLog:
+  - changeSet:
+      id: 302-create-classrooms-table
+      author: sorl vichika
+      created: 30-03-2026
+      changes:
+        - createTable:
+            tableName: classrooms
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: year
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: generation
+                  type: INT
+
+              - column:
+                  name: semester
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: time
+                  type: VARCHAR(50)
+
+              - column:
+                  name: department_id
+                  type: INT
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: created_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: updated_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+
+        - addUniqueConstraint:
+            tableName: classrooms
+            columnNames: name, year, semester
+            constraintName: uk_classrooms_name_year_semester
+
+        - addForeignKeyConstraint:
+            baseTableName: classrooms
+            baseColumnNames: department_id
+            referencedTableName: departments
+            referencedColumnNames: id
+            constraintName: fk_classroom_department
+
+        - createIndex:
+            tableName: classrooms
+            indexName: idx_classrooms_department
+            columns:
+              - column:
+                  name: department_id
+
+        - createIndex:
+            tableName: classrooms
+            indexName: idx_classrooms_deleted
+            columns:
+              - column:
+                  name: deleted
