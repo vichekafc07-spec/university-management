@@ -1,0 +1,90 @@
+databaseChangeLog:
+  - changeSet:
+      id: 304-create-student-classrooms-table
+      author: sorl vichika
+      created: 30-03-2026
+      changes:
+        - createTable:
+            tableName: student_classrooms
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: classroom_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: year
+                  type: int
+              - column:
+                  name: semester
+                  type: int
+              - column:
+                  name: generation
+                  type: int
+              - column:
+                  name: status
+                  type: varchar(80)
+              - column:
+                  name: assigned_date
+                  type: date
+
+        - addForeignKeyConstraint:
+            baseTableName: student_classrooms
+            baseColumnNames: student_id
+            referencedTableName: students
+            referencedColumnNames: id
+            constraintName: fk_student_classrooms_student
+
+        - addForeignKeyConstraint:
+            baseTableName: student_classrooms
+            baseColumnNames: classroom_id
+            referencedTableName: classrooms
+            referencedColumnNames: id
+            constraintName: fk_student_classrooms_classroom
+
+        - addUniqueConstraint:
+            tableName: student_classrooms
+            columnNames: student_id, classroom_id
+            constraintName: uk_student_classrooms
+
+        - createIndex:
+            tableName: student_classrooms
+            indexName: idx_student_classrooms_student
+            columns:
+              - column:
+                  name: student_id
+
+        - createIndex:
+            tableName: student_classrooms
+            indexName: idx_student_classrooms_classroom
+            columns:
+              - column:
+                  name: classroom_id
+
+        - createIndex:
+            tableName: student_classrooms
+            indexName: idx_student_classrooms_year_semester
+            columns:
+              - column:
+                  name: year
+              - column:
+                  name: semester
+
+        - createIndex:
+            tableName: student_classrooms
+            indexName: idx_student_classrooms_status
+            columns:
+              - column:
+                  name: status

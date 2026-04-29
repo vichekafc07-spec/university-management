@@ -1,0 +1,105 @@
+databaseChangeLog:
+  - changeSet:
+      id: 305-create-lecturer-assignments-table
+      author: sorl vichika
+      created: 04-04-2026
+      changes:
+        - createTable:
+            tableName: lecturer_assignments
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: lecturer_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: classroom_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: time
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: assigned_date
+                  type: DATE
+
+        - addUniqueConstraint:
+            tableName: lecturer_assignments
+            columnNames: lecturer_id, classroom_id, subject_id, time
+            constraintName: uk_lecturer_assignments
+
+        - addForeignKeyConstraint:
+            baseTableName: lecturer_assignments
+            baseColumnNames: lecturer_id
+            referencedTableName: staffs
+            referencedColumnNames: id
+            constraintName: fk_lecturer_assignments_staff
+
+        - addForeignKeyConstraint:
+            baseTableName: lecturer_assignments
+            baseColumnNames: classroom_id
+            referencedTableName: classrooms
+            referencedColumnNames: id
+            constraintName: fk_lecturer_assignments_classroom
+
+        - addForeignKeyConstraint:
+            baseTableName: lecturer_assignments
+            baseColumnNames: subject_id
+            referencedTableName: subjects
+            referencedColumnNames: id
+            constraintName: fk_lecturer_assignments_subject
+
+        - createIndex:
+            tableName: lecturer_assignments
+            indexName: idx_lecturer_assignments_lecturer
+            columns:
+              - column:
+                  name: lecturer_id
+
+        - createIndex:
+            tableName: lecturer_assignments
+            indexName: idx_lecturer_assignments_classroom
+            columns:
+              - column:
+                  name: classroom_id
+
+        - createIndex:
+            tableName: lecturer_assignments
+            indexName: idx_lecturer_assignments_subject
+            columns:
+              - column:
+                  name: subject_id
+
+        - createIndex:
+            tableName: lecturer_assignments
+            indexName: idx_lecturer_assignments_time
+            columns:
+              - column:
+                  name: time
+
+        - createIndex:
+            tableName: lecturer_assignments
+            indexName: idx_lecturer_assignments_assigned_date
+            columns:
+              - column:
+                  name: assigned_date

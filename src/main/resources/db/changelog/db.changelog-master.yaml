@@ -30,3 +30,7 @@ databaseChangeLog:
       file: db/changelog/classroom/302-classrooms.yaml
   - include:
       file: db/changelog/classroom/303-classroom-subjects.yaml
+  - include:
+      file: db/changelog/classroom/304-student-classrooms.yaml
+  - include:
+      file: db/changelog/classroom/305-lecturer-assignments.yaml
