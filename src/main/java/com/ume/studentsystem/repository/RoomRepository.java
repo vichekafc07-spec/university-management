@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface RoomRepository extends JpaRepository<Room, Long> {
+public interface RoomRepository extends JpaRepository<Room, Integer> {
     boolean existsByName(String name);
     @Query(value = "SELECT * FROM rooms WHERE id = :id", nativeQuery = true)
     Optional<Room> findByIdIncludingDeleted(@Param("id") Long id);

@@ -21,7 +21,7 @@ import org.hibernate.annotations.Where;
 public class Room extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private Integer capacity;
     private String building;

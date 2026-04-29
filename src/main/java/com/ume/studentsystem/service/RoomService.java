@@ -8,8 +8,8 @@ import java.util.List;
 public interface RoomService {
     RoomResponse create(RoomRequest request);
     List<RoomResponse> getAll();
-    RoomResponse getById(Long id);
-    RoomResponse update(Long id,RoomRequest request);
-    void delete(Long id);
+    RoomResponse getById(Integer id);
+    RoomResponse update(Integer id,RoomRequest request);
+    void delete(Integer id);
     RoomResponse restore(Long id);
 }

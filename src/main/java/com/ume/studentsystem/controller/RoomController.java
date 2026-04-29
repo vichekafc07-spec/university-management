@@ -29,18 +29,18 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<APIResponse<RoomResponse>> getById(@PathVariable Long id) {
+    public ResponseEntity<APIResponse<RoomResponse>> getById(@PathVariable Integer id) {
         return ResponseEntity.ok(APIResponse.ok(roomService.getById(id)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<APIResponse<RoomResponse>> update(@PathVariable Long id,
+    public ResponseEntity<APIResponse<RoomResponse>> update(@PathVariable Integer id,
                                                             @Valid @RequestBody RoomRequest request) {
         return ResponseEntity.ok(APIResponse.ok(roomService.update(id, request)));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         roomService.delete(id);
         return ResponseEntity.noContent().build();
     }

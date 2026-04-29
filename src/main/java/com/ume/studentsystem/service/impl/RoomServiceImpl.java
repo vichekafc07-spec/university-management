@@ -41,12 +41,12 @@ public class RoomServiceImpl implements RoomService {
                 .toList();
     }
 
-    public RoomResponse getById(Long id) {
+    public RoomResponse getById(Integer id) {
         var room = getRoomById(id);
         return roomMapper.toResponse(room);
     }
 
-    public RoomResponse update(Long id, RoomRequest request) {
+    public RoomResponse update(Integer id, RoomRequest request) {
 
         var room = getRoomById(id);
         roomMapper.updateRoom(request,room);
@@ -55,7 +55,7 @@ public class RoomServiceImpl implements RoomService {
         return roomMapper.toResponse(room);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         var room = getRoomById(id);
         roomRepository.delete(room);
     }
@@ -70,7 +70,7 @@ public class RoomServiceImpl implements RoomService {
         return roomMapper.toResponse(saved);
     }
 
-    private Room getRoomById(Long id){
+    private Room getRoomById(Integer id){
         return roomRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Room not found with id " + id));
     }
