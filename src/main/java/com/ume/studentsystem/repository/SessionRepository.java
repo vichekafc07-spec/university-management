@@ -22,7 +22,7 @@ public interface SessionRepository extends JpaRepository<Session, Long> , JpaSpe
         )
     """)
     List<Session> findRoomConflicts(
-            Long roomId,
+            Integer roomId,
             DayOfWeek day,
             LocalTime start,
             LocalTime end

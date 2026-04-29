@@ -11,7 +11,7 @@ public record SessionRequest(
         Long lecturerAssignmentId,
 
         @NotNull(message = "Room is required")
-        Long roomId,
+        Integer roomId,
 
         @NotNull(message = "Day is required")
         DayOfWeek day,
