@@ -16,6 +16,8 @@ databaseChangeLog:
       file: db/changelog/student/102-departments.yaml
   - include:
       file: db/changelog/student/103-students.yaml
+  - include:
+      file: db/changelog/student/104-student-subjects.yaml
 
   - include:
       file: db/changelog/staff/201-staffs.yaml
@@ -34,3 +36,21 @@ databaseChangeLog:
       file: db/changelog/classroom/304-student-classrooms.yaml
   - include:
       file: db/changelog/classroom/305-lecturer-assignments.yaml
+  - include:
+      file: db/changelog/classroom/306-rooms.yaml
+  - include:
+      file: db/changelog/classroom/307-sessions.yaml
+  - include:
+      file: db/changelog/classroom/308-attendances.yaml
+
+  - include:
+      file: db/changelog/academic/401-academic-terms.yaml
+  - include:
+      file: db/changelog/academic/402-timetables.yaml
+
+  - include:
+      file: db/changelog/exam/501-exams.yaml
+  - include:
+      file: db/changelog/exam/502-exam-results.yaml
+  - include:
+      file: db/changelog/exam/503-grades.yaml

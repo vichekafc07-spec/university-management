@@ -1,0 +1,154 @@
+databaseChangeLog:
+  - changeSet:
+      id: 501-create-exams-table
+      author: sorl vichika
+      created: 17-04-2026
+      changes:
+        - createTable:
+            tableName: exams
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: term_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: classroom_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: room_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: invigilator_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: exam_type
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: exam_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: start_time
+                  type: TIME
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: end_time
+                  type: TIME
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: total_marks
+                  type: INT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: exams
+            baseColumnNames: term_id
+            referencedTableName: academic_terms
+            referencedColumnNames: id
+            constraintName: fk_exam_term
+
+        - addForeignKeyConstraint:
+            baseTableName: exams
+            baseColumnNames: classroom_id
+            referencedTableName: classrooms
+            referencedColumnNames: id
+            constraintName: fk_exam_classroom
+
+        - addForeignKeyConstraint:
+            baseTableName: exams
+            baseColumnNames: subject_id
+            referencedTableName: subjects
+            referencedColumnNames: id
+            constraintName: fk_exam_subject
+
+        - addForeignKeyConstraint:
+            baseTableName: exams
+            baseColumnNames: room_id
+            referencedTableName: rooms
+            referencedColumnNames: id
+            constraintName: fk_exam_room
+
+        - addForeignKeyConstraint:
+            baseTableName: exams
+            baseColumnNames: invigilator_id
+            referencedTableName: staffs
+            referencedColumnNames: id
+            constraintName: fk_exam_invigilator
+
+        - addUniqueConstraint:
+            tableName: exams
+            columnNames: term_id, classroom_id, subject_id, exam_type
+            constraintName: uk_exams_term_classroom_subject_type
+
+        - addUniqueConstraint:
+            tableName: exams
+            columnNames: exam_date, room_id, start_time
+            constraintName: uk_exams_room_schedule
+
+        - addUniqueConstraint:
+            tableName: exams
+            columnNames: exam_date, invigilator_id, start_time
+            constraintName: uk_exams_invigilator_schedule
+
+        - createIndex:
+            tableName: exams
+            indexName: idx_exams_term
+            columns:
+              - column:
+                  name: term_id
+
+        - createIndex:
+            tableName: exams
+            indexName: idx_exams_classroom
+            columns:
+              - column:
+                  name: classroom_id
+
+        - createIndex:
+            tableName: exams
+            indexName: idx_exams_subject
+            columns:
+              - column:
+                  name: subject_id
+
+        - createIndex:
+            tableName: exams
+            indexName: idx_exams_exam_date
+            columns:
+              - column:
+                  name: exam_date

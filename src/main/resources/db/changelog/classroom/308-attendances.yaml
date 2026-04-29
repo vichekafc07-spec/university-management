@@ -1,0 +1,87 @@
+databaseChangeLog:
+  - changeSet:
+      id: 308-create-attendances-table
+      author: sorl vichika
+      created: 08-04-2026
+      changes:
+        - createTable:
+            tableName: attendances
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: student_subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: session_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: status
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: attendances
+            baseColumnNames: student_subject_id
+            referencedTableName: student_subjects
+            referencedColumnNames: id
+            constraintName: fk_attendance_student_subject
+
+        - addForeignKeyConstraint:
+            baseTableName: attendances
+            baseColumnNames: session_id
+            referencedTableName: sessions
+            referencedColumnNames: id
+            constraintName: fk_attendance_session
+
+        - addUniqueConstraint:
+            tableName: attendances
+            columnNames: student_subject_id, session_id, date
+            constraintName: uk_attendances_student_session_date
+
+        - createIndex:
+            tableName: attendances
+            indexName: idx_attendances_student_subject
+            columns:
+              - column:
+                  name: student_subject_id
+
+        - createIndex:
+            tableName: attendances
+            indexName: idx_attendances_session
+            columns:
+              - column:
+                  name: session_id
+
+        - createIndex:
+            tableName: attendances
+            indexName: idx_attendances_date
+            columns:
+              - column:
+                  name: date
+
+        - createIndex:
+            tableName: attendances
+            indexName: idx_attendances_status
+            columns:
+              - column:
+                  name: status

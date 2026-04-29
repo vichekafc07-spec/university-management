@@ -1,0 +1,101 @@
+databaseChangeLog:
+  - changeSet:
+      id: 401-create-academic-terms-table
+      author: sorl vichika
+      created: 14-04-2026
+      changes:
+        - createTable:
+            tableName: academic_terms
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: year
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: semester
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: start_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: end_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: status
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: created_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: updated_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+
+        - addUniqueConstraint:
+            tableName: academic_terms
+            columnNames: year, semester
+            constraintName: uk_academic_terms_year_semester
+
+        - createIndex:
+            tableName: academic_terms
+            indexName: idx_academic_terms_status
+            columns:
+              - column:
+                  name: status
+
+        - createIndex:
+            tableName: academic_terms
+            indexName: idx_academic_terms_deleted
+            columns:
+              - column:
+                  name: deleted
+
+        - createIndex:
+            tableName: academic_terms
+            indexName: idx_academic_terms_dates
+            columns:
+              - column:
+                  name: start_date
+              - column:
+                  name: end_date

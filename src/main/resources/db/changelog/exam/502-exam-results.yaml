@@ -1,0 +1,76 @@
+databaseChangeLog:
+  - changeSet:
+      id: 502-create-exam-results-table
+      author: sorl vichika
+      created: 17-04-2026
+      changes:
+        - createTable:
+            tableName: exam_results
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: exam_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: student_subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: score
+                  type: double
+
+              - column:
+                  name: remark
+                  type: VARCHAR(255)
+
+        - addForeignKeyConstraint:
+            baseTableName: exam_results
+            baseColumnNames: exam_id
+            referencedTableName: exams
+            referencedColumnNames: id
+            constraintName: fk_exam_result_exam
+
+        - addForeignKeyConstraint:
+            baseTableName: exam_results
+            baseColumnNames: student_subject_id
+            referencedTableName: student_subjects
+            referencedColumnNames: id
+            constraintName: fk_exam_result_student_subject
+
+        - addUniqueConstraint:
+            tableName: exam_results
+            columnNames: exam_id, student_subject_id
+            constraintName: uk_exam_student
+
+        - createIndex:
+            tableName: exam_results
+            indexName: idx_exam_results_exam
+            columns:
+              - column:
+                  name: exam_id
+
+        - createIndex:
+            tableName: exam_results
+            indexName: idx_exam_results_student_subject
+            columns:
+              - column:
+                  name: student_subject_id
+
+        - createIndex:
+            tableName: exam_results
+            indexName: idx_exam_results_score
+            columns:
+              - column:
+                  name: score

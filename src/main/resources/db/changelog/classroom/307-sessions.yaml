@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: 307-create-sessions-table
+      author: sorl vichika
+      created: 07-04-2026
+      changes:
+        - createTable:
+            tableName: sessions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: lecturer_assignmet_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: room_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: day
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: start_time
+                  type: TIME
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: end_time
+                  type: TIME
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: sessions
+            baseColumnNames: lecturer_assignmet_id
+            referencedTableName: lecturer_assignments
+            referencedColumnNames: id
+            constraintName: fk_session_assignment
+
+        - addForeignKeyConstraint:
+            baseTableName: sessions
+            baseColumnNames: room_id
+            referencedTableName: rooms
+            referencedColumnNames: id
+            constraintName: fk_session_room
+
+        - createIndex:
+            tableName: sessions
+            indexName: idx_sessions_assignment
+            columns:
+              - column:
+                  name: lecturer_assignmet_id
+
+        - createIndex:
+            tableName: sessions
+            indexName: idx_sessions_room
+            columns:
+              - column:
+                  name: room_id
+
+        - createIndex:
+            tableName: sessions
+            indexName: idx_sessions_day
+            columns:
+              - column:
+                  name: day
+
+        - addUniqueConstraint:
+            tableName: sessions
+            columnNames: room_id, day, start_time, end_time
+            constraintName: uk_sessions_room_schedule

@@ -1,0 +1,83 @@
+databaseChangeLog:
+  - changeSet:
+      id: 503-create-grades-table
+      author: sorl vichika
+      created: 20-04-2026
+      changes:
+        - createTable:
+            tableName: grades
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: student_subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: attendance_score
+                  type: double
+
+              - column:
+                  name: assignment_score
+                  type: double
+
+              - column:
+                  name: midterm_score
+                  type: double
+
+              - column:
+                  name: final_score
+                  type: double
+
+              - column:
+                  name: total_score
+                  type: double
+
+              - column:
+                  name: grade
+                  type: VARCHAR(10)
+
+              - column:
+                  name: gpa
+                  type: double
+
+        - addForeignKeyConstraint:
+            baseTableName: grades
+            baseColumnNames: student_subject_id
+            referencedTableName: student_subjects
+            referencedColumnNames: id
+            constraintName: fk_grade_student_subject
+
+        - addUniqueConstraint:
+            tableName: grades
+            columnNames: student_subject_id
+            constraintName: uk_grade_student_subject
+
+        - createIndex:
+            tableName: grades
+            indexName: idx_grades_student_subject
+            columns:
+              - column:
+                  name: student_subject_id
+
+        - createIndex:
+            tableName: grades
+            indexName: idx_grades_grade
+            columns:
+              - column:
+                  name: grade
+
+        - createIndex:
+            tableName: grades
+            indexName: idx_grades_total_score
+            columns:
+              - column:
+                  name: total_score

@@ -1,0 +1,98 @@
+databaseChangeLog:
+  - changeSet:
+      id: 104-create-student-subjects-table
+      author: sorl vichika
+      created: 10-04-2026
+      changes:
+        - createTable:
+            tableName: student_subjects
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: student_classroom_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: classroom_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: enroll_date
+                  type: DATE
+
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: student_subjects
+            baseColumnNames: student_classroom_id
+            referencedTableName: student_classrooms
+            referencedColumnNames: id
+            constraintName: fk_student_subjects_student_classroom
+
+        - addForeignKeyConstraint:
+            baseTableName: student_subjects
+            baseColumnNames: subject_id
+            referencedTableName: subjects
+            referencedColumnNames: id
+            constraintName: fk_student_subjects_subject
+
+        - addForeignKeyConstraint:
+            baseTableName: student_subjects
+            baseColumnNames: classroom_id
+            referencedTableName: classrooms
+            referencedColumnNames: id
+            constraintName: fk_student_subjects_classroom
+
+        - addUniqueConstraint:
+            tableName: student_subjects
+            columnNames: student_classroom_id, subject_id
+            constraintName: uk_student_subjects_student_classroom_subject
+
+        - createIndex:
+            tableName: student_subjects
+            indexName: idx_student_subjects_student_classroom
+            columns:
+              - column:
+                  name: student_classroom_id
+
+        - createIndex:
+            tableName: student_subjects
+            indexName: idx_student_subjects_subject
+            columns:
+              - column:
+                  name: subject_id
+
+        - createIndex:
+            tableName: student_subjects
+            indexName: idx_student_subjects_classroom
+            columns:
+              - column:
+                  name: classroom_id
+
+        - createIndex:
+            tableName: student_subjects
+            indexName: idx_student_subjects_status
+            columns:
+              - column:
+                  name: status
