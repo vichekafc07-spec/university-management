@@ -19,7 +19,7 @@ public record TimetableRequest(
         Long lecturerId,
 
         @NotNull(message = "Room is required")
-        Long roomId,
+        Integer roomId,
 
         @NotNull(message = "Day is required")
         DayOfWeek dayOfWeek,

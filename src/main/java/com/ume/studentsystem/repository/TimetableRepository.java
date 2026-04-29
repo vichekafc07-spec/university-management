@@ -29,7 +29,7 @@ public interface TimetableRepository extends JpaRepository<Timetable, Long> {
             @Param("day") DayOfWeek day,
             @Param("start") LocalTime start,
             @Param("end") LocalTime end,
-            @Param("roomId") Long roomId,
+            @Param("roomId") Integer roomId,
             @Param("lecturerId") Long lecturerId,
             @Param("classroomId") Long classroomId
     );
