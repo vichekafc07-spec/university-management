@@ -18,7 +18,7 @@ public record ExamRequest(
         Long subjectId,
 
         @NotNull(message = "room id required")
-        Long roomId,
+        Integer roomId,
 
         @NotNull(message = "invigilator id required")
         Long invigilatorId,

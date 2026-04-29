@@ -29,7 +29,7 @@ public interface ExamRepository extends JpaRepository<Exam, Long> {
             @Param("date") LocalDate date,
             @Param("start") LocalTime start,
             @Param("end") LocalTime end,
-            @Param("roomId") Long roomId,
+            @Param("roomId") Integer roomId,
             @Param("staffId") Long staffId,
             @Param("classroomId") Long classroomId
     );
