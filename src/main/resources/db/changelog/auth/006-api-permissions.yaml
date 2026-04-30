@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-api-permissions-table
+      author: sorl vichika
+      created: 24-04-2026
+      changes:
+        - createTable:
+            tableName: api_permissions
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: http_method
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: path
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: permission
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+        - addUniqueConstraint:
+            tableName: api_permissions
+            columnNames: http_method, path
+            constraintName: uk_api_permissions_method_path
+
+        - createIndex:
+            tableName: api_permissions
+            indexName: idx_api_permissions_permission
+            columns:
+              - column:
+                  name: permission
+
+        - createIndex:
+            tableName: api_permissions
+            indexName: idx_api_permissions_method
+            columns:
+              - column:
+                  name: http_method

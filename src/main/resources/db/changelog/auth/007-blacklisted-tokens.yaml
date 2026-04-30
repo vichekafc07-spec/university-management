@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-create-blacklisted-tokens-table
+      author: sorl vichika
+      created: 27-04-2026
+      changes:
+        - createTable:
+            tableName: blacklisted_tokens
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: token
+                  type: VARCHAR(1000)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: expires_at
+                  type: TIMESTAMP
+
+        - addUniqueConstraint:
+            tableName: blacklisted_tokens
+            columnNames: token
+            constraintName: uk_blacklisted_tokens_token
+
+        - createIndex:
+            tableName: blacklisted_tokens
+            indexName: idx_blacklisted_tokens_expires_at
+            columns:
+              - column:
+                  name: expires_at

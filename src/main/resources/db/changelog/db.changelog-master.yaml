@@ -1,4 +1,5 @@
 databaseChangeLog:
+
   - include:
       file: db/changelog/auth/001-users.yaml
   - include:
@@ -9,6 +10,10 @@ databaseChangeLog:
       file: db/changelog/auth/004-user-roles.yaml
   - include:
       file: db/changelog/auth/005-role-permissions.yaml
+  - include:
+      file: db/changelog/auth/006-api-permissions.yaml
+  - include:
+      file: db/changelog/auth/007-blacklisted-tokens.yaml
 
   - include:
       file: db/changelog/student/101-faculties.yaml
@@ -61,3 +66,6 @@ databaseChangeLog:
       file: db/changelog/payment/602-payments.yaml
   - include:
       file: db/changelog/payment/603-notifications.yaml
+
+  - include:
+      file: db/changelog/audit/701-audit-log.yaml

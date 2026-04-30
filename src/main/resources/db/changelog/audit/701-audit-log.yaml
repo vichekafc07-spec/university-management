@@ -1,0 +1,88 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 701-create-audit-logs-table
+      author: sorl vichika
+      created: 25-04-2026
+      changes:
+        - createTable:
+            tableName: audit_logs
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: entity_name
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: entity_id
+                  type: BIGINT
+
+              - column:
+                  name: action
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: username
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: timestamp
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: old_values
+                  type: TEXT
+
+              - column:
+                  name: new_values
+                  type: TEXT
+
+        - createIndex:
+            tableName: audit_logs
+            indexName: idx_audit_logs_entity
+            columns:
+              - column:
+                  name: entity_name
+
+        - createIndex:
+            tableName: audit_logs
+            indexName: idx_audit_logs_entity_id
+            columns:
+              - column:
+                  name: entity_id
+
+        - createIndex:
+            tableName: audit_logs
+            indexName: idx_audit_logs_action
+            columns:
+              - column:
+                  name: action
+
+        - createIndex:
+            tableName: audit_logs
+            indexName: idx_audit_logs_username
+            columns:
+              - column:
+                  name: username
+
+        - createIndex:
+            tableName: audit_logs
+            indexName: idx_audit_logs_timestamp
+            columns:
+              - column:
+                  name: timestamp
