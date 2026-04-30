@@ -19,7 +19,7 @@ public class BlackListedToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 1000, nullable = false, unique = true)
+
     private String token;
 
     private Date expiresAt;
