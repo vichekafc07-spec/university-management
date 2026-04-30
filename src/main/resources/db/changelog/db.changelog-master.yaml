@@ -54,3 +54,10 @@ databaseChangeLog:
       file: db/changelog/exam/502-exam-results.yaml
   - include:
       file: db/changelog/exam/503-grades.yaml
+
+  - include:
+      file: db/changelog/payment/601-invoices.yaml
+  - include:
+      file: db/changelog/payment/602-payments.yaml
+  - include:
+      file: db/changelog/payment/603-notifications.yaml

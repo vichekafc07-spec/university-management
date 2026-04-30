@@ -1,0 +1,102 @@
+databaseChangeLog:
+  - changeSet:
+      id: 602-create-payments-table
+      author: sorl vichika
+      created: 22-04-2026
+      changes:
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: invoice_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: amount
+                  type: double
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: method
+                  type: VARCHAR(30)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: payment_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: created_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: updated_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+
+        - addForeignKeyConstraint:
+            baseTableName: payments
+            baseColumnNames: invoice_id
+            referencedTableName: invoices
+            referencedColumnNames: id
+            constraintName: fk_payment_invoice
+
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_invoice
+            columns:
+              - column:
+                  name: invoice_id
+
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_method
+            columns:
+              - column:
+                  name: method
+
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_payment_date
+            columns:
+              - column:
+                  name: payment_date
+
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_deleted
+            columns:
+              - column:
+                  name: deleted

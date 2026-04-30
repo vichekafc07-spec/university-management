@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: 250-create-notifications-table
+      author: sorl vichika
+      created: 24-04-2026
+      changes:
+        - createTable:
+            tableName: notifications
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: message
+                  type: VARCHAR(1000)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: type
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: is_read
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - createIndex:
+            tableName: notifications
+            indexName: idx_notifications_user
+            columns:
+              - column:
+                  name: user_id
+
+        - createIndex:
+            tableName: notifications
+            indexName: idx_notifications_type
+            columns:
+              - column:
+                  name: type
+
+        - createIndex:
+            tableName: notifications
+            indexName: idx_notifications_is_read
+            columns:
+              - column:
+                  name: is_read
+
+        - createIndex:
+            tableName: notifications
+            indexName: idx_notifications_created_at
+            columns:
+              - column:
+                  name: created_at
+
+        - addForeignKeyConstraint:
+            baseTableName: notifications
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_notifications_user
