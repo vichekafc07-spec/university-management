@@ -1,5 +1,6 @@
 package com.ume.studentsystem.service.impl;
 
+import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.model.Faculty;
 import com.ume.studentsystem.repository.FacultyRepository;
@@ -17,6 +18,9 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty addFaculty(Faculty faculty) {
+        facultyRepository.findFacultiesByName(faculty.getName()).ifPresent(e -> {
+            throw new DuplicateResourceException("Faculty already exists with name: " + faculty.getName());
+        });
         var fac = new Faculty();
         fac.setId(faculty.getId());
         fac.setName(faculty.getName());

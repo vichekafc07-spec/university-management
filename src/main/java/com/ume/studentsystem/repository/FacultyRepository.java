@@ -4,6 +4,8 @@ import com.ume.studentsystem.model.Faculty;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 
 public interface FacultyRepository extends JpaRepository<Faculty,Byte> {
     @Query("""
@@ -15,4 +17,6 @@ public interface FacultyRepository extends JpaRepository<Faculty,Byte> {
     LIMIT 1
     """)
     String getTopFaculty();
+
+    Optional<Faculty> findFacultiesByName(String name);
 }
