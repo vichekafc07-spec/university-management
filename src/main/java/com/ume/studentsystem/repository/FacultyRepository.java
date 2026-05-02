@@ -19,5 +19,5 @@ public interface FacultyRepository extends JpaRepository<Faculty,Byte> {
     """)
     String getTopFaculty();
 
-    Optional<Faculty> findByName(String name);
+    Optional<Faculty> findByNameIgnoreCase(String name);
 }
