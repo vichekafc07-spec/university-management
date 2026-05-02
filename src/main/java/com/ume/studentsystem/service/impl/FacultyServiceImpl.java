@@ -18,7 +18,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty addFaculty(Faculty faculty) {
-        facultyRepository.findFacultiesByName(faculty.getName()).ifPresent(e -> {
+        facultyRepository.findByName(faculty.getName()).ifPresent(e -> {
             throw new DuplicateResourceException("Faculty already exists with name: " + faculty.getName());
         });
         var fac = new Faculty();
