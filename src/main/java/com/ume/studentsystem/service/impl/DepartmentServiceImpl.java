@@ -23,7 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentResponse addDepartment(DepartmentRequest request) {
-        departmentRepository.findDepartmentByName(request.name()).ifPresent(e -> {
+        departmentRepository.findByNameIgnoreCase(request.name()).ifPresent(e -> {
             throw new DuplicateResourceException("Department already exists with name: " + request.name());
         });
         var faculty = getFacultyId(request.facultyId());
