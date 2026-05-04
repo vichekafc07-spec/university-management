@@ -22,7 +22,7 @@ public class Session {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lecturer_assignmet_id" , foreignKey = @ForeignKey(name = "fk_session-assignment"))
+    @JoinColumn(name = "lecturer_assignment_id" , foreignKey = @ForeignKey(name = "fk_session-assignment"))
     private LecturerAssignment lecturerAssignment;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,6 +30,7 @@ public class Session {
     private Room room;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "day_of_week", columnDefinition = "VARCHAR(20)")
     private DayOfWeek day;
 
     private LocalTime startTime;

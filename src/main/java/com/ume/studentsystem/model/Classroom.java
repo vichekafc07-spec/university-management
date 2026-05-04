@@ -16,7 +16,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "classrooms", uniqueConstraints = @UniqueConstraint(
-        columnNames = {"name","year","semester"}
+        columnNames = {"name", "cl_year","semester"}
 ))
 @EntityListeners(EntityAuditListener.class)
 @SQLDelete(sql = "UPDATE classrooms SET deleted = true, deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
@@ -33,7 +33,7 @@ public class Classroom extends AuditEntity {
 
     private String name;
 
-    @Column(name = "classroom_years")
+    @Column(name = "cl_year")
     private Integer year;
 
     private Integer generation;

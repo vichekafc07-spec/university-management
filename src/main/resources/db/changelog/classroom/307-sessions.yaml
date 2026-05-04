@@ -16,7 +16,7 @@ databaseChangeLog:
                     nullable: false
 
               - column:
-                  name: lecturer_assignmet_id
+                  name: lecturer_assignment_id
                   type: BIGINT
                   constraints:
                     nullable: false
@@ -28,7 +28,7 @@ databaseChangeLog:
                     nullable: false
 
               - column:
-                  name: day
+                  name: day_of_week
                   type: VARCHAR(20)
                   constraints:
                     nullable: false

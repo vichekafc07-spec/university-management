@@ -47,7 +47,6 @@ databaseChangeLog:
       file: db/changelog/classroom/307-sessions.yaml
   - include:
       file: db/changelog/classroom/308-attendances.yaml
-
   - include:
       file: db/changelog/academic/401-academic-terms.yaml
   - include:

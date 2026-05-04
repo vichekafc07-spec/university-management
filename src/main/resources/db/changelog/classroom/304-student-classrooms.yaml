@@ -25,7 +25,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: year
+                  name: sc_year
                   type: int
               - column:
                   name: semester

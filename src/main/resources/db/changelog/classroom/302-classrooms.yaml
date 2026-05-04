@@ -22,7 +22,7 @@ databaseChangeLog:
                     nullable: false
 
               - column:
-                  name: year
+                  name: cl_year
                   type: INT
                   constraints:
                     nullable: false
