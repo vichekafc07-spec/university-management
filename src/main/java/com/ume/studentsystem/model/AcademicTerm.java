@@ -28,6 +28,7 @@ public class AcademicTerm extends AuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "academic_year")
     private Integer year;
 
     private Integer semester;

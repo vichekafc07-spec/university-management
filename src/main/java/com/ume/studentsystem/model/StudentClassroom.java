@@ -30,6 +30,7 @@ public class StudentClassroom {
     @JoinColumn(name = "classroom_id")
     private Classroom classroom;
 
+    @Column(name = "sc_year")
     private Integer year;
     private Integer semester;
     private Integer generation;

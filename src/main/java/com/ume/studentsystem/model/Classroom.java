@@ -33,6 +33,7 @@ public class Classroom extends AuditEntity {
 
     private String name;
 
+    @Column(name = "classroom_years")
     private Integer year;
 
     private Integer generation;
