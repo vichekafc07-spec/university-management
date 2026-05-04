@@ -46,7 +46,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (!facultyRepository.existsById(facultyId)){
             throw new ResourceNotFoundException("Faculty not found with id " + facultyId);
         }
-        return departmentRepository.findByFacultyId(facultyId)
+        return departmentRepository.findByFaculty_Id(facultyId)
                 .stream()
                 .map(departmentMapper::toResponse)
                 .toList();
