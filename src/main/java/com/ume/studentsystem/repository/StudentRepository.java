@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student,Long> , JpaSpecificationExecutor<Student> {
-    boolean existsByStudentCode(String studentCode);
+    boolean findByStudentCode(String studentCode);
     List<Student> findByGeneration(Integer generation);
 
     @Query("SELECT COUNT(s) FROM Student s")
