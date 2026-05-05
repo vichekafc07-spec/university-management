@@ -55,8 +55,8 @@ public class StudentServiceImpl implements StudentService {
         var faculty = getFacultyId(request.facultyId());
         var department = getDepartmentId(request.departmentId());
 
-        if (studentRepository.existsByFullName(request.fullName())){
-            throw new DuplicateResourceException("this is name already exists");
+        if (studentRepository.existsByStudentCode(request.studentCode())){
+            throw new DuplicateResourceException("student code already exists");
         }
 
         var student = studentMapper.toEntity(request);
