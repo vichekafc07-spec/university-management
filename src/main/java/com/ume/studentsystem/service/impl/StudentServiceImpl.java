@@ -380,7 +380,7 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
     }
 
-    private String savePhoto(MultipartFile file){
+    public String savePhoto(MultipartFile file){
         try {
             String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
             Path uploadPath = Paths.get("uploads/students");
