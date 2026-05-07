@@ -11,8 +11,8 @@ public record PaymentResponse(
         String studentName,
         String studentCode,
 
-        String paidAmount,
-        String totalAmount,
+        Double paidAmount,
+        Double totalAmount,
         String paymentStatus,
 
         Double amount,

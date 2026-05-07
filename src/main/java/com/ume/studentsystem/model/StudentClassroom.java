@@ -38,5 +38,6 @@ public class StudentClassroom {
     @Enumerated(EnumType.STRING)
     private StudentStatus status;
 
+    @Column(name = "assigned_date")
     private LocalDate assignedDate;
 }
