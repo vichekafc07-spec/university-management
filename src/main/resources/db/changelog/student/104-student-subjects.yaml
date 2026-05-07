@@ -16,7 +16,7 @@ databaseChangeLog:
                     nullable: false
 
               - column:
-                  name: student_classroom_id
+                  name: sc_id
                   type: BIGINT
                   constraints:
                     nullable: false
