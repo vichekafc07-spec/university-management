@@ -8,8 +8,8 @@ spring:
 
   jwt:
     secretKey: ${JWT_SECRET}
-    accessExpiration: ${ACCESS_EXPIRATION}
-    refreshExpiration: ${REFRESH_EXPIRATION}
+    accessTokenExpiration: ${ACCESS_EXPIRATION}
+    refreshTokenExpiration: ${REFRESH_EXPIRATION}
 
   jpa:
     hibernate:
@@ -39,3 +39,6 @@ spring:
           auth: true
           starttls:
             enable: true
+logging:
+  level:
+    org.springframework: DEBUG
