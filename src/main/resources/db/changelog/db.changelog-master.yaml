@@ -24,9 +24,9 @@ databaseChangeLog:
   - include:
       file: db/changelog/student/103-students.yaml
   - include:
-      file: db/changelog/student/104-student-classrooms.yaml
+      file: db/changelog/student/104-student-subjects.yaml
   - include:
-      file: db/changelog/student/105-student-subjects.yaml
+      file: db/changelog/student/105-student-classrooms.yaml
 
 ## staff
 
