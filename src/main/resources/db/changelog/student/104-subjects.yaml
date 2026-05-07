@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 301-create-subjects-table
+      id: 104-create-subjects-table
       author: sorl vichika
       created: 30-03-2026
       changes:

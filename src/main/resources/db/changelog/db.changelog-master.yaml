@@ -15,21 +15,12 @@ databaseChangeLog:
   - include:
       file: db/changelog/auth/007-blacklisted-tokens.yaml
 
-## student
+## staff
 
   - include:
       file: db/changelog/student/101-faculties.yaml
   - include:
       file: db/changelog/student/102-departments.yaml
-  - include:
-      file: db/changelog/student/103-students.yaml
-  - include:
-      file: db/changelog/student/104-student-subjects.yaml
-  - include:
-      file: db/changelog/student/105-student-classrooms.yaml
-
-## staff
-
   - include:
       file: db/changelog/staff/201-staffs.yaml
   - include:
@@ -37,16 +28,26 @@ databaseChangeLog:
   - include:
       file: db/changelog/staff/203-staffs-idx.yaml
 
+## student
+
+  - include:
+      file: db/changelog/student/103-students.yaml
+  - include:
+      file: db/changelog/student/104-subjects.yaml
+  - include:
+      file: db/changelog/student/105-classrooms.yaml
+  - include:
+      file: db/changelog/student/106-lecturer-assignments.yaml
+  - include:
+      file: db/changelog/student/107-student-classrooms.yaml
+
+  - include:
+      file: db/changelog/student/108-student-subjects.yaml
+
 ## classroom
 
   - include:
-      file: db/changelog/classroom/301-subjects.yaml
-  - include:
-      file: db/changelog/classroom/302-classrooms.yaml
-  - include:
       file: db/changelog/classroom/303-classroom-subjects.yaml
-  - include:
-      file: db/changelog/classroom/305-lecturer-assignments.yaml
   - include:
       file: db/changelog/classroom/306-rooms.yaml
   - include:

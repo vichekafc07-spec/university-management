@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 302-create-classrooms-table
+      id: 105-create-classrooms-table
       author: sorl vichika
       created: 30-03-2026
       changes:
@@ -74,7 +74,7 @@ databaseChangeLog:
 
         - addUniqueConstraint:
             tableName: classrooms
-            columnNames: name, year, semester
+            columnNames: name, cl_year, semester
             constraintName: uk_classrooms_name_year_semester
 
         - addForeignKeyConstraint:

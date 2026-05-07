@@ -47,7 +47,7 @@ databaseChangeLog:
 
         - addForeignKeyConstraint:
             baseTableName: sessions
-            baseColumnNames: lecturer_assignmet_id
+            baseColumnNames: lecturer_assignment_id
             referencedTableName: lecturer_assignments
             referencedColumnNames: id
             constraintName: fk_session_assignment
@@ -64,7 +64,7 @@ databaseChangeLog:
             indexName: idx_sessions_assignment
             columns:
               - column:
-                  name: lecturer_assignmet_id
+                  name: lecturer_assignment_id
 
         - createIndex:
             tableName: sessions
@@ -78,9 +78,9 @@ databaseChangeLog:
             indexName: idx_sessions_day
             columns:
               - column:
-                  name: day
+                  name: day_of_week
 
         - addUniqueConstraint:
             tableName: sessions
-            columnNames: room_id, day, start_time, end_time
+            columnNames: room_id, day_of_week, start_time, end_time
             constraintName: uk_sessions_room_schedule

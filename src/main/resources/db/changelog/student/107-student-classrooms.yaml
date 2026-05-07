@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 105-create-student-classrooms-table
+      id: 107-create-student-classrooms-table
       author: sorl vichika
       created: 06-05-2026
       changes:

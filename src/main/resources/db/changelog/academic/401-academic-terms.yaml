@@ -16,7 +16,7 @@ databaseChangeLog:
                     nullable: false
 
               - column:
-                  name: year
+                  name: academic_year
                   type: INT
                   constraints:
                     nullable: false
@@ -74,7 +74,7 @@ databaseChangeLog:
 
         - addUniqueConstraint:
             tableName: academic_terms
-            columnNames: year, semester
+            columnNames: academic_year, semester
             constraintName: uk_academic_terms_year_semester
 
         - createIndex:

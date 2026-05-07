@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 104-create-student-subjects-table
+      id: 108-create-student-subjects-table
       author: sorl vichika
       created: 10-04-2026
       changes:
@@ -45,7 +45,7 @@ databaseChangeLog:
 
         - addForeignKeyConstraint:
             baseTableName: student_subjects
-            baseColumnNames: student_classroom_id
+            baseColumnNames: sc_id
             referencedTableName: student_classrooms
             referencedColumnNames: id
             constraintName: fk_student_subjects_student_classroom
@@ -66,7 +66,7 @@ databaseChangeLog:
 
         - addUniqueConstraint:
             tableName: student_subjects
-            columnNames: student_classroom_id, subject_id
+            columnNames: sc_id, subject_id
             constraintName: uk_student_subjects_student_classroom_subject
 
         - createIndex:
@@ -74,7 +74,7 @@ databaseChangeLog:
             indexName: idx_student_subjects_student_classroom
             columns:
               - column:
-                  name: student_classroom_id
+                  name: sc_id
 
         - createIndex:
             tableName: student_subjects

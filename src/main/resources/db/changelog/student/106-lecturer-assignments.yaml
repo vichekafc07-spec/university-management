@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 305-create-lecturer-assignments-table
+      id: 106-create-lecturer-assignments-table
       author: sorl vichika
       created: 04-04-2026
       changes:
