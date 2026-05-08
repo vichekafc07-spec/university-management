@@ -47,7 +47,7 @@ public class LecturerAssignmentServiceImpl implements LecturerAssignmentService 
 
         var subject = getSubjectById(request.subjectId());
 
-        if (lecturerRepository.existsByLecturerIdAndClassroomIdAndSubjectIdAndTime(
+        if (lecturerRepository.existsByLecturer_IdAndClassroom_IdAndSubject_IdAndTime(
                 lecturer.getId(), classroom.getId(), subject.getId(), request.time())) {
             throw new BadRequestException("Lecturer already assigned for this classroom, subject and time");
         }

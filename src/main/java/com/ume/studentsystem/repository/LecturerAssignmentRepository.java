@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface LecturerAssignmentRepository extends JpaRepository<LecturerAssignment, Long>, JpaSpecificationExecutor<LecturerAssignment> {
 
-    boolean existsByLecturerIdAndClassroomIdAndSubjectIdAndTime(Long lecturerId, Long classroomId, Long subjectId, StudyTime time);
+    boolean existsByLecturer_IdAndClassroom_IdAndSubject_IdAndTime(Long lecturerId, Long classroomId, Long subjectId, StudyTime time);
 
     List<LecturerAssignment> findByClassroomId(Long classroomId);
 
