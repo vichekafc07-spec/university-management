@@ -37,11 +37,17 @@ databaseChangeLog:
 
               - column:
                   name: created_by
-                  type: BIGINT
+                  type: varchar(255)
 
               - column:
                   name: updated_by
-                  type: BIGINT
+                  type: varchar(255)
+              - column:
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: timestamp
 
         - addUniqueConstraint:
             tableName: users
