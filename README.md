@@ -175,7 +175,7 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
   . iText PDF
   . JavaMailSender
 
-  📂 **Project Structure**
+📂 **Project Structure**
   
     src/main/java/com/ume/studentsystem
     
@@ -197,3 +197,87 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
     ├── spec
     ├── util
     └── StudentSystemApplication.java
+
+⚙️ **Setup & Installation**
+
+  1️⃣ **Clone Repository**
+  
+    git clone https://github.com/your-username/university-management-system.git
+    cd university-management-system
+
+  2️⃣ **Configure Database**
+
+  Update application.yml
+  
+    spring:
+    datasource:
+      url: jdbc:postgresql://localhost:5432/your_database
+      username: root
+      password: your_password
+
+  3️⃣ **Run Liquibase Migration**
+  
+  Database tables will be generated automatically on startup.
+
+  4️⃣ **Run Application**
+
+    mvn spring-boot:run
+
+  🧪 **Run Tests**
+
+    mvn test
+  
+  📘 **Swagger Documentation**
+
+    http://localhost:8080/swagger-ui/index.html
+
+🔒 **Security Features**
+
+  . JWT Authentication
+  
+  . Refresh Token Rotation
+  
+  . Dynamic Role & Permission System
+  
+  . API-Level Authorization
+  
+  . Secure Password Encryption
+  
+📈 **System Highlights**
+
+  . Clean Architecture
+  
+  . DTO + Mapper Pattern
+  
+  . Soft Delete Support
+  
+  . Audit Logging
+  
+  . Transaction Management
+  
+  . PDF Reporting
+  
+  . Email Integration
+  
+  . Financial Validation
+  
+  . GPA & Ranking System
+
+🧠 **Future Improvements**
+
+  . Docker Deployment
+  
+  . CI/CD Pipeline
+  
+  . Redis Cache
+  
+  . File Storage Service
+  
+  . WebSocket Notifications
+  
+  . Microservices Architecture
+
+👨‍💻 **Author**
+
+  SORL VICHIKA
+
