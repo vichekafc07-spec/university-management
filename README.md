@@ -85,10 +85,65 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
 📝 **Examination & Grading**
 
   . Exam Scheduling
+  
   . Exam Results
+  
   . GPA Calculation
+  
   . Semester GPA
+  
   . Overall GPA
+  
   . Student Ranking
+  
   . Dean List
-.  Transcript PDF Generation
+  
+  . Transcript PDF Generation
+
+💰 **Payment System**
+
+  . Invoice Management
+  
+  . Partial Payments
+  
+  . Payment Tracking
+  
+  . Receipt PDF Generation
+  
+  . Email Receipt Attachment
+  
+  . Revenue Monitoring
+  
+🔔 **Notification System**
+
+  . In-App Notifications
+  
+  . Email Notifications
+  
+  . Automatic Trigger Events
+
+📄 **Reporting**
+
+  . Transcript PDF
+  
+  . Receipt PDF
+  
+  . Dashboard Statistics
+  
+  . Revenue Reports
+  
+📚 **API Documentation**
+
+  . Swagger / OpenAPI Integration
+  
+🧪 **Testing**
+
+  . JUnit 5
+  
+  . Mockito
+  
+  . H2 Database Testing
+  
+  . Repository Testing
+  
+  . Service Layer Testing
