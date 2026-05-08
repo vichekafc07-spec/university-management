@@ -30,7 +30,7 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
 
 **🚀 Features**
 
-🔐 Authentication & Security
+🔐 **Authentication & Security**
 
   . JWT Authentication
   
@@ -47,7 +47,7 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
   . Spring Security 6
 
 
-👨‍🎓 Student Management
+👨‍🎓 **Student Management**
 
   . Student Registration
   
@@ -60,10 +60,35 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
   . Student Profile Management
 
 
-👨‍🏫 Staff & Lecturer Management
+👨‍🏫 **Staff & Lecturer Management**
 
   . Staff Management
   
   . Lecturer Assignment
   
   . Faculty & Department Relations
+
+🏫 **Academic Management**
+
+  . Faculty & Department Management
+  
+  . Subject & Classroom Management
+  
+  . Academic Terms
+  
+  . Timetable Scheduling
+  
+  . Session Management
+  
+  . Attendance Tracking
+  
+📝 **Examination & Grading**
+
+  . Exam Scheduling
+  . Exam Results
+  . GPA Calculation
+  . Semester GPA
+  . Overall GPA
+  . Student Ranking
+  . Dean List
+.  Transcript PDF Generation
