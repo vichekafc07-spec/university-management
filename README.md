@@ -147,3 +147,30 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
   . Repository Testing
   
   . Service Layer Testing
+
+
+🛠️ **Tech Stack**
+
+  **Backend :**
+    Java 21
+  . Spring Boot 3
+  . Spring Security 6
+  . Spring Data JPA
+  . Hibernate
+
+  **Database :**
+    PostgreSQL / MySQL
+  . H2 Database (Testing)
+  
+  **Migration :**
+    Liquibase
+
+  **Documentation :**
+    Swagger OpenAPI
+    
+  **Testing :**
+    JUnit 5
+  . Mockito
+  . PDF & Email
+  . iText PDF
+  . JavaMailSender
