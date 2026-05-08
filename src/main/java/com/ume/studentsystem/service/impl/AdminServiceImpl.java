@@ -3,6 +3,7 @@ package com.ume.studentsystem.service.impl;
 import com.ume.studentsystem.auth.dto.request.*;
 import com.ume.studentsystem.auth.dto.response.*;
 import com.ume.studentsystem.exceptions.BadRequestException;
+import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.AdminMapper;
 import com.ume.studentsystem.model.Permission;
@@ -78,7 +79,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public PermissionResponse addPermission(PermissionRequest request) {
         permissionRepository.findByName(request.name()).ifPresent(e -> {
-            throw new BadRequestException("Permission name is already exists");
+            throw new DuplicateResourceException("Permission name is already exists");
         });
         var permission = new Permission();
         permission.setName(request.name());
