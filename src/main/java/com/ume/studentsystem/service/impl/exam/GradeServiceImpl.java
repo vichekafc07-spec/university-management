@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.exam;
 
 import com.ume.studentsystem.dto.request.GradeRequest;
 import com.ume.studentsystem.dto.response.GradeResponse;

@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.student;
 
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;

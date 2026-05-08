@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.student;
 
 import com.ume.studentsystem.dto.request.AssignStudentSubjectRequest;
 import com.ume.studentsystem.dto.request.UpdateStudentStatus;

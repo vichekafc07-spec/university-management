@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.student;
 
 import com.ume.studentsystem.dto.request.AssignStudentClassroomRequest;
 import com.ume.studentsystem.dto.request.RemoveStudentClassroomRequest;

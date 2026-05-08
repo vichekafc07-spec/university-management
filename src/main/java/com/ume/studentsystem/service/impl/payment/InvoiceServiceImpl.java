@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.payment;
 
 import com.ume.studentsystem.dto.request.payment.InvoiceRequest;
 import com.ume.studentsystem.dto.response.payment.InvoiceResponse;

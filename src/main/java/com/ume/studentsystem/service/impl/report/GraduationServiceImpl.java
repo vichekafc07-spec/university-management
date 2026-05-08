@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.report;
 
 import com.ume.studentsystem.dto.response.GraduationResponse;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;

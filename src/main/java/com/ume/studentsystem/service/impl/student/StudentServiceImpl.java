@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.student;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -70,28 +70,33 @@ public class StudentServiceImpl implements StudentService {
         }
         var saved = studentRepository.save(student);
 
-        emailService.send(
-                saved.getEmail(),
-                "Welcome to My University",
-                """
-                Dear %s,
-        
-                Your student account is created.
-        
-                Student Code: %s
-                
-                Major: %s
-                
-                Faculty: %s
-                
-                Department: %s
-                
-                Generation: %d
-        
-                Welcome.
-                """
-                .formatted(saved.getFullName(), saved.getStudentCode(),saved.getMajor(),saved.getFaculty().getName(),saved.getDepartment().getName(),saved.getGeneration())
-        );
+        try {
+
+            emailService.send(
+                    saved.getEmail(),
+                    "Welcome to My University",
+                    """
+                            Dear %s,
+                            
+                            Your student account is created.
+                            
+                            Student Code: %s
+                            
+                            Major: %s
+                            
+                            Faculty: %s
+                            
+                            Department: %s
+                            
+                            Generation: %d
+                            
+                            Welcome.
+                            """
+                            .formatted(saved.getFullName(), saved.getStudentCode(), saved.getMajor(), saved.getFaculty().getName(), saved.getDepartment().getName(), saved.getGeneration())
+            );
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         return studentMapper.toResponse(saved);
     }

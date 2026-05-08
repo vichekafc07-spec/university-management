@@ -2,7 +2,7 @@ package com.ume.studentsystem.controller;
 
 import com.ume.studentsystem.dto.response.TranscriptResponse;
 import com.ume.studentsystem.service.TranscriptService;
-import com.ume.studentsystem.service.impl.TranscriptPdfService;
+import com.ume.studentsystem.service.impl.report.TranscriptPdfService;
 import com.ume.studentsystem.util.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
