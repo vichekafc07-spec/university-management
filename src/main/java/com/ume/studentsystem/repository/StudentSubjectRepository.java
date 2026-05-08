@@ -14,10 +14,6 @@ public interface StudentSubjectRepository extends JpaRepository<StudentSubject, 
 
     List<StudentSubject> findByStudentClassroomIdInAndSubjectIdIn(Set<Long> studentClassroomIds, Set<Long> subjectIds);
 
-    List<StudentSubject> findByStudentClassroom_Student_Id(Long studentClassroomId);
-
-    List<StudentSubject> findBySubject_Id(Long subjectId);
-
     @Query("""
     SELECT new com.ume.studentsystem.dto.response.TranscriptRow(ss, g)
     FROM StudentSubject ss

@@ -13,9 +13,5 @@ public interface LecturerAssignmentRepository extends JpaRepository<LecturerAssi
 
     List<LecturerAssignment> findByClassroomId(Long classroomId);
 
-    List<LecturerAssignment> findByLecturerId(Long lecturerId);
-
-    List<LecturerAssignment> findBySubjectId(Long subjectId);
-
     boolean existsByClassroom_IdAndSubject_Id(Long classroomId, Long subjectId);
 }

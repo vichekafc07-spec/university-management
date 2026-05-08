@@ -1,6 +1,5 @@
 package com.ume.studentsystem.repository;
 
-import com.ume.studentsystem.dto.response.RankingResponse;
 import com.ume.studentsystem.model.Grade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

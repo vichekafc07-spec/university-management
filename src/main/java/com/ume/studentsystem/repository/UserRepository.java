@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<AppUser,Long> , JpaSpecificationExecutor<AppUser> {
-//    @EntityGraph(attributePaths = {"role", "role.permissions"})
-//    Optional<AppUser> findByEmail(String email);
 
     boolean existsByEmail(String email);
 

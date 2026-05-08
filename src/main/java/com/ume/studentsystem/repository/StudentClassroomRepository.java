@@ -39,14 +39,6 @@ public interface StudentClassroomRepository extends JpaRepository<StudentClassro
 
     @Query("""
     SELECT sc FROM StudentClassroom sc
-    JOIN FETCH sc.student st
-    WHERE sc.classroom.id = :classroomId
-    ORDER BY st.studentCode
-    """)
-    List<StudentClassroom> findStudentsByClassroomId(Long classroomId);
-
-    @Query("""
-    SELECT sc FROM StudentClassroom sc
     JOIN FETCH sc.student s
     JOIN FETCH sc.classroom c
     WHERE c.id = :classroomId
