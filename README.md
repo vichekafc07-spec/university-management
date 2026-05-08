@@ -279,5 +279,10 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
 
 👨‍💻 **Author**
 
-  SORL VICHIKA
+   SORL VICHIKA
+   
+     github.com/vichekafc07-spec
+     
+⭐ **Support**
 
+If you like this project, give it a ⭐ on GitHub.
