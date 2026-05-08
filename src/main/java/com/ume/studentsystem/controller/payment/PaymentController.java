@@ -7,6 +7,7 @@ import com.ume.studentsystem.util.APIResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,17 +18,20 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('cashier:write')")
     public ResponseEntity<APIResponse<PaymentResponse>> pay(@Valid @RequestBody PaymentRequest request) {
         return ResponseEntity.ok(APIResponse.ok(paymentService.pay(request)));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('cashier:write')")
     public ResponseEntity<APIResponse<PaymentResponse>> update(@PathVariable Long id,
                                                                @Valid @RequestBody PaymentRequest request){
         return ResponseEntity.ok(APIResponse.ok(paymentService.update(id,request)));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('cashier:write')")
     public ResponseEntity<?> delete(@PathVariable Long id){
         paymentService.delete(id);
         return ResponseEntity.noContent().build();

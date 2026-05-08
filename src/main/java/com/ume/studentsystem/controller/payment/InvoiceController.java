@@ -7,6 +7,7 @@ import com.ume.studentsystem.util.APIResponse;
 import com.ume.studentsystem.util.PageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,17 +18,20 @@ public class InvoiceController {
     private final InvoiceService invoiceService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('cashier:write')")
     public ResponseEntity<APIResponse<InvoiceResponse>> create(@RequestBody InvoiceRequest request) {
         return ResponseEntity.ok(APIResponse.ok(invoiceService.createInvoice(request)));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('cashier:write')")
     public ResponseEntity<APIResponse<InvoiceResponse>> updateInvoice(@PathVariable Long id,
                                                                       @RequestBody InvoiceRequest request){
         return ResponseEntity.ok(APIResponse.ok(invoiceService.updateInvoice(id,request)));
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('cashier:read')")
     public ResponseEntity<APIResponse<PageResponse<InvoiceResponse>>> getAllInvoice(@RequestParam(required = false) Long id,
                                                                                     @RequestParam(required = false) String sortBy,
                                                                                     @RequestParam(required = false) String sortAs,
@@ -38,6 +42,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('cashier:write')")
     public ResponseEntity<?> delete(@PathVariable Long id){
         invoiceService.deleteInvoice(id);
         return ResponseEntity.noContent().build();

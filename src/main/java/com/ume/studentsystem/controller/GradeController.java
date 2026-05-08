@@ -7,6 +7,7 @@ import com.ume.studentsystem.util.APIResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,26 +21,31 @@ public class GradeController {
     private final GradeService gradeService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<GradeResponse>> create(@Valid @RequestBody GradeRequest request) {
         return ResponseEntity.ok(APIResponse.ok(gradeService.create(request)));
     }
 
     @GetMapping("/student/{studentId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<List<GradeResponse>>> getByStudent(@PathVariable Long studentId) {
         return ResponseEntity.ok(APIResponse.ok(gradeService.getByStudent(studentId)));
     }
 
     @PostMapping("/auto/{studentSubjectId}")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<GradeResponse>> autoCalculate(@PathVariable Long studentSubjectId){
         return ResponseEntity.ok(APIResponse.ok(gradeService.autoCalculate(studentSubjectId)));
     }
 
     @PostMapping("/auto-bulk")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<List<GradeResponse>>> bulk(@RequestBody Set<Long> ids){
         return ResponseEntity.ok(APIResponse.ok(gradeService.autoCalculateBulk(ids)));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<?> delete(@PathVariable Long id){
         gradeService.delete(id);
         return ResponseEntity.noContent().build();

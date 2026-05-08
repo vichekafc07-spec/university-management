@@ -9,6 +9,7 @@ import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,17 +22,20 @@ public class StudentClassController {
     private final StudentClassroomService scService;
 
     @PostMapping("/assign")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<List<StudentClassroomResponse>>> assign(@Valid @RequestBody AssignStudentClassroomRequest request) {
         return ResponseEntity.ok(APIResponse.create(scService.assignStudent(request)));
     }
 
     @DeleteMapping("/unassign")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<?> remove(@Valid @RequestBody RemoveStudentClassroomRequest request) {
         scService.removeStudent(request);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/classroom/{classroomId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<PageResponse<StudentClassroomResponse>>> getStudents(@PathVariable Long classroomId,
                                                                                            @RequestParam(required = false) String studentCode,
                                                                                            @RequestParam(required = false) String sortBy,
@@ -45,11 +49,13 @@ public class StudentClassController {
     }
 
     @GetMapping("/student/{studentId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<List<StudentClassroomResponse>>> getHistory(@PathVariable Long studentId) {
         return ResponseEntity.ok(APIResponse.ok(scService.getStudentHistory(studentId)));
     }
 
     @PostMapping("/promote/{classroomId}/to/{nextClassroomId}")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<?> promote(@PathVariable Long classroomId,
                                      @PathVariable Long nextClassroomId) {
         scService.promoteClassroom(classroomId, nextClassroomId);

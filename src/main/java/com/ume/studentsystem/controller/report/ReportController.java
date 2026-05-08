@@ -9,6 +9,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class ReportController {
     private final ReportService reportService;
 
     @GetMapping("/classrooms/{id}/students")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> classroomStudentList(@PathVariable Long id) {
         ByteArrayInputStream pdf = reportService.classroomStudentList(id);
         HttpHeaders headers = new HttpHeaders();
@@ -35,6 +37,7 @@ public class ReportController {
     }
 
     @GetMapping("/classrooms/{id}/students/excel")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> excel(@PathVariable Long id) {
         ByteArrayInputStream file = reportService.exportStudentsExcel(id);
         return ResponseEntity.ok()
@@ -44,6 +47,7 @@ public class ReportController {
     }
 
     @GetMapping("/sessions/{id}/attendance")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> attendance(@PathVariable Long id) {
 
         ByteArrayInputStream pdf = reportService.attendanceSheet(id);
@@ -55,6 +59,7 @@ public class ReportController {
     }
 
     @GetMapping("/exams/{examId}/seat-list")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> generateSeatList(@PathVariable Long examId) {
         ByteArrayInputStream pdf = reportService.generateSeatList(examId);
         HttpHeaders headers = new HttpHeaders();
@@ -66,6 +71,7 @@ public class ReportController {
     }
 
     @GetMapping("/students/{studentId}/transcript")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> generate(@PathVariable Long studentId) {
 
         ByteArrayInputStream pdf = reportService.generateTranscript(studentId);
@@ -80,16 +86,19 @@ public class ReportController {
     }
 
     @GetMapping("/classrooms/{classroomId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<List<RankingResponse>>> rankingByClassroom(@PathVariable Long classroomId) {
         return ResponseEntity.ok(APIResponse.ok(reportService.rankByClassroom(classroomId)));
     }
 
     @GetMapping("/dean-list/faculties/{facultyId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<List<FacultyTopStudentResponse>>> getTopStudent(@PathVariable Long facultyId){
         return ResponseEntity.ok(APIResponse.ok(reportService.getTopStudentsByFaculty(facultyId)));
     }
 
     @GetMapping("/{paymentId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> download(@PathVariable Long paymentId) {
 
         ByteArrayInputStream pdf = reportService.generateReceipt(paymentId);

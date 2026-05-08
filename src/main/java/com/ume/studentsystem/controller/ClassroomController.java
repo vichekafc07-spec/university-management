@@ -9,6 +9,7 @@ import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -20,6 +21,7 @@ public class ClassroomController {
     private final ClassroomService classroomService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<PageResponse<ClassroomResponse>>> getAll(@RequestParam(required = false) Long id,
                                                                                @RequestParam(required = false) String name,
                                                                                @RequestParam(required = false) Integer year,
@@ -36,35 +38,41 @@ public class ClassroomController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<ClassroomResponse>> create(@Valid @RequestBody ClassroomRequest request) {
         return ResponseEntity.ok(APIResponse.create(classroomService.create(request)));
     }
 
     @PostMapping("/{id}/subjects/add")
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<ClassroomResponse>> addSubjects(@PathVariable Long id,
                                                                       @Valid @RequestBody AssignSubjectRequest subjects) {
         return ResponseEntity.ok(APIResponse.create(classroomService.addSubject(id, subjects)));
     }
 
     @PostMapping("/{id}/subjects/remove")
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<ClassroomResponse>> removeSubjects(@PathVariable Long id,
                                                             @Valid @RequestBody AssignSubjectRequest request) {
         return ResponseEntity.ok(APIResponse.ok(classroomService.removeSubject(id, request)));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<ClassroomResponse>> updateSubject(@PathVariable Long id,
                                                            @Valid @RequestBody ClassroomRequest request){
         return ResponseEntity.ok(APIResponse.ok(classroomService.updateClassroom(id,request)));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         classroomService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/restore/{id}")
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<?>> restore(@PathVariable Long id){
         return ResponseEntity.ok(APIResponse.ok(classroomService.restore(id)));
     }

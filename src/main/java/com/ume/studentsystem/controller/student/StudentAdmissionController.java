@@ -5,6 +5,7 @@ import com.ume.studentsystem.service.StudentAdmissionService;
 import com.ume.studentsystem.util.APIResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,11 +16,13 @@ public class StudentAdmissionController {
     private final StudentAdmissionService admissionService;
 
     @PutMapping("/{id}/approve")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<AdmissionResponse>> approve(@PathVariable Long id) {
         return ResponseEntity.ok(APIResponse.ok(admissionService.approve(id)));
     }
 
     @PutMapping("/{id}/reject")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<AdmissionResponse>> reject(@PathVariable Long id) {
         return ResponseEntity.ok(APIResponse.ok(admissionService.reject(id)));
     }

@@ -8,6 +8,7 @@ import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +21,13 @@ public class LecturerController {
     private final LecturerAssignmentService lecturerService;
 
     @PostMapping("/assign")
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<LecturerAssignmentResponse>> assign(@Valid @RequestBody AssignLecturerRequest request) {
         return ResponseEntity.ok(APIResponse.create(lecturerService.assignLecturer(request)));
     }
 
     @GetMapping("/lecturer/{lecturerId}")
+    @PreAuthorize("hasAuthority('dean:read')")
     public ResponseEntity<APIResponse<PageResponse<LecturerAssignmentResponse>>> getByLecturer(@PathVariable Long lecturerId,
                                                                                                @RequestParam(required = false) String lecturerName,
                                                                                                @RequestParam(required = false) String lecturerCode,
@@ -38,11 +41,13 @@ public class LecturerController {
     }
 
     @GetMapping("/classroom/{classroomId}")
+    @PreAuthorize("hasAuthority('dean:read')")
     public ResponseEntity<APIResponse<List<LecturerAssignmentResponse>>> getByClassroom(@PathVariable Long classroomId) {
         return ResponseEntity.ok(APIResponse.ok(lecturerService.getClassroomAssignments(classroomId)));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<?>> remove(@PathVariable Long id) {
         lecturerService.removeAssignment(id);
         return ResponseEntity.noContent().build();

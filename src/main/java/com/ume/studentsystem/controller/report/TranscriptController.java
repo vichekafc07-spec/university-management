@@ -9,6 +9,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +26,13 @@ public class TranscriptController {
     private final TranscriptPdfService transcriptPdfService;
 
     @GetMapping("/{studentId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<TranscriptResponse>> getTranscript(@PathVariable Long studentId) {
         return ResponseEntity.ok(APIResponse.ok(transcriptService.getTranscript(studentId)));
     }
 
     @GetMapping("/{studentId}/pdf")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> pdf(@PathVariable Long studentId){
         ByteArrayInputStream in = transcriptPdfService.export(studentId);
         HttpHeaders headers = new HttpHeaders();

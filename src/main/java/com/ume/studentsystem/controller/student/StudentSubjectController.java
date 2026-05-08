@@ -9,6 +9,7 @@ import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,11 +22,13 @@ public class StudentSubjectController {
     private final StudentSubjectService studentSubjectService;
 
     @PostMapping("/assign")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<List<StudentSubjectResponse>>> assignSubjects(@Valid @RequestBody AssignStudentSubjectRequest request) {
         return ResponseEntity.ok(APIResponse.ok(studentSubjectService.assignSubjects(request)));
     }
 
     @GetMapping("/student/{studentId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<PageResponse<StudentSubjectResponse>>> getByStudent(@PathVariable Long studentId,
                                                                                           @RequestParam(required = false) String studentName,
                                                                                           @RequestParam(required = false) String studentCode,
@@ -39,6 +42,7 @@ public class StudentSubjectController {
     }
 
     @GetMapping("/subject/{subjectId}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<PageResponse<StudentSubjectResponse>>> getBySubject(@PathVariable Long subjectId,
                                                                                           @RequestParam(required = false) Integer semester,
                                                                                           @RequestParam(required = false) String sortBy,
@@ -50,11 +54,13 @@ public class StudentSubjectController {
     }
 
     @PatchMapping("/{id}/status")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<StudentSubjectResponse>> updateStatus(@PathVariable Long id, @RequestBody UpdateStudentStatus status){
         return ResponseEntity.ok(APIResponse.ok(studentSubjectService.updateStatus(id,status)));
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<?> delete(@PathVariable Long id){
         studentSubjectService.deleteStudentSubject(id);
         return ResponseEntity.noContent().build();

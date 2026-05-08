@@ -11,6 +11,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +25,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<StudentResponse>> create(@Valid @ModelAttribute StudentRequest request,
                                                                @RequestParam(required = false) MultipartFile photo
     ) {
@@ -31,21 +33,25 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<StudentResponse>> update(@PathVariable Long id, @Valid @RequestBody StudentRequest request) {
         return ResponseEntity.ok(APIResponse.ok(studentService.update(id, request)));
     }
 
     @PutMapping(value = "/{id}/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<StudentResponse>> updatePhoto(@PathVariable Long id, @RequestParam MultipartFile photo) {
         return ResponseEntity.ok(APIResponse.ok(studentService.updatePhoto(id, photo)));
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<StudentResponse>> getById(@PathVariable Long id) {
         return ResponseEntity.ok(APIResponse.ok(studentService.getStudentById(id)));
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<APIResponse<PageResponse<StudentResponse>>> getAll(@RequestParam(required = false) Long id,
                                                                              @RequestParam(required = false) String fullName,
                                                                              @RequestParam(required = false) String studentCode,
@@ -63,6 +69,7 @@ public class StudentController {
     }
 
     @GetMapping("/reports/pdf")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> pdf(@RequestParam Integer generation){
         ByteArrayInputStream in = studentService.exportByGeneration(generation);
         HttpHeaders headers = new HttpHeaders();
@@ -74,6 +81,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/id-card")
+    @PreAuthorize("hasAuthority('staff:read')")
     public ResponseEntity<InputStreamResource> generateIdCard(@PathVariable Long id) {
         ByteArrayInputStream pdf = studentService.generateIdCard(id);
         HttpHeaders headers = new HttpHeaders();
@@ -85,6 +93,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         studentService.delete(id);
         return ResponseEntity.noContent().build();
