@@ -63,14 +63,16 @@ public class AdminController {
 
     @DeleteMapping("/role/{roleId}")
     @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<APIResponse<RoleResponse>> deleteRole(@PathVariable Integer roleId){
-        return ResponseEntity.ok(APIResponse.ok(adminService.deleteRole(roleId)));
+    public ResponseEntity<?> deleteRole(@PathVariable Integer roleId){
+        adminService.deleteRole(roleId);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/permission/{permissionId}")
     @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<APIResponse<PermissionResponse>> deletePermission(@PathVariable Integer permissionId){
-        return ResponseEntity.ok(APIResponse.ok(adminService.deletePermission(permissionId)));
+    public ResponseEntity<?> deletePermission(@PathVariable Integer permissionId){
+        adminService.deletePermission(permissionId);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/api-permission")
