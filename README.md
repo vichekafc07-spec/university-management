@@ -174,3 +174,26 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
   . PDF & Email
   . iText PDF
   . JavaMailSender
+
+  📂 **Project Structure**
+  
+    src/main/java/com/ume/studentsystem
+    
+    │
+    ├── auth
+    ├── config
+    ├── controller
+    ├── dto
+    │   ├── request
+    │   └── response
+    ├── email
+    ├── exceptions
+    ├── helper
+    ├── mapper
+    ├── model
+    ├── repository
+    ├── service
+    │   └── impl
+    ├── spec
+    ├── util
+    └── StudentSystemApplication.java
