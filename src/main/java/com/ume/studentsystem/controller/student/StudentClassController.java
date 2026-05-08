@@ -1,4 +1,4 @@
-package com.ume.studentsystem.controller;
+package com.ume.studentsystem.controller.student;
 
 import com.ume.studentsystem.dto.request.AssignStudentClassroomRequest;
 import com.ume.studentsystem.dto.request.RemoveStudentClassroomRequest;

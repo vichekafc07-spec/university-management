@@ -1,4 +1,4 @@
-package com.ume.studentsystem.controller;
+package com.ume.studentsystem.controller.student;
 
 import com.ume.studentsystem.dto.response.AdmissionResponse;
 import com.ume.studentsystem.service.StudentAdmissionService;

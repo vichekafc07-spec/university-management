@@ -1,4 +1,4 @@
-package com.ume.studentsystem.controller;
+package com.ume.studentsystem.controller.academic;
 
 import com.ume.studentsystem.dto.request.StaffRequest;
 import com.ume.studentsystem.dto.request.StaffUpdateRequest;

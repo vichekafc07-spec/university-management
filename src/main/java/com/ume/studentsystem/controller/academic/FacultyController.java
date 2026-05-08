@@ -1,4 +1,4 @@
-package com.ume.studentsystem.controller;
+package com.ume.studentsystem.controller.academic;
 
 import com.ume.studentsystem.model.Faculty;
 import com.ume.studentsystem.service.FacultyService;
