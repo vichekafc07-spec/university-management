@@ -46,6 +46,7 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
   
   . Spring Security 6
 
+
 👨‍🎓 Student Management
 
   . Student Registration
@@ -57,6 +58,7 @@ The project follows a clean layered architecture using DTOs, Mappers, Services, 
   . Academic Status Tracking
   
   . Student Profile Management
+
 
 👨‍🏫 Staff & Lecturer Management
 
