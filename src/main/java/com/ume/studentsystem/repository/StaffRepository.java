@@ -28,4 +28,5 @@ public interface StaffRepository extends JpaRepository<Staff, Long> , JpaSpecifi
     @Query("SELECT s.staffCode FROM Staff s ORDER BY s.id DESC LIMIT 1")
     String findLastStaffCode();
 
+    boolean existsByPersonalEmail(String personalEmail);
 }

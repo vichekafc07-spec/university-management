@@ -4,6 +4,7 @@ import com.ume.studentsystem.dto.request.StaffRequest;
 import com.ume.studentsystem.dto.request.StaffUpdateRequest;
 import com.ume.studentsystem.dto.response.StaffResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
+import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.spec.SpecificationBuilder;
 import com.ume.studentsystem.mapper.StaffMapper;
@@ -48,6 +49,10 @@ public class StaffServiceImpl implements StaffService {
 
         if (staffRepository.existsByUserId(req.userId())){
             throw new BadRequestException("This user is already assigned to another staff");
+        }
+
+        if (staffRepository.existsByPersonalEmail(req.personalEmail())){
+            throw new DuplicateResourceException("This email already exists");
         }
 
         var staff = staffMapper.toEntity(req);
