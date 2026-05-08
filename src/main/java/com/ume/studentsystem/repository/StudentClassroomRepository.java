@@ -20,14 +20,11 @@ public interface StudentClassroomRepository extends JpaRepository<StudentClassro
     @Query("""
     SELECT sc FROM StudentClassroom sc
     JOIN FETCH sc.classroom c
-    JOIN FETCH sc.student s
-    LEFT JOIN FETCH s.department d
-    LEFT JOIN FETCH d.faculty f
-    WHERE sc.student.id IN :studentIds
+    WHERE sc.id IN :sc_Ids
     AND sc.classroom.id = :classroomId
     """)
     List<StudentClassroom> findAllWithFullStudentInfo(
-            @Param("studentIds") Set<Long> studentIds,
+            @Param("sc_Ids") Set<Long> sc_Ids,
             @Param("classroomId") Long classroomId
     );
 
