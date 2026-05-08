@@ -4,12 +4,9 @@ import com.ume.studentsystem.dto.request.payment.PaymentRequest;
 import com.ume.studentsystem.dto.response.payment.PaymentResponse;
 import com.ume.studentsystem.email.EmailService;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
-import com.ume.studentsystem.helper.NotificationHelper;
 import com.ume.studentsystem.mapper.PaymentMapper;
-import com.ume.studentsystem.model.enums.NotificationType;
 import com.ume.studentsystem.model.enums.PaymentStatus;
 import com.ume.studentsystem.repository.InvoiceRepository;
-import com.ume.studentsystem.repository.NotificationRepository;
 import com.ume.studentsystem.repository.PaymentRepository;
 import com.ume.studentsystem.service.PaymentService;
 import com.ume.studentsystem.service.ReportService;
@@ -25,7 +22,6 @@ import java.time.LocalDate;
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
-    private final NotificationRepository notificationRepository;
     private final ReportService reportService;
     private final InvoiceRepository invoiceRepository;
     private final PaymentMapper paymentMapper;
@@ -42,14 +38,6 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setPaymentDate(LocalDate.now());
 
         paymentRepository.save(payment);
-
-        var notification = NotificationHelper.send(
-                invoice.getStudent().getId(),
-                "Payment Received",
-                "We received $" + request.amount(),
-                NotificationType.PAYMENT
-        );
-        notificationRepository.save(notification);
 
         var receiptStream = reportService.generateReceipt(payment.getId());
 
