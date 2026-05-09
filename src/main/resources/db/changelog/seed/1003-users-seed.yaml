@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: users-seed-1003
+      author: vichika sorl
+      created: 08-05-2026
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: email
+                  value: admin@gmail.com
+              - column:
+                  name: password
+                  value: $2a$10$upFYacaxUmB51vhE.Wi4XeyKeFjh2ZosWGsPInqaOMB6YWqaZgQT2
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: dean
+              - column:
+                  name: email
+                  value: dean@gmail.com
+              - column:
+                  name: password
+                  value: $2a$10$H3knX9LnhcdidqU5N35GfuvBPq6d4CwxzM5lSIvd6aLmHsCxqLYPe
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: staff
+              - column:
+                  name: email
+                  value: staff@gmail.com
+              - column:
+                  name: password
+                  value: $2a$10$fhRAaFVafxREsQBM8pCd2OnmTz8NdWHZjZOCO5U8H0a/pYTg.l3ZC
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: teacher
+              - column:
+                  name: email
+                  value: teacher@gmail.com
+              - column:
+                  name: password
+                  value: $2a$10$J2ddA6v073JGj7wc4ArmXu7W/kVh0wSf4ikimo7dSw2ZU3EK44JHC
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: cashier
+              - column:
+                  name: email
+                  value: cashier@gmail.com
+              - column:
+                  name: password
+                  value: $2a$10$DZ9tcYg.M0TzV6RJ/bPBW.Vm6Hp9rNhsXjsNuuX.2A7raa1UkM2sW

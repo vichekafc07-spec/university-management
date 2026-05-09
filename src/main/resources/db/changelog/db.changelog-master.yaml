@@ -82,3 +82,12 @@ databaseChangeLog:
 
   - include:
       file: db/changelog/audit/701-audit-log.yaml
+
+## seed
+
+  - include:
+      file: db/changelog/seed/1001-roles-seed.yaml
+  - include:
+      file: db/changelog/seed/1002-permissions-seed.yaml
+  - include:
+      file: db/changelog/seed/1003-users-seed.yaml
