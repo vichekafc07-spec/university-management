@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: user-role-seed-1004
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+
+              - column:
+                  name: role_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 2
+
+              - column:
+                  name: role_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 3
+
+              - column:
+                  name: role_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 4
+
+              - column:
+                  name: role_id
+                  valueNumeric: 4
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 5
+
+              - column:
+                  name: role_id
+                  valueNumeric: 5

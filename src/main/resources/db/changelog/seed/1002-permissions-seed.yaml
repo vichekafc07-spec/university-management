@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: permissions-seed-1002
       author: vichika sorl
-      created: 08-05-2026
       changes:
         - insert:
             tableName: permissions

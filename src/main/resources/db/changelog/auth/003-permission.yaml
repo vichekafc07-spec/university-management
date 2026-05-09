@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 003-create-permissions-table
       author: vichika
-      created: 21-03-2026
       changes:
         - createTable:
             tableName: permissions

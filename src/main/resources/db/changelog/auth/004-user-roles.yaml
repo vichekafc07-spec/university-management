@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 004-create-user-roles-table
       author: vichika
-      created: 21-03-2026
       changes:
         - createTable:
             tableName: user_roles

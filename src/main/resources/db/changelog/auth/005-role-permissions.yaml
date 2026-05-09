@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 005-create-role-permissions-table
       author: sorl vichika
-      created: 21-03-2026
       changes:
         - createTable:
             tableName: role_permissions
