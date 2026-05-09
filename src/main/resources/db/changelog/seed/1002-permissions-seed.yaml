@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: permissions-seed-1002
+      author: vichika sorl
+      created: 08-05-2026
+      changes:
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: user:write
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: user:read
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: dean:write
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: dean:read
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: staff:write
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: staff:read
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: teacher:write
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: teacher:read
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: cashier:write
+
+        - insert:
+            tableName: permissions
+            columns:
+              - column:
+                  name: name
+                  value: cashier:read
