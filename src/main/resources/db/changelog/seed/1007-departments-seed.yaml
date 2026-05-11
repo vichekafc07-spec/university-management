@@ -1,0 +1,214 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1007-department-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Software Engineer
+              - column:
+                  name: faculty_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Computer Science
+              - column:
+                  name: faculty_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Data Science
+              - column:
+                  name: faculty_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Network Engineering
+              - column:
+                  name: faculty_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Human Resource Management
+              - column:
+                  name: faculty_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Finance and Banking
+              - column:
+                  name: faculty_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Accounting
+              - column:
+                  name: faculty_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Marketing
+              - column:
+                  name: faculty_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Public Administration
+              - column:
+                  name: faculty_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Civil Law
+              - column:
+                  name: faculty_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Commercial Law
+              - column:
+                  name: faculty_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Criminal Law
+              - column:
+                  name: faculty_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Business Law
+              - column:
+                  name: faculty_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: English literature
+              - column:
+                  name: faculty_id
+                  valueNumeric: 4
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: French literature
+              - column:
+                  name: faculty_id
+                  valueNumeric: 4
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Japanese literature
+              - column:
+                  name: faculty_id
+                  valueNumeric: 4
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Chinese literature
+              - column:
+                  name: faculty_id
+                  valueNumeric: 4
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Agronomy
+              - column:
+                  name: faculty_id
+                  valueNumeric: 5
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Animal Science
+              - column:
+                  name: faculty_id
+                  valueNumeric: 5
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Rural Development
+              - column:
+                  name: faculty_id
+                  valueNumeric: 5
+
+        - insert:
+            tableName: departments
+            columns:
+              - column:
+                  name: name
+                  value: Food Science and Technology
+              - column:
+                  name: faculty_id
+                  valueNumeric: 5
