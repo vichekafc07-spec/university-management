@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 101-create-faculties-table
       author: sorl vichika
-      created: 25-03-2026
       changes:
         - createTable:
             tableName: faculties
@@ -20,6 +19,33 @@ databaseChangeLog:
                   type: VARCHAR(150)
                   constraints:
                     nullable: false
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: created_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: updated_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
 
         - addUniqueConstraint:
             tableName: faculties

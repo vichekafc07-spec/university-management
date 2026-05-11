@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1005-faculty-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: faculties
+            columns:
+              - column:
+                  name: name
+                  value: Science and Technology
+
+        - insert:
+            tableName: faculties
+            columns:
+              - column:
+                  name: name
+                  value: Management and Tourism
+
+        - insert:
+            tableName: faculties
+            columns:
+              - column:
+                  name: name
+                  value: Law and Economics
+
+        - insert:
+            tableName: faculties
+            columns:
+              - column:
+                  name: name
+                  value: Humanity Art and Foreign languages
+
+        - insert:
+            tableName: faculties
+            columns:
+              - column:
+                  name: name
+                  value: Agriculture and Development
