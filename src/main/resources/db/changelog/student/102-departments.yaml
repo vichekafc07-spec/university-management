@@ -27,6 +27,33 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: created_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: updated_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+
         - addForeignKeyConstraint:
             baseTableName: departments
             baseColumnNames: faculty_id

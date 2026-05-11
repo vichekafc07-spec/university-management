@@ -1,5 +1,6 @@
 package com.ume.studentsystem.model;
 
+import com.ume.studentsystem.model.audit.AuditEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Department {
+public class Department extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

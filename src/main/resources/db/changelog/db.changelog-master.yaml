@@ -95,3 +95,7 @@ databaseChangeLog:
       file: db/changelog/seed/1004-user-roles-seed.yaml
   - include:
       file: db/changelog/seed/1005-role-permissions-seed.yaml
+  - include:
+      file: db/changelog/seed/1006-faculty-seed.yaml
+  - include:
+      file: db/changelog/seed/1007-departments-seed.yaml
