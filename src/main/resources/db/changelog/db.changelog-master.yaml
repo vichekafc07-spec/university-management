@@ -101,3 +101,5 @@ databaseChangeLog:
       file: db/changelog/seed/1007-departments-seed.yaml
   - include:
       file: db/changelog/seed/1008-students-seed.yaml
+  - include:
+      file: db/changelog/seed/1009-classrooms-seed.yaml

@@ -1,0 +1,254 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1009-classrooms-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: CS-A1 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: CS-A2 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: IT-B1 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 2 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: IT-B2 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: EVENING }
+              - column: { name: department_id, valueNumeric: 2 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: SE-C1 }
+              - column: { name: cl_year, valueNumeric: 3 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: DS-C2 }
+              - column: { name: cl_year, valueNumeric: 3 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: ACC-D1 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 5 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: FIN-D2 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 6 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: HR-E1 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: EVENING }
+              - column: { name: department_id, valueNumeric: 7 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: ECO-E2 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 8 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: LAW-F1 }
+              - column: { name: cl_year, valueNumeric: 3 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 9 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: LAW-F2 }
+              - column: { name: cl_year, valueNumeric: 3 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: EVENING }
+              - column: { name: department_id, valueNumeric: 10 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: ENG-G1 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 11 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: ENG-G2 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 12 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: ART-H1 }
+              - column: { name: cl_year, valueNumeric: 4 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: EVENING }
+              - column: { name: department_id, valueNumeric: 13 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: ART-H2 }
+              - column: { name: cl_year, valueNumeric: 4 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 13 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: MGT-T1 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 14 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: MGT-T2 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 14 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: MKT-M1 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: EVENING }
+              - column: { name: department_id, valueNumeric: 5 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: FIN-M2 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 6 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: AGR-A1 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 20 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: AGR-A2 }
+              - column: { name: cl_year, valueNumeric: 1 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 20 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: DEV-D1 }
+              - column: { name: cl_year, valueNumeric: 3 }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: EVENING }
+              - column: { name: department_id, valueNumeric: 15 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: DEV-D2 }
+              - column: { name: cl_year, valueNumeric: 3 }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: time, value: MORNING }
+              - column: { name: department_id, valueNumeric: 15 }
+
+        - insert:
+            tableName: classrooms
+            columns:
+              - column: { name: name, value: ENV-E1 }
+              - column: { name: cl_year, valueNumeric: 2 }
+              - column: { name: generation, valueNumeric: 28 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: time, value: AFTERNOON }
+              - column: { name: department_id, valueNumeric: 17 }
