@@ -99,3 +99,5 @@ databaseChangeLog:
       file: db/changelog/seed/1006-faculty-seed.yaml
   - include:
       file: db/changelog/seed/1007-departments-seed.yaml
+  - include:
+      file: db/changelog/seed/1008-students-seed.yaml

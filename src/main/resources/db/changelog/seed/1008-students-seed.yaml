@@ -1,0 +1,504 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1008-student-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU001 }
+              - column: { name: full_name, value: John Smith }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2002-03-15 }
+              - column: { name: phone, value: "012345678" }
+              - column: { name: email, value: john.smith@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 1 }
+              - column: { name: major, value: Computer Science }
+              - column: { name: enrollment_year, value: "2021" }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: photo_url, value: photos/john.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU002 }
+              - column: { name: full_name, value: Sarah Johnson }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2001-07-20 }
+              - column: { name: phone, value: "098765432" }
+              - column: { name: email, value: sarah.johnson@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 5 }
+              - column: { name: major, value: Accounting }
+              - column: { name: enrollment_year, value: "2020" }
+              - column: { name: generation, valueNumeric: 17 }
+              - column: { name: photo_url, value: photos/sarah.jpg }
+              - column: { name: study_time, value: AFTERNOON }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU003 }
+              - column: { name: full_name, value: David Lee }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2000-11-10 }
+              - column: { name: phone, value: "011223344" }
+              - column: { name: email, value: david.lee@email.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 8 }
+              - column: { name: major, value: Economics }
+              - column: { name: enrollment_year, value: "2019" }
+              - column: { name: generation, valueNumeric: 16 }
+              - column: { name: photo_url, value: photos/david.jpg }
+              - column: { name: study_time, value: EVENING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU004 }
+              - column: { name: full_name, value: Emily Davis }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2003-01-25 }
+              - column: { name: phone, value: "077889900" }
+              - column: { name: email, value: emily.davis@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 12 }
+              - column: { name: major, value: English }
+              - column: { name: enrollment_year, value: "2022" }
+              - column: { name: generation, valueNumeric: 19 }
+              - column: { name: photo_url, value: photos/emily.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU005 }
+              - column: { name: full_name, value: Michael Brown }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2002-09-12 }
+              - column: { name: phone, value: "066778899" }
+              - column: { name: email, value: michael.brown@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 15 }
+              - column: { name: major, value: Agronomy }
+              - column: { name: enrollment_year, value: "2021" }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: photo_url, value: photos/michael.jpg }
+              - column: { name: study_time, value: WEEKEND }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU006 }
+              - column: { name: full_name, value: Linda Wilson }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2001-05-08 }
+              - column: { name: phone, value: "055443322" }
+              - column: { name: email, value: linda.wilson@email.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: major, value: Information Technology }
+              - column: { name: enrollment_year, value: "2020" }
+              - column: { name: generation, valueNumeric: 17 }
+              - column: { name: photo_url, value: photos/linda.jpg }
+              - column: { name: study_time, value: AFTERNOON }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU007 }
+              - column: { name: full_name, value: Robert Taylor }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 1999-12-30 }
+              - column: { name: phone, value: "033221144" }
+              - column: { name: email, value: robert.taylor@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 6 }
+              - column: { name: major, value: Tourism Management }
+              - column: { name: enrollment_year, value: "2018" }
+              - column: { name: generation, valueNumeric: 15 }
+              - column: { name: photo_url, value: photos/robert.jpg }
+              - column: { name: study_time, value: EVENING }
+              - column: { name: status, value: GRADUATED }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU008 }
+              - column: { name: full_name, value: Jessica Martinez }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2003-04-17 }
+              - column: { name: phone, value: "088556677" }
+              - column: { name: email, value: jessica.m@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 9 }
+              - column: { name: major, value: International Law }
+              - column: { name: enrollment_year, value: "2022" }
+              - column: { name: generation, valueNumeric: 19 }
+              - column: { name: photo_url, value: photos/jessica.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU009 }
+              - column: { name: full_name, value: Daniel Anderson }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2002-06-19 }
+              - column: { name: phone, value: "099887766" }
+              - column: { name: email, value: daniel.a@email.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 13 }
+              - column: { name: major, value: Graphic Design }
+              - column: { name: enrollment_year, value: "2021" }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: photo_url, value: photos/daniel.jpg }
+              - column: { name: study_time, value: WEEKEND }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU010 }
+              - column: { name: full_name, value: Sophia Thomas }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2000-08-22 }
+              - column: { name: phone, value: "044332211" }
+              - column: { name: email, value: sophia.t@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 16 }
+              - column: { name: major, value: Rural Development }
+              - column: { name: enrollment_year, value: "2019" }
+              - column: { name: generation, valueNumeric: 16 }
+              - column: { name: photo_url, value: photos/sophia.jpg }
+              - column: { name: study_time, value: AFTERNOON }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU011 }
+              - column: { name: full_name, value: Kevin Moore }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2001-02-14 }
+              - column: { name: phone, value: "071234567" }
+              - column: { name: email, value: kevin.moore@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 3 }
+              - column: { name: major, value: Software Engineering }
+              - column: { name: enrollment_year, value: "2020" }
+              - column: { name: generation, valueNumeric: 17 }
+              - column: { name: photo_url, value: photos/kevin.jpg }
+              - column: { name: study_time, value: EVENING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU012 }
+              - column: { name: full_name, value: Olivia Harris }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2002-10-05 }
+              - column: { name: phone, value: "078998877" }
+              - column: { name: email, value: olivia.harris@email.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 7 }
+              - column: { name: major, value: Hospitality Management }
+              - column: { name: enrollment_year, value: "2021" }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: photo_url, value: photos/olivia.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU013 }
+              - column: { name: full_name, value: William Clark }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 1998-06-28 }
+              - column: { name: phone, value: "086554433" }
+              - column: { name: email, value: william.clark@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 10 }
+              - column: { name: major, value: Public Law }
+              - column: { name: enrollment_year, value: "2017" }
+              - column: { name: generation, valueNumeric: 14 }
+              - column: { name: photo_url, value: photos/william.jpg }
+              - column: { name: study_time, value: WEEKEND }
+              - column: { name: status, value: GRADUATED }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU014 }
+              - column: { name: full_name, value: Emma White }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2003-09-09 }
+              - column: { name: phone, value: "097665544" }
+              - column: { name: email, value: emma.white@email.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 14 }
+              - column: { name: major, value: Korean Language }
+              - column: { name: enrollment_year, value: "2022" }
+              - column: { name: generation, valueNumeric: 19 }
+              - column: { name: photo_url, value: photos/emma.jpg }
+              - column: { name: study_time, value: AFTERNOON }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU015 }
+              - column: { name: full_name, value: James Walker }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2001-11-03 }
+              - column: { name: phone, value: "093221100" }
+              - column: { name: email, value: james.walker@email.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 17 }
+              - column: { name: major, value: Sustainable Development }
+              - column: { name: enrollment_year, value: "2020" }
+              - column: { name: generation, valueNumeric: 17 }
+              - column: { name: photo_url, value: photos/james.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU016 }
+              - column: { name: full_name, value: Ethan Hall }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2002-01-18 }
+              - column: { name: phone, value: "081112223" }
+              - column: { name: email, value: ethan.hall@gmail.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 4 }
+              - column: { name: major, value: Data Science }
+              - column: { name: enrollment_year, value: "2021" }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: photo_url, value: photos/ethan.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU017 }
+              - column: { name: full_name, value: Ava Scott }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2001-04-12 }
+              - column: { name: phone, value: "082223334" }
+              - column: { name: email, value: ava.scott@gmail.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 6 }
+              - column: { name: major, value: Hotel Management }
+              - column: { name: enrollment_year, value: "2020" }
+              - column: { name: generation, valueNumeric: 17 }
+              - column: { name: photo_url, value: photos/ava.jpg }
+              - column: { name: study_time, value: AFTERNOON }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU018 }
+              - column: { name: full_name, value: Benjamin Young }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 1999-08-08 }
+              - column: { name: phone, value: "083334445" }
+              - column: { name: email, value: benjamin.young@gmail.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 11 }
+              - column: { name: major, value: Development Economics }
+              - column: { name: enrollment_year, value: "2018" }
+              - column: { name: generation, valueNumeric: 15 }
+              - column: { name: photo_url, value: photos/benjamin.jpg }
+              - column: { name: study_time, value: EVENING }
+              - column: { name: status, value: GRADUATED }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU019 }
+              - column: { name: full_name, value: Mia Adams }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2003-03-21 }
+              - column: { name: phone, value: "084445556" }
+              - column: { name: email, value: mia.adams@gmail.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 12 }
+              - column: { name: major, value: Japanese Language }
+              - column: { name: enrollment_year, value: "2022" }
+              - column: { name: generation, valueNumeric: 19 }
+              - column: { name: photo_url, value: photos/mia.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU020 }
+              - column: { name: full_name, value: Lucas Green }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2000-10-30 }
+              - column: { name: phone, value: "085556667" }
+              - column: { name: email, value: lucas.green@gmail.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 18 }
+              - column: { name: major, value: Agricultural Economics }
+              - column: { name: enrollment_year, value: "2019" }
+              - column: { name: generation, valueNumeric: 16 }
+              - column: { name: photo_url, value: photos/lucas.jpg }
+              - column: { name: study_time, value: WEEKEND }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU021 }
+              - column: { name: full_name, value: Charlotte King }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2001-07-11 }
+              - column: { name: phone, value: "086667778" }
+              - column: { name: email, value: charlotte.king@gmail.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: major, value: Cybersecurity }
+              - column: { name: enrollment_year, value: "2020" }
+              - column: { name: generation, valueNumeric: 17 }
+              - column: { name: photo_url, value: photos/charlotte.jpg }
+              - column: { name: study_time, value: AFTERNOON }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU022 }
+              - column: { name: full_name, value: Henry Baker }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2002-05-25 }
+              - column: { name: phone, value: "087778889" }
+              - column: { name: email, value: henry.baker@gmail.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 7 }
+              - column: { name: major, value: Event Management }
+              - column: { name: enrollment_year, value: "2021" }
+              - column: { name: generation, valueNumeric: 18 }
+              - column: { name: photo_url, value: photos/henry.jpg }
+              - column: { name: study_time, value: EVENING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU023 }
+              - column: { name: full_name, value: Amelia Perez }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 1999-09-14 }
+              - column: { name: phone, value: "088889990" }
+              - column: { name: email, value: amelia.perez@gmail.com }
+              - column: { name: program_type, value: ASSOCIATE }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 9 }
+              - column: { name: major, value: Commercial Law }
+              - column: { name: enrollment_year, value: "2018" }
+              - column: { name: generation, valueNumeric: 15 }
+              - column: { name: photo_url, value: photos/amelia.jpg }
+              - column: { name: study_time, value: WEEKEND }
+              - column: { name: status, value: GRADUATED }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU024 }
+              - column: { name: full_name, value: Elijah Carter }
+              - column: { name: gender, value: MALE }
+              - column: { name: date_of_birth, valueDate: 2003-12-02 }
+              - column: { name: phone, value: "089990001" }
+              - column: { name: email, value: elijah.carter@gmail.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: PAID }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 13 }
+              - column: { name: major, value: Fine Arts }
+              - column: { name: enrollment_year, value: "2022" }
+              - column: { name: generation, valueNumeric: 19 }
+              - column: { name: photo_url, value: photos/elijah.jpg }
+              - column: { name: study_time, value: MORNING }
+              - column: { name: status, value: ACTIVE }
+
+        - insert:
+            tableName: students
+            columns:
+              - column: { name: student_code, value: STU025 }
+              - column: { name: full_name, value: Harper Nelson }
+              - column: { name: gender, value: FEMALE }
+              - column: { name: date_of_birth, valueDate: 2001-06-06 }
+              - column: { name: phone, value: "090101112" }
+              - column: { name: email, value: harper.nelson@gmail.com }
+              - column: { name: program_type, value: BACHELOR }
+              - column: { name: payment_type, value: SCHOLARSHIP }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 19 }
+              - column: { name: major, value: Environmental Management }
+              - column: { name: enrollment_year, value: "2020" }
+              - column: { name: generation, valueNumeric: 17 }
+              - column: { name: photo_url, value: photos/harper.jpg }
+              - column: { name: study_time, value: AFTERNOON }
+              - column: { name: status, value: ACTIVE }

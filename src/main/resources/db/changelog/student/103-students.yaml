@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 103-create-students-table
       author: vichika
-      created: 25-03-2026
       changes:
         - createTable:
             tableName: students
