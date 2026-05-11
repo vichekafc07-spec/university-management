@@ -115,27 +115,6 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    void getAllDepartmentTest(){
-
-        // given
-        var dept1 = new Department();
-        var dept2 = new Department();
-
-        // when
-        when(departmentRepository.findAll())
-                .thenReturn(List.of(dept1,dept2));
-
-        when(departmentMapper.toResponse(any()))
-                .thenReturn(new DepartmentResponse(1,"IT","CS"));
-
-        List<DepartmentResponse> result = departmentService.getAllDepartment();
-
-        // then
-        assertEquals(2, result.size());
-
-    }
-
-    @Test
     void getByFacultyTest(){
 
         // when

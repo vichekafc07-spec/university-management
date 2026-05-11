@@ -10,7 +10,14 @@ import com.ume.studentsystem.model.Faculty;
 import com.ume.studentsystem.repository.DepartmentRepository;
 import com.ume.studentsystem.repository.FacultyRepository;
 import com.ume.studentsystem.service.DepartmentService;
+import com.ume.studentsystem.spec.SpecificationBuilder;
+import com.ume.studentsystem.util.PageResponse;
+import com.ume.studentsystem.util.SortResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -34,11 +41,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<DepartmentResponse> getAllDepartment() {
-        return departmentRepository.findAll()
-                .stream()
-                .map(departmentMapper::toResponse)
-                .toList();
+    public PageResponse<DepartmentResponse> getAllDepartment(Integer id,String name,String sortBy,String sortAs,Integer page,Integer size) {
+        Specification<Department> spec = new SpecificationBuilder<Department>()
+                .equal("id",id)
+                .like("name", name)
+                .build();
+        List<String> allowSort = List.of("id","name");
+        var sort = SortResponse.sortResponse(sortBy,sortAs,allowSort);
+        Pageable pageable = PageRequest.of(page - 1 ,size,sort);
+        Page<Department> departmentPage = departmentRepository.findAll(spec,pageable);
+        return PageResponse.from(departmentPage,departmentMapper::toResponse);
     }
 
     @Override

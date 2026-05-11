@@ -4,6 +4,7 @@ import com.ume.studentsystem.dto.request.DepartmentRequest;
 import com.ume.studentsystem.dto.response.DepartmentResponse;
 import com.ume.studentsystem.service.DepartmentService;
 import com.ume.studentsystem.util.APIResponse;
+import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,13 @@ public class DepartmentController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('dean:read')")
-    public ResponseEntity<APIResponse<List<DepartmentResponse>>> getAll(){
-        return ResponseEntity.ok(APIResponse.ok(departmentService.getAllDepartment()));
+    public ResponseEntity<APIResponse<PageResponse<DepartmentResponse>>> getAll(@RequestParam(required = false) Integer id,
+                                                                                @RequestParam(required = false) String name,
+                                                                                @RequestParam(required = false) String sortBy,
+                                                                                @RequestParam(required = false) String sortAs,
+                                                                                @RequestParam(required = false , defaultValue = "1") Integer page,
+                                                                                @RequestParam(required = false , defaultValue = "5") Integer size){
+        return ResponseEntity.ok(APIResponse.ok(departmentService.getAllDepartment(id, name, sortBy, sortAs, page, size)));
     }
 
     @PostMapping
