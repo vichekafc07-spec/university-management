@@ -9,6 +9,9 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Science and Technology
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: faculties
@@ -16,6 +19,9 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Management and Tourism
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: faculties
@@ -23,6 +29,9 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Law and Economics
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: faculties
@@ -30,6 +39,9 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Humanity Art and Foreign languages
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: faculties
@@ -37,3 +49,6 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Agriculture and Development
+              - column:
+                  name: deleted
+                  valueBoolean: false

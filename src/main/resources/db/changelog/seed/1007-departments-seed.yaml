@@ -12,6 +12,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -22,6 +25,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -32,6 +38,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -42,6 +51,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -52,6 +64,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 2
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -62,6 +77,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 2
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -72,6 +90,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 2
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -82,6 +103,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 2
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -92,6 +116,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -102,6 +129,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -112,6 +142,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -122,6 +155,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -132,6 +168,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -142,6 +181,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 4
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -152,6 +194,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 4
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -162,6 +207,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 4
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -172,6 +220,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 4
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -182,6 +233,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 5
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -192,6 +246,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 5
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -202,6 +259,9 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 5
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: departments
@@ -212,3 +272,6 @@ databaseChangeLog:
               - column:
                   name: faculty_id
                   valueNumeric: 5
+              - column:
+                  name: deleted
+                  valueBoolean: false

@@ -12,6 +12,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 1 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -22,6 +23,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 1 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -32,6 +34,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -42,6 +45,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: EVENING }
               - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -52,6 +56,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 3 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -62,6 +67,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 4 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -72,6 +78,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 5 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -82,6 +89,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 6 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -92,6 +100,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: EVENING }
               - column: { name: department_id, valueNumeric: 7 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -102,6 +111,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 8 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -112,6 +122,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 9 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -122,6 +133,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: EVENING }
               - column: { name: department_id, valueNumeric: 10 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -132,6 +144,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 11 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -142,6 +155,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 12 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -152,6 +166,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: EVENING }
               - column: { name: department_id, valueNumeric: 13 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -162,6 +177,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 13 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -172,6 +188,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 14 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -182,6 +199,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 14 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -192,6 +210,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: EVENING }
               - column: { name: department_id, valueNumeric: 5 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -202,6 +221,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 6 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -212,6 +232,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 20 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -222,6 +243,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 20 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -232,6 +254,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: EVENING }
               - column: { name: department_id, valueNumeric: 15 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -242,6 +265,7 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 2 }
               - column: { name: time, value: MORNING }
               - column: { name: department_id, valueNumeric: 15 }
+              - column: { name: deleted,valueBoolean: false}
 
         - insert:
             tableName: classrooms
@@ -252,3 +276,4 @@ databaseChangeLog:
               - column: { name: semester, valueNumeric: 1 }
               - column: { name: time, value: AFTERNOON }
               - column: { name: department_id, valueNumeric: 17 }
+              - column: { name: deleted,valueBoolean: false}

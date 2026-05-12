@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: users-seed-1003
+      id: 1003-users-seed
       author: vichika sorl
       changes:
         - insert:
@@ -15,6 +15,9 @@ databaseChangeLog:
               - column:
                   name: password
                   value: $2a$10$upFYacaxUmB51vhE.Wi4XeyKeFjh2ZosWGsPInqaOMB6YWqaZgQT2
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: users
@@ -28,6 +31,9 @@ databaseChangeLog:
               - column:
                   name: password
                   value: $2a$10$H3knX9LnhcdidqU5N35GfuvBPq6d4CwxzM5lSIvd6aLmHsCxqLYPe
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: users
@@ -41,6 +47,9 @@ databaseChangeLog:
               - column:
                   name: password
                   value: $2a$10$fhRAaFVafxREsQBM8pCd2OnmTz8NdWHZjZOCO5U8H0a/pYTg.l3ZC
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: users
@@ -54,6 +63,9 @@ databaseChangeLog:
               - column:
                   name: password
                   value: $2a$10$J2ddA6v073JGj7wc4ArmXu7W/kVh0wSf4ikimo7dSw2ZU3EK44JHC
+              - column:
+                  name: deleted
+                  valueBoolean: false
 
         - insert:
             tableName: users
@@ -67,3 +79,6 @@ databaseChangeLog:
               - column:
                   name: password
                   value: $2a$10$DZ9tcYg.M0TzV6RJ/bPBW.Vm6Hp9rNhsXjsNuuX.2A7raa1UkM2sW
+              - column:
+                  name: deleted
+                  valueBoolean: false
