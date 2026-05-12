@@ -113,12 +113,12 @@ public class LecturerAssignmentServiceImpl implements LecturerAssignmentService 
     }
 
     private Staff getLecturerById(Long id){
-        return staffRepository.findById(id)
+        return staffRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Lecturer not found with id " + id));
     }
 
     private Classroom getClassById(Long id){
-        return classroomRepository.findById(id)
+        return classroomRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Classroom not found with id " + id));
     }
 

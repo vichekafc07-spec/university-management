@@ -142,7 +142,7 @@ public class StudentClassroomServiceImpl implements StudentClassroomService {
     }
 
     private Classroom getById(Long id){
-        return classroomRepository.findById(id)
+        return classroomRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Classroom not found " + id));
     }
 }

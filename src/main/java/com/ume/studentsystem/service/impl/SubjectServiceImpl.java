@@ -79,7 +79,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     private Department getDepartmentId(Integer id){
-        return departmentRepository.findById(id)
+        return departmentRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
     }
 }

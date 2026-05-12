@@ -52,13 +52,13 @@ public class TimetableServiceImpl implements TimetableService {
         timetable.setTerm(termRepository.findById(request.termId())
                         .orElseThrow(() -> new ResourceNotFoundException("Term not found")));
 
-        timetable.setClassroom(classroomRepository.findById(request.classroomId())
+        timetable.setClassroom(classroomRepository.findByIdAndDeletedFalse(request.classroomId())
                         .orElseThrow(() -> new ResourceNotFoundException("Classroom not found")));
 
         timetable.setSubject(subjectRepository.findById(request.subjectId())
                         .orElseThrow(() -> new ResourceNotFoundException("Subject not found")));
 
-        timetable.setLecturer(staffRepository.findById(request.lecturerId())
+        timetable.setLecturer(staffRepository.findByIdAndDeletedFalse(request.lecturerId())
                         .orElseThrow(() -> new ResourceNotFoundException("Lecturer not found")));
 
         timetable.setRoom(roomRepository.findById(request.roomId())
