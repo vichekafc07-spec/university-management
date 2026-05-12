@@ -14,6 +14,7 @@ import com.ume.studentsystem.model.AppUser;
 import com.ume.studentsystem.model.Role;
 import com.ume.studentsystem.repository.RoleRepository;
 import com.ume.studentsystem.repository.UserRepository;
+import com.ume.studentsystem.spec.SpecificationBuilder;
 import com.ume.studentsystem.util.PageResponse;
 import com.ume.studentsystem.util.SortResponse;
 import jakarta.servlet.http.Cookie;
@@ -60,15 +61,11 @@ public class AuthService {
     }
 
     public PageResponse<AuthResponse> getAllUsers(Long id, String username, String sortBy, String sortAs, Integer page, Integer size) {
-        Specification<AppUser> spec = Specification.unrestricted();
-        if (id != null) {
-            spec = spec.and(((root, query, cb) ->
-                    cb.equal(root.get("id"), id)));
-        }
-        if (username != null && !username.isEmpty()) {
-            spec = spec.and(((root, query, cb) ->
-                    cb.like(cb.lower(root.get("username")),'%'+ username + '%')));
-        }
+        Specification<AppUser> spec = new SpecificationBuilder<AppUser>()
+                .equal("deleted", false)
+                .equal("id",id)
+                .like("username",username)
+                .build();
         List<String> allowSort = List.of("id","username");
         var sort = SortResponse.sortResponse(sortBy, sortAs, allowSort);
         Pageable pageable = PageRequest.of(page - 1,size,sort);
@@ -124,5 +121,20 @@ public class AuthService {
         var user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         return userMapper.toResponse(user);
+    }
+
+    public void deleteUser(Long id) {
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+        userRepository.delete(user);
+    }
+
+    public String restoreUser(Long id) {
+        var user = userRepository.findByIdIncludeDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+        user.setDeleted(false);
+        user.setDeletedAt(null);
+        userRepository.save(user);
+        return "User restored successfully";
     }
 }

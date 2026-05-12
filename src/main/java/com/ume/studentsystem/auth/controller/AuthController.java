@@ -30,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<APIResponse<AuthResponse>> create(@RequestBody UserRequest userRequest){
+    public ResponseEntity<APIResponse<AuthResponse>> create(@Valid @RequestBody UserRequest userRequest){
         return ResponseEntity.ok(APIResponse.create(authService.createUser(userRequest)));
     }
 
@@ -44,6 +44,19 @@ public class AuthController {
                                                                              ){
         PageResponse<AuthResponse> pageResponse = authService.getAllUsers(id,username,sortBy,sortAs,page,size);
         return ResponseEntity.ok(APIResponse.ok(pageResponse));
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('user:write')")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id){
+        authService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/restore/{id}")
+    @PreAuthorize("hasAuthority('user:write')")
+    public ResponseEntity<?> restoreUser(@PathVariable Long id){
+        return ResponseEntity.ok(authService.restoreUser(id));
     }
 
     @PutMapping("/{id}/change-password")
