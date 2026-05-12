@@ -95,6 +95,7 @@ public class ClassroomServiceImpl implements ClassroomService {
     @Override
     public PageResponse<ClassroomResponse> getAllClassroom(Long id, String name, Integer year, Integer semester, Integer generation, String time, String sortBy, String sortAs, Integer page, Integer size) {
         Specification<Classroom> spec = new SpecificationBuilder<Classroom>()
+                .equal("deleted",false)
                 .equal("id", id)
                 .equal("year",year)
                 .equal("semester",semester)
@@ -110,12 +111,12 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     private Classroom getById(Long id){
-        return classroomRepository.findByIdAndDeletedFalse(id)
+        return classroomRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Classroom not found with id " + id));
     }
 
     private Department getDepartmentId(Integer id){
-        return departmentRepository.findById(id)
+        return departmentRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
 
     }

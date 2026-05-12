@@ -96,8 +96,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     private Department getDepartmentId(Integer id){
-        return departmentRepository.findByIdAndDeletedFalse(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
+        return departmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found id " + id));
     }
 
 }

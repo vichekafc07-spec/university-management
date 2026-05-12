@@ -38,10 +38,10 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public StaffResponse addStaff(StaffRequest req) {
 
-        var faculty = facultyRepository.findById(req.facultyId())
+        var faculty = facultyRepository.findByIdAndDeletedFalse(req.facultyId())
                 .orElseThrow(() -> new ResourceNotFoundException("Faculty not found"));
 
-        var dept = departmentRepository.findById(req.departmentId())
+        var dept = departmentRepository.findByIdAndDeletedFalse(req.departmentId())
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found"));
 
         var user = userRepository.findById(req.userId())
@@ -102,6 +102,7 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public PageResponse<StaffResponse> getAllStaff(Long id, String fullName, String position, String faculty, Boolean active, String sortBy, String sortAs, Integer page, Integer size) {
         Specification<Staff> spec = new SpecificationBuilder<Staff>()
+                .equal("deleted", false)
                 .equal("id", id)
                 .like("fullName", fullName)
                 .like("position", position)
@@ -158,7 +159,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     private Staff getStaffById(Long id) {
-        return staffRepository.findByIdAndDeletedFalse(id)
+        return staffRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Staff not found " + id));
     }
 

@@ -55,7 +55,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     private Faculty getById(Byte id){
-        return facultyRepository.findByIdAndDeletedFalse(id)
+        return facultyRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Faculty not found with id: " + id));
     }
 

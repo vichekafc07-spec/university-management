@@ -376,12 +376,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private Faculty getFacultyId(Byte id){
-        return facultyRepository.findById(id)
+        return facultyRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Faculty not found with id " + id ));
     }
 
     private Department getDepartmentId(Integer id){
-        return departmentRepository.findById(id)
+        return departmentRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
     }
 

@@ -9,8 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +18,6 @@ import java.util.Set;
 ))
 @EntityListeners(EntityAuditListener.class)
 @SQLDelete(sql = "UPDATE classrooms SET deleted = true, deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
-@Where(clause = "deleted = false")
 @Getter
 @Setter
 @NoArgsConstructor
