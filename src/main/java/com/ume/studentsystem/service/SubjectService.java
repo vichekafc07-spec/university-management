@@ -13,4 +13,6 @@ public interface SubjectService {
     void delete(Long id);
 
     PageResponse<SubjectResponse> getAllStaff(Long id, String code, String title, String department, String sortBy, String sortAs, Integer page, Integer size);
+
+    String restoreSubject(Long id);
 }

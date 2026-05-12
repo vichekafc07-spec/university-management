@@ -51,7 +51,7 @@ public class StudentSubjectServiceImpl implements StudentSubjectService {
             throw new ResourceNotFoundException("No valid Student found");
         }
 
-        var subjects = new HashSet<>(subjectRepository.findAllById(request.subjectIds()));
+        var subjects = new HashSet<>(subjectRepository.findAllActiveByIds(request.subjectIds()));
         if (subjects.isEmpty()) {
             throw new ResourceNotFoundException("No valid subjects found");
         }

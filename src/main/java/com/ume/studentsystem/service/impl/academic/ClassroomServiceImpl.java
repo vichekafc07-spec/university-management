@@ -54,7 +54,7 @@ public class ClassroomServiceImpl implements ClassroomService {
     @Override
     public ClassroomResponse addSubject(Long classroomId, AssignSubjectRequest request) {
         var classroom = getById(classroomId);
-        Set<Subject> subjects = new HashSet<>(subjectRepository.findAllById(request.subjectIds()));
+        Set<Subject> subjects = new HashSet<>(subjectRepository.findAllActiveByIds(request.subjectIds()));
         classroom.getSubjects().addAll(subjects);
         return classroomMapper.toResponse(classroomRepository.save(classroom));
     }

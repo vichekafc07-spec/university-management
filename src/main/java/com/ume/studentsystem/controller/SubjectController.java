@@ -50,4 +50,9 @@ public class SubjectController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/restore/{id}")
+    public ResponseEntity<?> restoreFaculty(@PathVariable Long id){
+        return ResponseEntity.ok(subjectService.restoreSubject(id));
+    }
+
 }

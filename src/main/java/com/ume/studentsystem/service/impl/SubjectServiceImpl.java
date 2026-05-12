@@ -73,6 +73,16 @@ public class SubjectServiceImpl implements SubjectService {
         return PageResponse.from(subjectPage,subjectMapper::toResponse);
     }
 
+    @Override
+    public String restoreSubject(Long id) {
+        var subject = subjectRepository.findByIdIncludingDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Subject not found with id " + id));
+        subject.setDeleted(false);
+        subject.setDeletedAt(null);
+        subjectRepository.save(subject);
+        return "Subject restored successfully";
+    }
+
     private Subject getById(Long id){
         return subjectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Subject not found"));

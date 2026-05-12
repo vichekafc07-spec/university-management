@@ -48,13 +48,13 @@ public class ExamServiceImpl implements ExamService {
 
         var term = termRepository.findById(request.termId())
                 .orElseThrow(() -> new ResourceNotFoundException("Term not found with id: " + request.termId()));
-        var classroom = classroomRepository.findById(request.classroomId())
+        var classroom = classroomRepository.findByIdAndDeletedFalse(request.classroomId())
                 .orElseThrow(() -> new ResourceNotFoundException("Classroom not found with id: " + request.classroomId()));
-        var subject = subjectRepository.findById(request.subjectId())
+        var subject = subjectRepository.findByIdAndDeletedFalse(request.subjectId())
                 .orElseThrow(() -> new ResourceNotFoundException("Subject not found with id: " + request.subjectId()));
         var room = roomRepository.findById(request.roomId())
                 .orElseThrow(() -> new ResourceNotFoundException("Room not found with id: " + request.roomId()));
-        var invigilator = staffRepository.findById(request.invigilatorId())
+        var invigilator = staffRepository.findByIdAndDeletedFalse(request.invigilatorId())
                 .orElseThrow(() -> new ResourceNotFoundException("Staff not found with id: " + request.invigilatorId()));
 
 
