@@ -69,11 +69,11 @@ public class StaffServiceImpl implements StaffService {
     public StaffResponse updateStaff(StaffUpdateRequest request, Long id) {
         var staff = getStaffById(id);
 
-        var faculty = facultyRepository.findById(request.facultyId())
-                .orElseThrow(() -> new ResourceNotFoundException("Faculty not found " + request.facultyId()));
+        var faculty = facultyRepository.findByIdAndDeletedFalse(request.facultyId())
+                .orElseThrow(() -> new ResourceNotFoundException("Faculty not found with id " + request.facultyId()));
 
-        var dept = departmentRepository.findById(request.departmentId())
-                .orElseThrow(() -> new ResourceNotFoundException("Department not found "));
+        var dept = departmentRepository.findByIdAndDeletedFalse(request.departmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + request.departmentId()));
 
         staffMapper.updateStaff(request, staff);
         staff.setFaculty(faculty);
@@ -150,7 +150,7 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public String restore(Long id) {
         var staff = staffRepository.findByIdIncludingDeleted(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Staff not found " + id));
+                        .orElseThrow(() -> new ResourceNotFoundException("Staff not found with " + id));
         staff.setDeleted(false);
         staff.setDeletedAt(null);
         staff.setActive(true);
@@ -160,7 +160,7 @@ public class StaffServiceImpl implements StaffService {
 
     private Staff getStaffById(Long id) {
         return staffRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Staff not found " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Staff not found with " + id));
     }
 
 
