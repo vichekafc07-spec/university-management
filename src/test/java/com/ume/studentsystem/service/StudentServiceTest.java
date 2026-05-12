@@ -80,10 +80,10 @@ public class StudentServiceTest {
         when(studentRepository.existsByStudentCode("ST001"))
                 .thenReturn(false);
 
-        when(facultyRepository.findById((byte) 1))
+        when(facultyRepository.findByIdAndDeletedFalse((byte) 1))
                 .thenReturn(Optional.of(faculty));
 
-        when(departmentRepository.findById(1))
+        when(departmentRepository.findByIdAndDeletedFalse(1))
                 .thenReturn(Optional.of(department));
 
         when(studentMapper.toEntity(request))
@@ -129,10 +129,10 @@ public class StudentServiceTest {
         when(studentRepository.existsByStudentCode(any()))
                 .thenReturn(false);
 
-        when(facultyRepository.findById(any()))
+        when(facultyRepository.findByIdAndDeletedFalse(any()))
                 .thenReturn(Optional.of(faculty));
 
-        when(departmentRepository.findById(any()))
+        when(departmentRepository.findByIdAndDeletedFalse(any()))
                 .thenReturn(Optional.of(department));
 
         when(studentMapper.toEntity(any()))
@@ -156,10 +156,10 @@ public class StudentServiceTest {
         var request = StudentMockTest.studentRequest();
 
         // when
-        when(facultyRepository.findById((byte) 1))
+        when(facultyRepository.findByIdAndDeletedFalse((byte) 1))
                 .thenReturn(Optional.of(new Faculty()));
 
-        when(departmentRepository.findById(any()))
+        when(departmentRepository.findByIdAndDeletedFalse(any()))
                 .thenReturn(Optional.of(new Department()));
 
         when(studentRepository.existsByStudentCode(request.studentCode()))
@@ -189,7 +189,7 @@ public class StudentServiceTest {
         var request = StudentMockTest.studentRequest();
 
         // when
-        when(facultyRepository.findById(any()))
+        when(facultyRepository.findByIdAndDeletedFalse(any()))
                 .thenReturn(Optional.empty());
 
         // then
@@ -204,10 +204,10 @@ public class StudentServiceTest {
         var request = StudentMockTest.studentRequest();
 
         // when
-        when(facultyRepository.findById(any()))
+        when(facultyRepository.findByIdAndDeletedFalse(any()))
                 .thenReturn(Optional.of(new Faculty()));
 
-        when(departmentRepository.findById(any()))
+        when(departmentRepository.findByIdAndDeletedFalse(any()))
                 .thenReturn(Optional.empty());
 
         // then
@@ -229,10 +229,10 @@ public class StudentServiceTest {
         var department = new Department();
         department.setId(1);
 
-        when(facultyRepository.findById((byte)1))
+        when(facultyRepository.findByIdAndDeletedFalse((byte)1))
                 .thenReturn(Optional.of(faculty));
 
-        when(departmentRepository.findById(1))
+        when(departmentRepository.findByIdAndDeletedFalse(1))
                 .thenReturn(Optional.of(department));
 
         when(studentRepository.findById(1L))

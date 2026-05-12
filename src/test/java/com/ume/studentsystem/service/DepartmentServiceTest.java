@@ -63,7 +63,7 @@ public class DepartmentServiceTest {
         when(departmentRepository.findByNameIgnoreCase("IT"))
                 .thenReturn(Optional.empty());
 
-        when(facultyRepository.findById((byte) 1))
+        when(facultyRepository.findByIdAndDeletedFalse((byte) 1))
                 .thenReturn(Optional.of(faculty));
 
         when(departmentMapper.toEntity(request))
@@ -106,7 +106,7 @@ public class DepartmentServiceTest {
         when(departmentRepository.findByNameIgnoreCase("Law"))
                 .thenReturn(Optional.empty());
 
-        when(facultyRepository.findById((byte) 1))
+        when(facultyRepository.findByIdAndDeletedFalse((byte) 1))
                 .thenReturn(Optional.empty());
 
         // then
@@ -118,8 +118,8 @@ public class DepartmentServiceTest {
     void getByFacultyTest(){
 
         // when
-        when(facultyRepository.existsById((byte) 1))
-                .thenReturn(true);
+        when(facultyRepository.findByIdAndDeletedFalse((byte) 1))
+                .thenReturn(Optional.of(new Faculty()));
 
         when(departmentRepository.findByFaculty_Id((byte) 1))
                 .thenReturn(List.of(new Department()));
@@ -138,8 +138,8 @@ public class DepartmentServiceTest {
     void shouldThrowWhenFacultyNotFoundForGet() {
 
         // when
-        when(facultyRepository.existsById((byte) 1))
-                .thenReturn(false);
+        when(facultyRepository.findByIdAndDeletedFalse((byte) 1))
+                .thenReturn(Optional.empty());
 
         // then
         assertThrows(ResourceNotFoundException.class,
@@ -162,7 +162,7 @@ public class DepartmentServiceTest {
         when(departmentRepository.findById(1))
                 .thenReturn(Optional.of(existing));
 
-        when(facultyRepository.findById((byte) 1))
+        when(facultyRepository.findByIdAndDeletedFalse((byte) 1))
                 .thenReturn(Optional.of(faculty));
 
         when(departmentRepository.save(any()))
