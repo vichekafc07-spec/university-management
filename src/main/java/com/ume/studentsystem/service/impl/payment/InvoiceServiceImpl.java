@@ -63,6 +63,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public PageResponse<InvoiceResponse> getInvoice(Long id,String sortBy, String sortAs, Integer page, Integer size) {
         Specification<Invoice> spec = new SpecificationBuilder<Invoice>()
+                .equal("deleted",false)
                 .equal("id",id)
                 .build();
         List<String> allowSort = List.of("id");
@@ -77,5 +78,15 @@ public class InvoiceServiceImpl implements InvoiceService {
         var invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Invoice not found with id " + id));
         invoiceRepository.delete(invoice);
+    }
+
+    @Override
+    public String restoreInvoice(Long id) {
+        var invoice = invoiceRepository.findByIdIncludingDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Invoice not found with"));
+        invoice.setDeleted(false);
+        invoice.setDeletedAt(null);
+        invoiceRepository.save(invoice);
+        return "Invoice restored successfully";
     }
 }

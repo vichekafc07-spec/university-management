@@ -30,7 +30,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional
     public PaymentResponse pay(PaymentRequest request) {
 
-        var invoice = invoiceRepository.findById(request.invoiceId())
+        var invoice = invoiceRepository.findByIdAndDeletedFalse(request.invoiceId())
                 .orElseThrow(() -> new ResourceNotFoundException("Invoice not found"));
 
         var payment = paymentMapper.toEntity(request);
@@ -147,5 +147,15 @@ public class PaymentServiceImpl implements PaymentService {
         var payment = paymentRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Payment not found with id " + id));
         paymentRepository.delete(payment);
+    }
+
+    @Override
+    public String restore(Long id) {
+        var payment = paymentRepository.findByIdIncludingDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Payment not found"));
+        payment.setDeleted(false);
+        payment.setDeletedAt(null);
+        paymentRepository.save(payment);
+        return "Payment restored successfully";
     }
 }

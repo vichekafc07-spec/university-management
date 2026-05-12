@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @SQLDelete(sql = "UPDATE payments SET deleted = true, deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
-@Where(clause = "deleted = false")
 public class Payment extends AuditEntity {
 
     @Id

@@ -12,4 +12,6 @@ public interface InvoiceService {
     PageResponse<InvoiceResponse> getInvoice(Long id,String sortBy, String sortAs, Integer page, Integer size);
 
     void deleteInvoice(Long id);
+
+    String restoreInvoice(Long id);
 }

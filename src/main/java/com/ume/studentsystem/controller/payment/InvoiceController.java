@@ -48,4 +48,10 @@ public class InvoiceController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/restore/{id}")
+    @PreAuthorize("hasAuthority('cashier:write')")
+    public ResponseEntity<?> restoreInvoice(@PathVariable Long id){
+        return ResponseEntity.ok(invoiceService.restoreInvoice(id));
+    }
+
 }

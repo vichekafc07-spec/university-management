@@ -10,4 +10,6 @@ public interface PaymentService {
     PaymentResponse update(Long id, @Valid PaymentRequest request);
 
     void delete(Long id);
+
+    String restore(Long id);
 }

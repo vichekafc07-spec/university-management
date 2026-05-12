@@ -37,4 +37,10 @@ public class PaymentController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/restore/{id}")
+    @PreAuthorize("hasAuthority('cashier:write')")
+    public ResponseEntity<?> restorePayment(@PathVariable Long id){
+        return ResponseEntity.ok(paymentService.restore(id));
+    }
+
 }
