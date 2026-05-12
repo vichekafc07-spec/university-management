@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.academic;
 
 import com.ume.studentsystem.dto.request.AssignSubjectRequest;
 import com.ume.studentsystem.dto.request.ClassroomRequest;

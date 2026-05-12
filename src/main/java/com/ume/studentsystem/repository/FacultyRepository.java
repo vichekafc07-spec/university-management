@@ -3,6 +3,7 @@ package com.ume.studentsystem.repository;
 import com.ume.studentsystem.model.Faculty;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,4 +21,12 @@ public interface FacultyRepository extends JpaRepository<Faculty,Byte> {
     String getTopFaculty();
 
     Optional<Faculty> findByNameIgnoreCase(String name);
+
+    List<Faculty> findByDeletedFalse();
+
+    Optional<Faculty> findByIdAndDeletedFalse(Byte id);
+
+    @Query(value = "SELECT * FROM faculties WHERE id = :id", nativeQuery = true)
+    Optional<Faculty> findByIdIncludingDeleted(@Param("id") Byte id);
+
 }

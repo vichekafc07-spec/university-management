@@ -41,7 +41,13 @@ public class FacultyController {
     @PreAuthorize("hasAuthority('user:write')")
     public ResponseEntity<?> delete(@PathVariable Byte id) {
         facultyService.deleteFaculty(id);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/restore/{id}")
+    @PreAuthorize("hasAuthority('user:write')")
+    public ResponseEntity<APIResponse<?>> restoreFaculty(@PathVariable Byte id){
+        return ResponseEntity.ok(APIResponse.ok(facultyService.restoreFaculty(id)));
     }
 
 }

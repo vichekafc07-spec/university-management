@@ -9,4 +9,6 @@ public interface FacultyService {
     List<Faculty> getAllFaculty();
     Faculty updateFaculty(Byte id, Faculty faculty);
     void deleteFaculty(Byte id);
+
+    String restoreFaculty(Byte id);
 }

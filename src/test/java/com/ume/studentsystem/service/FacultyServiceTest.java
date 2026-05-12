@@ -4,7 +4,7 @@ import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.model.Faculty;
 import com.ume.studentsystem.repository.FacultyRepository;
-import com.ume.studentsystem.service.impl.FacultyServiceImpl;
+import com.ume.studentsystem.service.impl.academic.FacultyServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
