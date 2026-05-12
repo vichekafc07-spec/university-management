@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 104-create-subjects-table
       author: sorl vichika
-      created: 30-03-2026
       changes:
         - createTable:
             tableName: subjects
@@ -36,6 +35,33 @@ databaseChangeLog:
               - column:
                   name: department_id
                   type: INT
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+              - column:
+                  name: created_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: updated_by
+                  type: VARCHAR(100)
+
+              - column:
+                  name: deleted
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
 
         - addUniqueConstraint:
             tableName: subjects

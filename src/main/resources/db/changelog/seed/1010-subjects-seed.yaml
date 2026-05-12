@@ -1,0 +1,384 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1010-subject-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: CS101
+              - column:
+                  name: title
+                  value: Java Programming
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: CS102
+              - column:
+                  name: title
+                  value: Data Structure and Algorithms
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: CS103
+              - column:
+                  name: title
+                  value: Database Management Systems
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: MATH101
+              - column:
+                  name: title
+                  value: Calculus I
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: MATH103
+              - column:
+                  name: title
+                  value: Linear Algebra
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: PHY101
+              - column:
+                  name: title
+                  value: General Physics
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: ENG101
+              - column:
+                  name: title
+                  value: English Composition
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: BUS101
+              - column:
+                  name: title
+                  value: Principles of Management
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 5
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: CHEM101
+              - column:
+                  name: title
+                  value: Organic Chemistry
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 6
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: HIST101
+              - column:
+                  name: title
+                  value: World History
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 7
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: MATH201
+              - column:
+                  name: title
+                  value: Calculus II
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 1
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: PHYS102
+              - column:
+                  name: title
+                  value: General Physics
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 2
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: BIO150
+              - column:
+                  name: title
+                  value: Cell Biology
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 3
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: CS105
+              - column:
+                  name: title
+                  value: Introduction to Programming
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 4
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: ENG210
+              - column:
+                  name: title
+                  value: Technical Writing
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 5
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: HIST120
+              - column:
+                  name: title
+                  value: Tax and Business
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 7
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: ECON101
+              - column:
+                  name: title
+                  value: Principles of Economics
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 8
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: PSY110
+              - column:
+                  name: title
+                  value: Introduction to Psychology
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 9
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: ART130
+              - column:
+                  name: title
+                  value: Fundamentals of Drawing
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 10
+              - column:
+                  name: deleted
+                  valueBoolean: false
+
+        - insert:
+            tableName: subjects
+            columns:
+              - column:
+                  name: code
+                  value: BUS220
+              - column:
+                  name: title
+                  value: Business Management
+              - column:
+                  name: credit
+                  valueNumeric: 3
+              - column:
+                  name: department_id
+                  valueNumeric: 11
+              - column:
+                  name: deleted
+                  valueBoolean: false
