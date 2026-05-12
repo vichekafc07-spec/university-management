@@ -9,7 +9,7 @@ import com.ume.studentsystem.model.Department;
 import com.ume.studentsystem.model.Faculty;
 import com.ume.studentsystem.repository.DepartmentRepository;
 import com.ume.studentsystem.repository.FacultyRepository;
-import com.ume.studentsystem.service.impl.DepartmentServiceImpl;
+import com.ume.studentsystem.service.impl.academic.DepartmentServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

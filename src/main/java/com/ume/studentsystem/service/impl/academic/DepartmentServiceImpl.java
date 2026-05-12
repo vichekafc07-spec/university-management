@@ -1,4 +1,4 @@
-package com.ume.studentsystem.service.impl;
+package com.ume.studentsystem.service.impl.academic;
 
 import com.ume.studentsystem.dto.request.DepartmentRequest;
 import com.ume.studentsystem.dto.response.DepartmentResponse;
@@ -43,6 +43,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public PageResponse<DepartmentResponse> getAllDepartment(Integer id,String name,String sortBy,String sortAs,Integer page,Integer size) {
         Specification<Department> spec = new SpecificationBuilder<Department>()
+                .equal("deleted",false)
                 .equal("id",id)
                 .like("name", name)
                 .build();
@@ -55,9 +56,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<DepartmentResponse> getDepartmentByFaculty(Byte facultyId) {
-        if (!facultyRepository.existsById(facultyId)){
-            throw new ResourceNotFoundException("Faculty not found with id " + facultyId);
-        }
+        getFacultyId(facultyId);
         return departmentRepository.findByFaculty_Id(facultyId)
                 .stream()
                 .map(departmentMapper::toResponse)
@@ -81,13 +80,23 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.delete(department);
     }
 
+    @Override
+    public String restoreDept(Integer id) {
+        var dept = departmentRepository.findByIdIncludingDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
+        dept.setDeleted(false);
+        dept.setDeletedAt(null);
+        departmentRepository.save(dept);
+        return "Staff restored successfully";
+    }
+
     private Faculty getFacultyId(Byte facultyId){
-        return facultyRepository.findById(facultyId)
+        return facultyRepository.findByIdAndDeletedFalse(facultyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Faculty not found with id " + facultyId));
     }
 
     private Department getDepartmentId(Integer id){
-        return departmentRepository.findById(id)
+        return departmentRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
     }
 

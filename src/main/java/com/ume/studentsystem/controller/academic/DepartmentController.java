@@ -53,7 +53,13 @@ public class DepartmentController {
     @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         departmentService.deleteDepartment(id);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/restore/{id}")
+    @PreAuthorize("hasAuthority('dean:write')")
+    public ResponseEntity<?> restoreDepartment(@PathVariable Integer id){
+        return ResponseEntity.ok(departmentService.restoreDept(id));
     }
 
 }
