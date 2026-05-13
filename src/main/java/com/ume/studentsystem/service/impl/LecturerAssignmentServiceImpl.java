@@ -123,7 +123,7 @@ public class LecturerAssignmentServiceImpl implements LecturerAssignmentService 
     }
 
     private Subject getSubjectById(Long id){
-        return subjectRepository.findById(id)
+        return subjectRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Subject not found with id " + id));
 
     }

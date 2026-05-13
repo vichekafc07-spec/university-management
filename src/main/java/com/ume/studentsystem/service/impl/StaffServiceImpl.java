@@ -163,8 +163,6 @@ public class StaffServiceImpl implements StaffService {
                 .orElseThrow(() -> new ResourceNotFoundException("Staff not found with " + id));
     }
 
-
-
     private String generateStaffCode() {
         String prefix = "UME";
         String lastCode = staffRepository.findLastStaffCode();

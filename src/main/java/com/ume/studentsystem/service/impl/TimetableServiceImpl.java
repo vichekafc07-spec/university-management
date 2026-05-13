@@ -55,7 +55,7 @@ public class TimetableServiceImpl implements TimetableService {
         timetable.setClassroom(classroomRepository.findByIdAndDeletedFalse(request.classroomId())
                         .orElseThrow(() -> new ResourceNotFoundException("Classroom not found")));
 
-        timetable.setSubject(subjectRepository.findById(request.subjectId())
+        timetable.setSubject(subjectRepository.findByIdAndDeletedFalse(request.subjectId())
                         .orElseThrow(() -> new ResourceNotFoundException("Subject not found")));
 
         timetable.setLecturer(staffRepository.findByIdAndDeletedFalse(request.lecturerId())
