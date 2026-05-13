@@ -1,0 +1,244 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1015-room-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "A101" }
+              - column: { name: capacity, valueNumeric: 30 }
+              - column: { name: building, value: "Building A" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "A102" }
+              - column: { name: capacity, valueNumeric: 35 }
+              - column: { name: building, value: "Building A" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "B201" }
+              - column: { name: capacity, valueNumeric: 40 }
+              - column: { name: building, value: "Building B" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "B202" }
+              - column: { name: capacity, valueNumeric: 45 }
+              - column: { name: building, value: "Building B" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "C301" }
+              - column: { name: capacity, valueNumeric: 50 }
+              - column: { name: building, value: "Building C" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "C302" }
+              - column: { name: capacity, valueNumeric: 60 }
+              - column: { name: building, value: "Building C" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "D401" }
+              - column: { name: capacity, valueNumeric: 25 }
+              - column: { name: building, value: "Building D" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "D402" }
+              - column: { name: capacity, valueNumeric: 20 }
+              - column: { name: building, value: "Building D" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "E501" }
+              - column: { name: capacity, valueNumeric: 70 }
+              - column: { name: building, value: "Building E" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "E502" }
+              - column: { name: capacity, valueNumeric: 80 }
+              - column: { name: building, value: "Building E" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "A103" }
+              - column: { name: capacity, valueNumeric: 40 }
+              - column: { name: building, value: "Building A" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "A104" }
+              - column: { name: capacity, valueNumeric: 45 }
+              - column: { name: building, value: "Building A" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "B203" }
+              - column: { name: capacity, valueNumeric: 50 }
+              - column: { name: building, value: "Building B" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "B204" }
+              - column: { name: capacity, valueNumeric: 55 }
+              - column: { name: building, value: "Building B" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "C303" }
+              - column: { name: capacity, valueNumeric: 60 }
+              - column: { name: building, value: "Building C" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "C304" }
+              - column: { name: capacity, valueNumeric: 65 }
+              - column: { name: building, value: "Building C" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "D403" }
+              - column: { name: capacity, valueNumeric: 35 }
+              - column: { name: building, value: "Building D" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "D404" }
+              - column: { name: capacity, valueNumeric: 30 }
+              - column: { name: building, value: "Building D" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "E503" }
+              - column: { name: capacity, valueNumeric: 90 }
+              - column: { name: building, value: "Building E" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "E504" }
+              - column: { name: capacity, valueNumeric: 100 }
+              - column: { name: building, value: "Building E" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "A105" }
+              - column: { name: capacity, valueNumeric: 50 }
+              - column: { name: building, value: "Building A" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "A106" }
+              - column: { name: capacity, valueNumeric: 55 }
+              - column: { name: building, value: "Building A" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "B205" }
+              - column: { name: capacity, valueNumeric: 60 }
+              - column: { name: building, value: "Building B" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "B206" }
+              - column: { name: capacity, valueNumeric: 65 }
+              - column: { name: building, value: "Building B" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "C305" }
+              - column: { name: capacity, valueNumeric: 70 }
+              - column: { name: building, value: "Building C" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "C306" }
+              - column: { name: capacity, valueNumeric: 75 }
+              - column: { name: building, value: "Building C" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "D405" }
+              - column: { name: capacity, valueNumeric: 40 }
+              - column: { name: building, value: "Building D" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "D406" }
+              - column: { name: capacity, valueNumeric: 45 }
+              - column: { name: building, value: "Building D" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "E505" }
+              - column: { name: capacity, valueNumeric: 110 }
+              - column: { name: building, value: "Building E" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: rooms
+            columns:
+              - column: { name: name, value: "E506" }
+              - column: { name: capacity, valueNumeric: 120 }
+              - column: { name: building, value: "Building E" }
+              - column: { name: deleted, valueBoolean: false }

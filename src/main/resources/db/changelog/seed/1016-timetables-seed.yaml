@@ -1,0 +1,244 @@
+databaseChangeLog:
+  - changeSet:
+      id: seed-timetables-25
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 1 }
+              - column: { name: classroom_id, valueNumeric: 1 }
+              - column: { name: subject_id, valueNumeric: 1 }
+              - column: { name: lecturer_id, valueNumeric: 1 }
+              - column: { name: room_id, valueNumeric: 1 }
+              - column: { name: day_of_week, value: "MONDAY" }
+              - column: { name: start_time, value: "08:00:00" }
+              - column: { name: end_time, value: "09:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 2 }
+              - column: { name: classroom_id, valueNumeric: 2 }
+              - column: { name: subject_id, valueNumeric: 2 }
+              - column: { name: lecturer_id, valueNumeric: 2 }
+              - column: { name: room_id, valueNumeric: 2 }
+              - column: { name: day_of_week, value: "MONDAY" }
+              - column: { name: start_time, value: "09:30:00" }
+              - column: { name: end_time, value: "11:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 3 }
+              - column: { name: classroom_id, valueNumeric: 3 }
+              - column: { name: subject_id, valueNumeric: 3 }
+              - column: { name: lecturer_id, valueNumeric: 3 }
+              - column: { name: room_id, valueNumeric: 3 }
+              - column: { name: day_of_week, value: "TUESDAY" }
+              - column: { name: start_time, value: "08:00:00" }
+              - column: { name: end_time, value: "09:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 4 }
+              - column: { name: classroom_id, valueNumeric: 4 }
+              - column: { name: subject_id, valueNumeric: 4 }
+              - column: { name: lecturer_id, valueNumeric: 4 }
+              - column: { name: room_id, valueNumeric: 4 }
+              - column: { name: day_of_week, value: "TUESDAY" }
+              - column: { name: start_time, value: "09:30:00" }
+              - column: { name: end_time, value: "11:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 5 }
+              - column: { name: classroom_id, valueNumeric: 5 }
+              - column: { name: subject_id, valueNumeric: 5 }
+              - column: { name: lecturer_id, valueNumeric: 5 }
+              - column: { name: room_id, valueNumeric: 5 }
+              - column: { name: day_of_week, value: "WEDNESDAY" }
+              - column: { name: start_time, value: "08:00:00" }
+              - column: { name: end_time, value: "09:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 1 }
+              - column: { name: classroom_id, valueNumeric: 6 }
+              - column: { name: subject_id, valueNumeric: 6 }
+              - column: { name: lecturer_id, valueNumeric: 6 }
+              - column: { name: room_id, valueNumeric: 6 }
+              - column: { name: day_of_week, value: "WEDNESDAY" }
+              - column: { name: start_time, value: "09:30:00" }
+              - column: { name: end_time, value: "11:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 2 }
+              - column: { name: classroom_id, valueNumeric: 7 }
+              - column: { name: subject_id, valueNumeric: 7 }
+              - column: { name: lecturer_id, valueNumeric: 7 }
+              - column: { name: room_id, valueNumeric: 7 }
+              - column: { name: day_of_week, value: "THURSDAY" }
+              - column: { name: start_time, value: "08:00:00" }
+              - column: { name: end_time, value: "09:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 3 }
+              - column: { name: classroom_id, valueNumeric: 8 }
+              - column: { name: subject_id, valueNumeric: 8 }
+              - column: { name: lecturer_id, valueNumeric: 8 }
+              - column: { name: room_id, valueNumeric: 8 }
+              - column: { name: day_of_week, value: "THURSDAY" }
+              - column: { name: start_time, value: "09:30:00" }
+              - column: { name: end_time, value: "11:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 4 }
+              - column: { name: classroom_id, valueNumeric: 9 }
+              - column: { name: subject_id, valueNumeric: 9 }
+              - column: { name: lecturer_id, valueNumeric: 9 }
+              - column: { name: room_id, valueNumeric: 9 }
+              - column: { name: day_of_week, value: "FRIDAY" }
+              - column: { name: start_time, value: "08:00:00" }
+              - column: { name: end_time, value: "09:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 5 }
+              - column: { name: classroom_id, valueNumeric: 10 }
+              - column: { name: subject_id, valueNumeric: 10 }
+              - column: { name: lecturer_id, valueNumeric: 10 }
+              - column: { name: room_id, valueNumeric: 10 }
+              - column: { name: day_of_week, value: "FRIDAY" }
+              - column: { name: start_time, value: "09:30:00" }
+              - column: { name: end_time, value: "11:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 1 }
+              - column: { name: classroom_id, valueNumeric: 11 }
+              - column: { name: subject_id, valueNumeric: 11 }
+              - column: { name: lecturer_id, valueNumeric: 11 }
+              - column: { name: room_id, valueNumeric: 1 }
+              - column: { name: day_of_week, value: "MONDAY" }
+              - column: { name: start_time, value: "13:00:00" }
+              - column: { name: end_time, value: "14:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 2 }
+              - column: { name: classroom_id, valueNumeric: 12 }
+              - column: { name: subject_id, valueNumeric: 12 }
+              - column: { name: lecturer_id, valueNumeric: 12 }
+              - column: { name: room_id, valueNumeric: 2 }
+              - column: { name: day_of_week, value: "MONDAY" }
+              - column: { name: start_time, value: "14:30:00" }
+              - column: { name: end_time, value: "16:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 3 }
+              - column: { name: classroom_id, valueNumeric: 13 }
+              - column: { name: subject_id, valueNumeric: 13 }
+              - column: { name: lecturer_id, valueNumeric: 13 }
+              - column: { name: room_id, valueNumeric: 3 }
+              - column: { name: day_of_week, value: "TUESDAY" }
+              - column: { name: start_time, value: "13:00:00" }
+              - column: { name: end_time, value: "14:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 4 }
+              - column: { name: classroom_id, valueNumeric: 14 }
+              - column: { name: subject_id, valueNumeric: 14 }
+              - column: { name: lecturer_id, valueNumeric: 14 }
+              - column: { name: room_id, valueNumeric: 4 }
+              - column: { name: day_of_week, value: "TUESDAY" }
+              - column: { name: start_time, value: "14:30:00" }
+              - column: { name: end_time, value: "16:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 5 }
+              - column: { name: classroom_id, valueNumeric: 15 }
+              - column: { name: subject_id, valueNumeric: 15 }
+              - column: { name: lecturer_id, valueNumeric: 15 }
+              - column: { name: room_id, valueNumeric: 5 }
+              - column: { name: day_of_week, value: "WEDNESDAY" }
+              - column: { name: start_time, value: "13:00:00" }
+              - column: { name: end_time, value: "14:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 1 }
+              - column: { name: classroom_id, valueNumeric: 16 }
+              - column: { name: subject_id, valueNumeric: 16 }
+              - column: { name: lecturer_id, valueNumeric: 16 }
+              - column: { name: room_id, valueNumeric: 6 }
+              - column: { name: day_of_week, value: "WEDNESDAY" }
+              - column: { name: start_time, value: "14:30:00" }
+              - column: { name: end_time, value: "16:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 2 }
+              - column: { name: classroom_id, valueNumeric: 17 }
+              - column: { name: subject_id, valueNumeric: 17 }
+              - column: { name: lecturer_id, valueNumeric: 17 }
+              - column: { name: room_id, valueNumeric: 7 }
+              - column: { name: day_of_week, value: "THURSDAY" }
+              - column: { name: start_time, value: "13:00:00" }
+              - column: { name: end_time, value: "14:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 3 }
+              - column: { name: classroom_id, valueNumeric: 18 }
+              - column: { name: subject_id, valueNumeric: 18 }
+              - column: { name: lecturer_id, valueNumeric: 18 }
+              - column: { name: room_id, valueNumeric: 8 }
+              - column: { name: day_of_week, value: "THURSDAY" }
+              - column: { name: start_time, value: "14:30:00" }
+              - column: { name: end_time, value: "16:00:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 4 }
+              - column: { name: classroom_id, valueNumeric: 19 }
+              - column: { name: subject_id, valueNumeric: 19 }
+              - column: { name: lecturer_id, valueNumeric: 19 }
+              - column: { name: room_id, valueNumeric: 9 }
+              - column: { name: day_of_week, value: "FRIDAY" }
+              - column: { name: start_time, value: "13:00:00" }
+              - column: { name: end_time, value: "14:30:00" }
+
+        - insert:
+            tableName: timetables
+            columns:
+              - column: { name: term_id, valueNumeric: 5 }
+              - column: { name: classroom_id, valueNumeric: 20 }
+              - column: { name: subject_id, valueNumeric: 20 }
+              - column: { name: lecturer_id, valueNumeric: 20 }
+              - column: { name: room_id, valueNumeric: 10 }
+              - column: { name: day_of_week, value: "FRIDAY" }
+              - column: { name: start_time, value: "14:30:00" }
+              - column: { name: end_time, value: "16:00:00" }

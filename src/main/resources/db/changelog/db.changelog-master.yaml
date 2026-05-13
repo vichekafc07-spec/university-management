@@ -113,3 +113,7 @@ databaseChangeLog:
       file: db/changelog/seed/1013-staffs-seed.yaml
   - include:
       file: db/changelog/seed/1014-academic-years-seed.yaml
+  - include:
+      file: db/changelog/seed/1015-rooms-seed.yaml
+  - include:
+      file: db/changelog/seed/1016-timetables-seed.yaml

@@ -1,0 +1,104 @@
+databaseChangeLog:
+  - changeSet:
+      id: seed-academic-terms
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2023 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: start_date, valueDate: "2023-01-10" }
+              - column: { name: end_date, valueDate: "2023-05-20" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2023 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: start_date, valueDate: "2023-06-01" }
+              - column: { name: end_date, valueDate: "2023-10-15" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2024 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: start_date, valueDate: "2024-01-08" }
+              - column: { name: end_date, valueDate: "2024-05-18" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2024 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: start_date, valueDate: "2024-06-03" }
+              - column: { name: end_date, valueDate: "2024-10-12" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2025 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: start_date, valueDate: "2025-01-06" }
+              - column: { name: end_date, valueDate: "2025-05-16" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2025 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: start_date, valueDate: "2025-06-02" }
+              - column: { name: end_date, valueDate: "2025-10-10" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2026 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: start_date, valueDate: "2026-01-05" }
+              - column: { name: end_date, valueDate: "2026-05-15" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2026 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: start_date, valueDate: "2026-06-01" }
+              - column: { name: end_date, valueDate: "2026-10-09" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2027 }
+              - column: { name: semester, valueNumeric: 1 }
+              - column: { name: start_date, valueDate: "2027-01-11" }
+              - column: { name: end_date, valueDate: "2027-05-21" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: academic_terms
+            columns:
+              - column: { name: academic_year, valueNumeric: 2027 }
+              - column: { name: semester, valueNumeric: 2 }
+              - column: { name: start_date, valueDate: "2027-06-07" }
+              - column: { name: end_date, valueDate: "2027-10-15" }
+              - column: { name: status, value: "ACTIVE" }
+              - column: { name: deleted, valueBoolean: false }
