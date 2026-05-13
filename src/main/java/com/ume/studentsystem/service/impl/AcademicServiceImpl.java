@@ -41,6 +41,7 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public PageResponse<AcademicTermResponse> getAll(Long id, Integer year, Integer semester, LocalDate startDate, LocalDate endDate, String sortBy, String sortAs, Integer page, Integer size) {
         Specification<AcademicTerm> spec = new SpecificationBuilder<AcademicTerm>()
+                .equal("deleted", false)
                 .equal("id",id)
                 .equal("year",year)
                 .equal("semester",semester)

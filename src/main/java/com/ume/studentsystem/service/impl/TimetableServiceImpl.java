@@ -5,12 +5,24 @@ import com.ume.studentsystem.dto.response.TimetableResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.TimetableMapper;
+import com.ume.studentsystem.model.AcademicTerm;
+import com.ume.studentsystem.model.Timetable;
 import com.ume.studentsystem.repository.*;
 import com.ume.studentsystem.service.TimetableService;
+import com.ume.studentsystem.util.PageResponse;
+import com.ume.studentsystem.util.SortResponse;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,7 +61,7 @@ public class TimetableServiceImpl implements TimetableService {
 
         var timetable = mapper.toEntity(request);
 
-        timetable.setTerm(termRepository.findById(request.termId())
+        timetable.setTerm(termRepository.findByIdAndDeletedFalse(request.termId())
                         .orElseThrow(() -> new ResourceNotFoundException("Term not found")));
 
         timetable.setClassroom(classroomRepository.findByIdAndDeletedFalse(request.classroomId())
@@ -61,7 +73,7 @@ public class TimetableServiceImpl implements TimetableService {
         timetable.setLecturer(staffRepository.findByIdAndDeletedFalse(request.lecturerId())
                         .orElseThrow(() -> new ResourceNotFoundException("Lecturer not found")));
 
-        timetable.setRoom(roomRepository.findById(request.roomId())
+        timetable.setRoom(roomRepository.findByIdAndDeletedFalse(request.roomId())
                         .orElseThrow(() -> new ResourceNotFoundException("Room not found")));
 
         timetableRepository.save(timetable);
@@ -93,5 +105,30 @@ public class TimetableServiceImpl implements TimetableService {
         }
 
         timetableRepository.deleteById(id);
+    }
+
+    @Override
+    public PageResponse<TimetableResponse> getAllTime(Long id, LocalDate startDate, LocalDate endDate, String sortBy, String sortAs, Integer page, Integer size) {
+        Specification<Timetable> spec = ((root, query, cb) -> {
+            Join<Timetable, AcademicTerm> termJoin = root.join("term");
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (id != null) {
+                predicates.add(cb.equal(termJoin.get("id"), id));
+            }
+
+            if (startDate != null && endDate != null) {
+                predicates.add(cb.between(termJoin.get("startDate"), startDate, endDate));
+            }
+
+            return cb.and(predicates.toArray(new Predicate[0]));
+        });
+
+
+        List<String> allowSort = List.of("term.id","term.startDate","term.endDate");
+        var sort = SortResponse.sortResponse(sortBy,sortAs,allowSort);
+        Pageable pageable = PageRequest.of(page - 1,size,sort);
+        Page<Timetable> timetablePage = timetableRepository.findAll(spec,pageable);
+        return PageResponse.from(timetablePage,mapper::toResponse);
     }
 }

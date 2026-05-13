@@ -2,6 +2,7 @@ package com.ume.studentsystem.repository;
 
 import com.ume.studentsystem.model.Timetable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -9,7 +10,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
-public interface TimetableRepository extends JpaRepository<Timetable, Long> {
+public interface TimetableRepository extends JpaRepository<Timetable, Long>, JpaSpecificationExecutor<Timetable> {
 
     List<Timetable> findByClassroom_Id(Long classroomId);
 

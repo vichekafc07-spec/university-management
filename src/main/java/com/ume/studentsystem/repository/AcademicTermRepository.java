@@ -14,4 +14,6 @@ public interface AcademicTermRepository extends JpaRepository<AcademicTerm,Long>
     @Query(value = "select * from academic_terms where id = :id" , nativeQuery = true)
     Optional<AcademicTerm> findByIdIncludeDeleted(@Param("id") Long id);
 
+    Optional<AcademicTerm> findByIdAndDeletedFalse(Long id);
+
 }
