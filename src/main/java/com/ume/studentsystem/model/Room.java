@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 
 @Entity
 @EntityListeners(EntityListeners.class)
@@ -17,7 +16,6 @@ import org.hibernate.annotations.Where;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE rooms SET deleted = true, deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
-@Where(clause = "deleted = false")
 public class Room extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

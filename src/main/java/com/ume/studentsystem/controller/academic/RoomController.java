@@ -4,13 +4,13 @@ import com.ume.studentsystem.dto.request.RoomRequest;
 import com.ume.studentsystem.dto.response.RoomResponse;
 import com.ume.studentsystem.service.RoomService;
 import com.ume.studentsystem.util.APIResponse;
+import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/rooms")
@@ -27,8 +27,15 @@ public class RoomController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<APIResponse<List<RoomResponse>>> getAll() {
-        return ResponseEntity.ok(APIResponse.ok(roomService.getAll()));
+    public ResponseEntity<APIResponse<PageResponse<RoomResponse>>> getAll(@RequestParam(required = false) Integer id,
+                                                                          @RequestParam(required = false) String name,
+                                                                          @RequestParam(required = false) String building,
+                                                                          @RequestParam(required = false) String sortBy,
+                                                                          @RequestParam(required = false) String sortAs,
+                                                                          @RequestParam(required = false, defaultValue = "1") Integer page,
+                                                                          @RequestParam(required = false, defaultValue = "5") Integer size
+                                                                          ) {
+        return ResponseEntity.ok(APIResponse.ok(roomService.getAllRoom(id,name,building,sortBy,sortAs,page,size)));
     }
 
     @GetMapping("/{id}")
