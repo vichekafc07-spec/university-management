@@ -111,3 +111,5 @@ databaseChangeLog:
       file: db/changelog/seed/1012-user-roles-seed-account.yaml
   - include:
       file: db/changelog/seed/1013-staffs-seed.yaml
+  - include:
+      file: db/changelog/seed/1014-academic-years-seed.yaml

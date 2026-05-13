@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 401-create-academic-terms-table
       author: sorl vichika
-      created: 14-04-2026
       changes:
         - createTable:
             tableName: academic_terms
