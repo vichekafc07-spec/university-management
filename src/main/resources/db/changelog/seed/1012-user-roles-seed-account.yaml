@@ -1,0 +1,124 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1012-user-role-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 6 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 7 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 8 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 9 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 10 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 11 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 12 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 13 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 14 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 15 }
+              - column: { name: role_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 16 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 17 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 18 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 19 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 20 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 21 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 22 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 23 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 24 }
+              - column: { name: role_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 25 }
+              - column: { name: role_id, valueNumeric: 3 }

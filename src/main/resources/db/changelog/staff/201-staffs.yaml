@@ -2,7 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 201-create-staffs-table
       author: sorl vichika
-      created: 28-03-2026
       changes:
         - createTable:
             tableName: staffs

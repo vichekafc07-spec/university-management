@@ -1,0 +1,324 @@
+databaseChangeLog:
+  - changeSet:
+      id: seed-staffs-25-records
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "John Doe" }
+              - column: { name: staff_code, value: "UME-001" }
+              - column: { name: personal_email, value: "john.doe1@gmail.com" }
+              - column: { name: phone, value: "010000001" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1985-01-10" }
+              - column: { name: position, value: "LECTURER" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 1 }
+              - column: { name: user_id, valueNumeric: 1 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Jane Smith" }
+              - column: { name: staff_code, value: "UME-002" }
+              - column: { name: personal_email, value: "jane.smith2@gmail.com" }
+              - column: { name: phone, value: "010000002" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1987-03-15" }
+              - column: { name: position, value: "STAFF" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: user_id, valueNumeric: 2 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Michael Johnson" }
+              - column: { name: staff_code, value: "UME-003" }
+              - column: { name: personal_email, value: "michael.johnson3@gmail.com" }
+              - column: { name: phone, value: "010000003" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1982-07-20" }
+              - column: { name: position, value: "DEAN" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 3 }
+              - column: { name: user_id, valueNumeric: 3 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Emily Davis" }
+              - column: { name: staff_code, value: "UME-004" }
+              - column: { name: personal_email, value: "emily.davis4@gmail.com" }
+              - column: { name: phone, value: "010000004" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1990-11-25" }
+              - column: { name: position, value: "PRINCIPAL" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 4 }
+              - column: { name: user_id, valueNumeric: 4 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "William Brown" }
+              - column: { name: staff_code, value: "UME-005" }
+              - column: { name: personal_email, value: "william.brown5@gmail.com" }
+              - column: { name: phone, value: "010000005" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1988-05-18" }
+              - column: { name: position, value: "LECTURER" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 5 }
+              - column: { name: user_id, valueNumeric: 5 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Sophia Wilson" }
+              - column: { name: staff_code, value: "UME-006" }
+              - column: { name: personal_email, value: "sophia.wilson6@gmail.com" }
+              - column: { name: phone, value: "010000006" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1992-09-12" }
+              - column: { name: position, value: "STAFF" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 6 }
+              - column: { name: user_id, valueNumeric: 6 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "James Taylor" }
+              - column: { name: staff_code, value: "UME-007" }
+              - column: { name: personal_email, value: "james.taylor7@gmail.com" }
+              - column: { name: phone, value: "010000007" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1981-04-08" }
+              - column: { name: position, value: "DEAN" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 7 }
+              - column: { name: user_id, valueNumeric: 7 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Olivia Anderson" }
+              - column: { name: staff_code, value: "UME-008" }
+              - column: { name: personal_email, value: "olivia.anderson8@gmail.com" }
+              - column: { name: phone, value: "010000008" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1993-02-21" }
+              - column: { name: position, value: "PRINCIPAL" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 8 }
+              - column: { name: user_id, valueNumeric: 8 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Daniel Thomas" }
+              - column: { name: staff_code, value: "UME-009" }
+              - column: { name: personal_email, value: "daniel.thomas9@gmail.com" }
+              - column: { name: phone, value: "010000009" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1984-06-17" }
+              - column: { name: position, value: "LECTURER" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 9 }
+              - column: { name: user_id, valueNumeric: 9 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Emma Martinez" }
+              - column: { name: staff_code, value: "UME-010" }
+              - column: { name: personal_email, value: "emma.martinez10@gmail.com" }
+              - column: { name: phone, value: "010000010" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1991-08-30" }
+              - column: { name: position, value: "STAFF" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 10 }
+              - column: { name: user_id, valueNumeric: 10 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Liam Harris" }
+              - column: { name: staff_code, value: "UME-011" }
+              - column: { name: personal_email, value: "liam.harris11@gmail.com" }
+              - column: { name: phone, value: "010000011" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1986-02-14" }
+              - column: { name: position, value: "LECTURER" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 1 }
+              - column: { name: user_id, valueNumeric: 11 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Ava Clark" }
+              - column: { name: staff_code, value: "UME-012" }
+              - column: { name: personal_email, value: "ava.clark12@gmail.com" }
+              - column: { name: phone, value: "010000012" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1990-06-11" }
+              - column: { name: position, value: "STAFF" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 2 }
+              - column: { name: user_id, valueNumeric: 12 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Noah Lewis" }
+              - column: { name: staff_code, value: "UME-013" }
+              - column: { name: personal_email, value: "noah.lewis13@gmail.com" }
+              - column: { name: phone, value: "010000013" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1983-03-19" }
+              - column: { name: position, value: "DEAN" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 3 }
+              - column: { name: user_id, valueNumeric: 13 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Mia Walker" }
+              - column: { name: staff_code, value: "UME-014" }
+              - column: { name: personal_email, value: "mia.walker14@gmail.com" }
+              - column: { name: phone, value: "010000014" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1994-10-09" }
+              - column: { name: position, value: "PRINCIPAL" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 4 }
+              - column: { name: user_id, valueNumeric: 14 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Ethan Hall" }
+              - column: { name: staff_code, value: "UME-015" }
+              - column: { name: personal_email, value: "ethan.hall15@gmail.com" }
+              - column: { name: phone, value: "010000015" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1989-12-23" }
+              - column: { name: position, value: "LECTURER" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 5 }
+              - column: { name: user_id, valueNumeric: 15 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Charlotte Allen" }
+              - column: { name: staff_code, value: "UME-016" }
+              - column: { name: personal_email, value: "charlotte.allen16@gmail.com" }
+              - column: { name: phone, value: "010000016" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1991-01-17" }
+              - column: { name: position, value: "STAFF" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 1 }
+              - column: { name: department_id, valueNumeric: 6 }
+              - column: { name: user_id, valueNumeric: 16 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Benjamin Young" }
+              - column: { name: staff_code, value: "UME-017" }
+              - column: { name: personal_email, value: "benjamin.young17@gmail.com" }
+              - column: { name: phone, value: "010000017" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1980-08-05" }
+              - column: { name: position, value: "DEAN" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 2 }
+              - column: { name: department_id, valueNumeric: 7 }
+              - column: { name: user_id, valueNumeric: 17 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Amelia King" }
+              - column: { name: staff_code, value: "UME-018" }
+              - column: { name: personal_email, value: "amelia.king18@gmail.com" }
+              - column: { name: phone, value: "010000018" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1995-07-27" }
+              - column: { name: position, value: "PRINCIPAL" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 3 }
+              - column: { name: department_id, valueNumeric: 8 }
+              - column: { name: user_id, valueNumeric: 18 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Lucas Wright" }
+              - column: { name: staff_code, value: "UME-019" }
+              - column: { name: personal_email, value: "lucas.wright19@gmail.com" }
+              - column: { name: phone, value: "010000019" }
+              - column: { name: gender, value: "MALE" }
+              - column: { name: dob, valueDate: "1987-11-03" }
+              - column: { name: position, value: "LECTURER" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 4 }
+              - column: { name: department_id, valueNumeric: 9 }
+              - column: { name: user_id, valueNumeric: 19 }
+
+        - insert:
+            tableName: staffs
+            columns:
+              - column: { name: full_name, value: "Harper Scott" }
+              - column: { name: staff_code, value: "UME-020" }
+              - column: { name: personal_email, value: "harper.scott20@gmail.com" }
+              - column: { name: phone, value: "010000020" }
+              - column: { name: gender, value: "FEMALE" }
+              - column: { name: dob, valueDate: "1993-04-29" }
+              - column: { name: position, value: "STAFF" }
+              - column: { name: active, valueBoolean: true }
+              - column: { name: deleted, valueBoolean: false }
+              - column: { name: faculty_id, valueNumeric: 5 }
+              - column: { name: department_id, valueNumeric: 10 }
+              - column: { name: user_id, valueNumeric: 20 }

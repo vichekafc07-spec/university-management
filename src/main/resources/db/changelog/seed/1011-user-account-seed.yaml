@@ -1,0 +1,167 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1011-user-account-seed
+      author: vichika sorl
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher1 }
+              - column: { name: email, value: teacher1@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher2 }
+              - column: { name: email, value: teacher2@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher3 }
+              - column: { name: email, value: teacher3@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher4 }
+              - column: { name: email, value: teacher4@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher5 }
+              - column: { name: email, value: teacher5@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher6 }
+              - column: { name: email, value: teacher6@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher7 }
+              - column: { name: email, value: teacher7@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher8 }
+              - column: { name: email, value: teacher8@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher9 }
+              - column: { name: email, value: teacher9@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: teacher10 }
+              - column: { name: email, value: teacher10@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        # =========================
+        # 10 STAFF USERS
+        # =========================
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff1 }
+              - column: { name: email, value: staff1@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff2 }
+              - column: { name: email, value: staff2@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff3 }
+              - column: { name: email, value: staff3@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff4 }
+              - column: { name: email, value: staff4@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff5 }
+              - column: { name: email, value: staff5@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff6 }
+              - column: { name: email, value: staff6@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff7 }
+              - column: { name: email, value: staff7@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff8 }
+              - column: { name: email, value: staff8@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff9 }
+              - column: { name: email, value: staff9@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: username, value: staff10 }
+              - column: { name: email, value: staff10@example.com }
+              - column: { name: password, value: $2a$10$8M2qylm8ZQ/7TxKH10rZLOh.HuH31o71acUgUrjm39eK4eylq4e.u }
+              - column: { name: deleted, valueBoolean: false }

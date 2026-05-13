@@ -105,3 +105,9 @@ databaseChangeLog:
       file: db/changelog/seed/1009-classrooms-seed.yaml
   - include:
       file: db/changelog/seed/1010-subjects-seed.yaml
+  - include:
+      file: db/changelog/seed/1011-user-account-seed.yaml
+  - include:
+      file: db/changelog/seed/1012-user-roles-seed-account.yaml
+  - include:
+      file: db/changelog/seed/1013-staffs-seed.yaml
