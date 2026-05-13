@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.response;
+package com.ume.studentsystem.dto.response.academic;
 
 public record FacultyTopStudentResponse(
         Long studentId,

@@ -1,7 +1,7 @@
 package com.ume.studentsystem.service.impl;
 
 import com.ume.studentsystem.dto.request.AcademicTermRequest;
-import com.ume.studentsystem.dto.response.AcademicTermResponse;
+import com.ume.studentsystem.dto.response.academic.AcademicTermResponse;
 import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.AcademicMapper;

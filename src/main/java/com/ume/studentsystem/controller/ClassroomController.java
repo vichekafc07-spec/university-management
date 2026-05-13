@@ -2,7 +2,7 @@ package com.ume.studentsystem.controller;
 
 import com.ume.studentsystem.dto.request.AssignSubjectRequest;
 import com.ume.studentsystem.dto.request.ClassroomRequest;
-import com.ume.studentsystem.dto.response.ClassroomResponse;
+import com.ume.studentsystem.dto.response.academic.ClassroomResponse;
 import com.ume.studentsystem.service.ClassroomService;
 import com.ume.studentsystem.util.APIResponse;
 import com.ume.studentsystem.util.PageResponse;

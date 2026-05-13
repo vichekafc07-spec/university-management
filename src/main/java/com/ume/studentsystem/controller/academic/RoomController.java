@@ -1,7 +1,7 @@
 package com.ume.studentsystem.controller.academic;
 
 import com.ume.studentsystem.dto.request.RoomRequest;
-import com.ume.studentsystem.dto.response.RoomResponse;
+import com.ume.studentsystem.dto.response.academic.RoomResponse;
 import com.ume.studentsystem.service.RoomService;
 import com.ume.studentsystem.util.APIResponse;
 import com.ume.studentsystem.util.PageResponse;

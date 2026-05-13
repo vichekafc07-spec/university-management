@@ -1,6 +1,6 @@
 package com.ume.studentsystem.controller.report;
 
-import com.ume.studentsystem.dto.response.FacultyTopStudentResponse;
+import com.ume.studentsystem.dto.response.academic.FacultyTopStudentResponse;
 import com.ume.studentsystem.dto.response.RankingResponse;
 import com.ume.studentsystem.service.ReportService;
 import com.ume.studentsystem.util.APIResponse;

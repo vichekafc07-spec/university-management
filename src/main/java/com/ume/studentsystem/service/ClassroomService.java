@@ -2,7 +2,7 @@ package com.ume.studentsystem.service;
 
 import com.ume.studentsystem.dto.request.AssignSubjectRequest;
 import com.ume.studentsystem.dto.request.ClassroomRequest;
-import com.ume.studentsystem.dto.response.ClassroomResponse;
+import com.ume.studentsystem.dto.response.academic.ClassroomResponse;
 import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 

@@ -2,7 +2,7 @@ package com.ume.studentsystem.service.impl.academic;
 
 import com.ume.studentsystem.dto.request.AssignSubjectRequest;
 import com.ume.studentsystem.dto.request.ClassroomRequest;
-import com.ume.studentsystem.dto.response.ClassroomResponse;
+import com.ume.studentsystem.dto.response.academic.ClassroomResponse;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.model.Department;
 import com.ume.studentsystem.spec.SpecificationBuilder;

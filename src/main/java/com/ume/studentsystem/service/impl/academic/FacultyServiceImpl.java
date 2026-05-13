@@ -1,5 +1,6 @@
 package com.ume.studentsystem.service.impl.academic;
 
+import com.ume.studentsystem.dto.response.academic.FacultyResponse;
 import com.ume.studentsystem.exceptions.DuplicateResourceException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.model.Faculty;
@@ -40,13 +41,13 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public String restoreFaculty(Byte id) {
+    public FacultyResponse restoreFaculty(Byte id) {
         var faculty = facultyRepository.findByIdIncludingDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Faculty not found with id : " + id));
         faculty.setDeleted(false);
         faculty.setDeletedAt(null);
         facultyRepository.save(faculty);
-        return "Faculty restored successfully";
+        return toResponse(faculty);
     }
 
     @Override
@@ -57,6 +58,10 @@ public class FacultyServiceImpl implements FacultyService {
     private Faculty getById(Byte id){
         return facultyRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Faculty not found with id: " + id));
+    }
+
+    private FacultyResponse toResponse(Faculty faculty){
+        return new FacultyResponse(faculty.getId(), faculty.getName());
     }
 
 }

@@ -1,7 +1,7 @@
 package com.ume.studentsystem.service.impl.academic;
 
 import com.ume.studentsystem.dto.request.RoomRequest;
-import com.ume.studentsystem.dto.response.RoomResponse;
+import com.ume.studentsystem.dto.response.academic.RoomResponse;
 import com.ume.studentsystem.exceptions.BadRequestException;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.mapper.RoomMapper;

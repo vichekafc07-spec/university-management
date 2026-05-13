@@ -1,7 +1,7 @@
 package com.ume.studentsystem.service;
 
 import com.ume.studentsystem.dto.request.AcademicTermRequest;
-import com.ume.studentsystem.dto.response.AcademicTermResponse;
+import com.ume.studentsystem.dto.response.academic.AcademicTermResponse;
 import com.ume.studentsystem.util.PageResponse;
 import jakarta.validation.Valid;
 

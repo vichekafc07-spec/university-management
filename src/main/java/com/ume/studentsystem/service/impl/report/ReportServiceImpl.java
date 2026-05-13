@@ -4,7 +4,7 @@ import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import com.ume.studentsystem.dto.response.FacultyTopStudentResponse;
+import com.ume.studentsystem.dto.response.academic.FacultyTopStudentResponse;
 import com.ume.studentsystem.dto.response.RankingResponse;
 import com.ume.studentsystem.exceptions.ResourceNotFoundException;
 import com.ume.studentsystem.repository.*;

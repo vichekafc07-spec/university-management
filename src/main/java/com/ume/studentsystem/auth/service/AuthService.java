@@ -129,12 +129,12 @@ public class AuthService {
         userRepository.delete(user);
     }
 
-    public String restoreUser(Long id) {
+    public AuthResponse restoreUser(Long id) {
         var user = userRepository.findByIdIncludeDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
         user.setDeleted(false);
         user.setDeletedAt(null);
         userRepository.save(user);
-        return "User restored successfully";
+        return userMapper.toResponse(user);
     }
 }

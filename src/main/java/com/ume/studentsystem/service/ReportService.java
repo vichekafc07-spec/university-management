@@ -1,6 +1,6 @@
 package com.ume.studentsystem.service;
 
-import com.ume.studentsystem.dto.response.FacultyTopStudentResponse;
+import com.ume.studentsystem.dto.response.academic.FacultyTopStudentResponse;
 import com.ume.studentsystem.dto.response.RankingResponse;
 
 import java.io.ByteArrayInputStream;

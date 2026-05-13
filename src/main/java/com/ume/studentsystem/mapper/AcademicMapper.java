@@ -1,7 +1,7 @@
 package com.ume.studentsystem.mapper;
 
 import com.ume.studentsystem.dto.request.AcademicTermRequest;
-import com.ume.studentsystem.dto.response.AcademicTermResponse;
+import com.ume.studentsystem.dto.response.academic.AcademicTermResponse;
 import com.ume.studentsystem.model.AcademicTerm;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

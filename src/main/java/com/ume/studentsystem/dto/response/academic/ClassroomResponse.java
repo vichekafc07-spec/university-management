@@ -1,4 +1,4 @@
-package com.ume.studentsystem.dto.response;
+package com.ume.studentsystem.dto.response.academic;
 
 import com.ume.studentsystem.model.enums.StudyTime;
 
