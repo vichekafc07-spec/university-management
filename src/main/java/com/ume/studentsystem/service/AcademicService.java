@@ -16,5 +16,5 @@ public interface AcademicService {
 
     void delete(Long id);
 
-    String restore(Long id);
+    AcademicTermResponse restore(Long id);
 }

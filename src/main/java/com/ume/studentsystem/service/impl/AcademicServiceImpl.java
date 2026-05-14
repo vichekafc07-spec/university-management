@@ -69,13 +69,13 @@ public class AcademicServiceImpl implements AcademicService {
     }
 
     @Override
-    public String restore(Long id) {
+    public AcademicTermResponse restore(Long id) {
         var academic = academicTermRepository.findByIdIncludeDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("academic not found " + id));
         academic.setDeleted(false);
         academic.setCreatedAt(null);
         academicTermRepository.save(academic);
-        return "Academic restored successfully";
+        return academicMapper.toResponse(academic);
     }
 
     private AcademicTerm getById(Long id){
