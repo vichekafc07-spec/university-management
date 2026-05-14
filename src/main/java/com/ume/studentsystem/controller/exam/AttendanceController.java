@@ -1,4 +1,4 @@
-package com.ume.studentsystem.controller;
+package com.ume.studentsystem.controller.exam;
 
 import com.ume.studentsystem.dto.request.AttendanceRequest;
 import com.ume.studentsystem.dto.request.UpdateAttendanceStatus;
