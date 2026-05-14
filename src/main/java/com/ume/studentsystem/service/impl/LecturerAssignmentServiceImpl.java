@@ -98,7 +98,7 @@ public class LecturerAssignmentServiceImpl implements LecturerAssignmentService 
 
     @Override
     public List<LecturerAssignmentResponse> getClassroomAssignments(Long classroomId) {
-        return lecturerRepository.findByClassroomId(classroomId)
+        return lecturerRepository.findByClassroom_Id(classroomId)
                 .stream()
                 .map(lecturerMapper::toResponse)
                 .toList();
@@ -110,6 +110,29 @@ public class LecturerAssignmentServiceImpl implements LecturerAssignmentService 
             throw new ResourceNotFoundException("Assignment not found");
         }
         lecturerRepository.deleteById(id);
+    }
+
+    @Override
+    public LecturerAssignmentResponse update(Long id,AssignLecturerRequest request) {
+        var lecturer = getLecturerById(request.lecturerId());
+
+        var classroom = getClassById(request.classroomId());
+
+        var subject = getSubjectById(request.subjectId());
+
+        var assign = lecturerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Lecturer not found with id " + id));
+
+        if (lecturerRepository.existsByLecturer_IdAndClassroom_IdAndSubject_IdAndTime(
+                lecturer.getId(), classroom.getId(), subject.getId(), request.time())) {
+            throw new BadRequestException("Lecturer already assigned for this classroom, subject and time");
+        }
+        assign.setLecturer(lecturer);
+        assign.setClassroom(classroom);
+        assign.setSubject(subject);
+        assign.setTime(request.time());
+        var saved = lecturerRepository.save(assign);
+        return lecturerMapper.toResponse(saved);
     }
 
     private Staff getLecturerById(Long id){
@@ -125,7 +148,6 @@ public class LecturerAssignmentServiceImpl implements LecturerAssignmentService 
     private Subject getSubjectById(Long id){
         return subjectRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Subject not found with id " + id));
-
     }
 
 }

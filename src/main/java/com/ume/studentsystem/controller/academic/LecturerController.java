@@ -46,6 +46,12 @@ public class LecturerController {
         return ResponseEntity.ok(APIResponse.ok(lecturerService.getClassroomAssignments(classroomId)));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<APIResponse<LecturerAssignmentResponse>> updateLecturer(@PathVariable Long id,
+                                                                                  @Valid @RequestBody AssignLecturerRequest request){
+        return ResponseEntity.ok(APIResponse.ok(lecturerService.update(id,request)));
+    }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('dean:write')")
     public ResponseEntity<APIResponse<?>> remove(@PathVariable Long id) {

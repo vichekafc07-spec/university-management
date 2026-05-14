@@ -15,4 +15,6 @@ public interface LecturerAssignmentService {
     List<LecturerAssignmentResponse> getClassroomAssignments(Long classroomId);
 
     void removeAssignment(Long id);
+
+    LecturerAssignmentResponse update(Long id,AssignLecturerRequest request);
 }
