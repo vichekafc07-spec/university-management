@@ -81,13 +81,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public String restoreDept(Integer id) {
+    public DepartmentResponse restoreDept(Integer id) {
         var dept = departmentRepository.findByIdIncludingDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Department not found with id " + id));
         dept.setDeleted(false);
         dept.setDeletedAt(null);
         departmentRepository.save(dept);
-        return "Staff restored successfully";
+        return departmentMapper.toResponse(dept);
     }
 
     private Faculty getFacultyId(Byte facultyId){

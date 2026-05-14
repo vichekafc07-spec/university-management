@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FacultyService {
     Faculty addFaculty(Faculty faculty);
-    List<Faculty> getAllFaculty();
+    List<FacultyResponse> getAllFaculty();
     Faculty updateFaculty(Byte id, Faculty faculty);
     void deleteFaculty(Byte id);
 

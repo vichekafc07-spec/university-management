@@ -12,5 +12,5 @@ public interface DepartmentService {
     List<DepartmentResponse> getDepartmentByFaculty(Byte facultyId);
     DepartmentResponse updateDepartment(Integer id, DepartmentRequest request);
     void deleteDepartment(Integer id);
-    String restoreDept(Integer id);
+    DepartmentResponse restoreDept(Integer id);
 }

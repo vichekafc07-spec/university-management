@@ -51,8 +51,11 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public List<Faculty> getAllFaculty() {
-        return facultyRepository.findByDeletedFalse();
+    public List<FacultyResponse> getAllFaculty() {
+        return facultyRepository.findByDeletedFalse()
+                .stream()
+                .map(faculty -> new FacultyResponse(faculty.getId(), faculty.getName()))
+                .toList();
     }
 
     private Faculty getById(Byte id){

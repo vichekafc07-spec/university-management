@@ -1,5 +1,6 @@
 package com.ume.studentsystem.controller.academic;
 
+import com.ume.studentsystem.dto.response.academic.FacultyResponse;
 import com.ume.studentsystem.model.Faculty;
 import com.ume.studentsystem.service.FacultyService;
 import com.ume.studentsystem.util.APIResponse;
@@ -25,7 +26,7 @@ public class FacultyController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('dean:read')")
-    public ResponseEntity<APIResponse<List<Faculty>>> getAll(){
+    public ResponseEntity<APIResponse<List<FacultyResponse>>> getAll(){
         return ResponseEntity.ok(APIResponse.ok(facultyService.getAllFaculty()));
     }
 
