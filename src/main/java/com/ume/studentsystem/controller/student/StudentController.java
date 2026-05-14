@@ -98,4 +98,11 @@ public class StudentController {
         studentService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/restore/{id}")
+    @PreAuthorize("hasAuthority('staff:write')")
+    public ResponseEntity<?> restore(@PathVariable Long id){
+        return ResponseEntity.ok(studentService.restoreStudent(id));
+    }
+
 }

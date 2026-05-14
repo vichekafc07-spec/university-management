@@ -32,7 +32,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public InvoiceResponse createInvoice(InvoiceRequest request) {
-        var student = studentRepository.findById(request.studentId())
+        var student = studentRepository.findByIdAndDeletedFalse(request.studentId())
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
 
         var studentEntity = paymentMapper.toEntity(request);
@@ -50,7 +50,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     public InvoiceResponse updateInvoice(Long id, InvoiceRequest request) {
         var invoice = invoiceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Invoice not found with id " + id));
-        var student = studentRepository.findById(request.studentId())
+        var student = studentRepository.findByIdAndDeletedFalse(request.studentId())
                         .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + request.studentId()));
         paymentMapper.updateInvoice(request,invoice);
         invoice.setStudent(student);

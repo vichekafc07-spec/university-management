@@ -22,6 +22,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/john.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -42,6 +43,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/sarah.jpg }
               - column: { name: study_time, value: AFTERNOON }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -62,6 +64,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/david.jpg }
               - column: { name: study_time, value: EVENING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -82,6 +85,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/emily.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -102,6 +106,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/michael.jpg }
               - column: { name: study_time, value: WEEKEND }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -122,6 +127,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/linda.jpg }
               - column: { name: study_time, value: AFTERNOON }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -142,6 +148,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/robert.jpg }
               - column: { name: study_time, value: EVENING }
               - column: { name: status, value: GRADUATED }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -162,6 +169,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/jessica.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -182,6 +190,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/daniel.jpg }
               - column: { name: study_time, value: WEEKEND }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -202,6 +211,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/sophia.jpg }
               - column: { name: study_time, value: AFTERNOON }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -222,6 +232,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/kevin.jpg }
               - column: { name: study_time, value: EVENING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -242,6 +253,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/olivia.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -262,6 +274,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/william.jpg }
               - column: { name: study_time, value: WEEKEND }
               - column: { name: status, value: GRADUATED }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -282,6 +295,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/emma.jpg }
               - column: { name: study_time, value: AFTERNOON }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -302,6 +316,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/james.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -322,6 +337,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/ethan.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -342,6 +358,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/ava.jpg }
               - column: { name: study_time, value: AFTERNOON }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -362,6 +379,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/benjamin.jpg }
               - column: { name: study_time, value: EVENING }
               - column: { name: status, value: GRADUATED }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -382,6 +400,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/mia.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -402,6 +421,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/lucas.jpg }
               - column: { name: study_time, value: WEEKEND }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -422,6 +442,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/charlotte.jpg }
               - column: { name: study_time, value: AFTERNOON }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -442,6 +463,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/henry.jpg }
               - column: { name: study_time, value: EVENING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -462,6 +484,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/amelia.jpg }
               - column: { name: study_time, value: WEEKEND }
               - column: { name: status, value: GRADUATED }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -482,6 +505,7 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/elijah.jpg }
               - column: { name: study_time, value: MORNING }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }
 
         - insert:
             tableName: students
@@ -502,3 +526,4 @@ databaseChangeLog:
               - column: { name: photo_url, value: photos/harper.jpg }
               - column: { name: study_time, value: AFTERNOON }
               - column: { name: status, value: ACTIVE }
+              - column: { name: deleted, valueBoolean: false }

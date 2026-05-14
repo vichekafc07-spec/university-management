@@ -25,4 +25,5 @@ public interface StudentService {
 
     ByteArrayInputStream generateIdCard(Long id);
 
+    StudentResponse restoreStudent(Long id);
 }

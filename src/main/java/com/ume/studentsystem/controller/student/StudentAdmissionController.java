@@ -15,13 +15,13 @@ public class StudentAdmissionController {
 
     private final StudentAdmissionService admissionService;
 
-    @PutMapping("/{id}/approve")
+    @PatchMapping("/{id}/approve")
     @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<AdmissionResponse>> approve(@PathVariable Long id) {
         return ResponseEntity.ok(APIResponse.ok(admissionService.approve(id)));
     }
 
-    @PutMapping("/{id}/reject")
+    @PatchMapping("/{id}/reject")
     @PreAuthorize("hasAuthority('staff:write')")
     public ResponseEntity<APIResponse<AdmissionResponse>> reject(@PathVariable Long id) {
         return ResponseEntity.ok(APIResponse.ok(admissionService.reject(id)));

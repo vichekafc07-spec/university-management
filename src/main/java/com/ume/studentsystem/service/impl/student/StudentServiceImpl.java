@@ -359,6 +359,16 @@ public class StudentServiceImpl implements StudentService {
         );
     }
 
+    @Override
+    public StudentResponse restoreStudent(Long id) {
+        var student = studentRepository.findByIdIncludingDeleted(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + id));
+        student.setDeleted(false);
+        student.setDeletedAt(null);
+        studentRepository.save(student);
+        return studentMapper.toResponse(student);
+    }
+
     private void addHeader(PdfPTable table, String title) {
 
         PdfPCell header = new PdfPCell();

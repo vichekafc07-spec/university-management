@@ -11,5 +11,5 @@ public interface PaymentService {
 
     void delete(Long id);
 
-    String restore(Long id);
+    PaymentResponse restore(Long id);
 }

@@ -150,12 +150,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public String restore(Long id) {
+    public PaymentResponse restore(Long id) {
         var payment = paymentRepository.findByIdIncludingDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Payment not found"));
         payment.setDeleted(false);
         payment.setDeletedAt(null);
         paymentRepository.save(payment);
-        return "Payment restored successfully";
+        return paymentMapper.toResponse(payment);
     }
 }
