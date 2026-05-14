@@ -81,12 +81,12 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public String restoreInvoice(Long id) {
+    public InvoiceResponse restoreInvoice(Long id) {
         var invoice = invoiceRepository.findByIdIncludingDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Invoice not found with"));
         invoice.setDeleted(false);
         invoice.setDeletedAt(null);
         invoiceRepository.save(invoice);
-        return "Invoice restored successfully";
+        return paymentMapper.toResponse(invoice);
     }
 }

@@ -4,6 +4,6 @@ public enum StudentStatus {
     PENDING,
     ACTIVE,
     SUSPENSION,
-    GRADUATE,
+    GRADUATED,
     REJECTED
 }

@@ -19,5 +19,5 @@ public interface StaffService {
 
     void delete(Long id);
 
-    String restore(Long id);
+    StaffResponse restore(Long id);
 }

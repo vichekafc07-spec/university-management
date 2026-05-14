@@ -13,5 +13,5 @@ public interface InvoiceService {
 
     void deleteInvoice(Long id);
 
-    String restoreInvoice(Long id);
+    InvoiceResponse restoreInvoice(Long id);
 }

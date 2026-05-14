@@ -137,7 +137,7 @@ public class StudentClassroomServiceImpl implements StudentClassroomService {
     private boolean studentStatus(Student student) {
         return student.getStatus() == StudentStatus.REJECTED ||
                 student.getStatus() == StudentStatus.SUSPENSION ||
-                student.getStatus() == StudentStatus.GRADUATE ||
+                student.getStatus() == StudentStatus.GRADUATED ||
                 student.getStatus() == StudentStatus.PENDING;
     }
 

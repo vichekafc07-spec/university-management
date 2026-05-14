@@ -148,14 +148,14 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public String restore(Long id) {
+    public StaffResponse restore(Long id) {
         var staff = staffRepository.findByIdIncludingDeleted(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Staff not found with " + id));
         staff.setDeleted(false);
         staff.setDeletedAt(null);
         staff.setActive(true);
         staffRepository.save(staff);
-        return "Staff restored successfully";
+        return staffMapper.toResponse(staff);
     }
 
     private Staff getStaffById(Long id) {
