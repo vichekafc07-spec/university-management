@@ -16,5 +16,5 @@ public interface ClassroomService {
 
     ClassroomResponse updateClassroom(Long id, @Valid ClassroomRequest request);
 
-    String restore(Long id);
+    ClassroomResponse restore(Long id);
 }

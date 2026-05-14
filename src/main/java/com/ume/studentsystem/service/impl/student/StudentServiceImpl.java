@@ -122,6 +122,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public PageResponse<StudentResponse> getAll(Long id, String fullName, String studentCode, String faculty, String major, Integer generation, String payment, String programType, String status, String sortBy, String sortAs, Integer page, Integer size) {
         Specification<Student> spec = new SpecificationBuilder<Student>()
+                .equal("deleted", false)
                 .equal("id", id)
                 .like("fullName", fullName)
                 .like("studentCode", studentCode)
@@ -382,7 +383,7 @@ public class StudentServiceImpl implements StudentService {
 
     private Student getById(Long id){
         return studentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id " + id));
     }
 
     private Faculty getFacultyId(Byte id){

@@ -16,7 +16,7 @@ public interface StudentRepository extends JpaRepository<Student,Long> , JpaSpec
     @Query("SELECT COUNT(s) FROM Student s")
     Long countAllStudents();
 
-    @Query(value = "SELECT * FROM students WHERE id =: id", nativeQuery = true)
+    @Query(value = "SELECT * FROM students WHERE id = :id", nativeQuery = true)
     Optional<Student> findByIdIncludingDeleted(@Param("id") Long id);
 
     Optional<Student> findByIdAndDeletedFalse(Long id);

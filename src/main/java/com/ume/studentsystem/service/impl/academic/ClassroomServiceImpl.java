@@ -83,13 +83,13 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     @Override
-    public String restore(Long id) {
+    public ClassroomResponse restore(Long id) {
         var classroom = classroomRepository.findByIdIncludeDeleted(id)
                 .orElseThrow(() -> new ResourceNotFoundException("classroom not found " + id));
         classroom.setDeleted(false);
         classroom.setCreatedAt(null);
         classroomRepository.save(classroom);
-        return "Classroom restored successfully";
+        return classroomMapper.toResponse(classroom);
     }
 
     @Override
