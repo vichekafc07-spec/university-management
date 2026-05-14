@@ -48,14 +48,14 @@ public class StaffController {
     @GetMapping
     @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<APIResponse<PageResponse<StaffResponse>>> getAll(@RequestParam(required = false) Long id,
-                                                              @RequestParam(required = false) String fullName,
-                                                              @RequestParam(required = false) String position,
-                                                              @RequestParam(required = false) String faculty,
-                                                              @RequestParam(required = false) Boolean active,
-                                                              @RequestParam(required = false) String sortBy,
-                                                              @RequestParam(required = false) String sortAs,
-                                                              @RequestParam(required = false , defaultValue = "1") Integer page,
-                                                              @RequestParam(required = false , defaultValue = "5") Integer size) {
+                                                                           @RequestParam(required = false) String fullName,
+                                                                           @RequestParam(required = false) String position,
+                                                                           @RequestParam(required = false) String faculty,
+                                                                           @RequestParam(required = false) Boolean active,
+                                                                           @RequestParam(required = false) String sortBy,
+                                                                           @RequestParam(required = false) String sortAs,
+                                                                           @RequestParam(required = false , defaultValue = "1") Integer page,
+                                                                           @RequestParam(required = false , defaultValue = "5") Integer size) {
         PageResponse<StaffResponse> pageResponse = staffService.getAllStaff(id,fullName,position,faculty,active,sortBy,sortAs,page,size);
         return ResponseEntity.ok(APIResponse.ok(pageResponse));
     }
