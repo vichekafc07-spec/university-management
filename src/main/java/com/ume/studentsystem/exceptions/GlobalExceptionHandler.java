@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<APIResponse<?>> handleEnumError(HttpMessageNotReadableException ex) {
+    public ResponseEntity<APIResponse<?>> handleEnumError() {
         String message = "Invalid value. Allowed values of Enum";
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(APIResponse.error(message,HttpStatus.BAD_REQUEST));
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
 
     // Handle Spring Security 401 Unauthorized
     @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<APIResponse<?>> handleAuthenticationException(org.springframework.security.core.AuthenticationException ex){
+    public ResponseEntity<APIResponse<?>> handleAuthenticationException(AuthenticationException ex){
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(APIResponse.error(ex.getMessage() != null ? ex.getMessage() : "Authentication required",
                         HttpStatus.UNAUTHORIZED));
@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
 
     // Handle Spring Security 403 Forbidden
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<APIResponse<?>> handleAccessDeniedException(org.springframework.security.access.AccessDeniedException ex){
+    public ResponseEntity<APIResponse<?>> handleAccessDeniedException(AccessDeniedException ex){
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(APIResponse.error(ex.getMessage() != null ? ex.getMessage() : "You do not have permission to access this resource",
                         HttpStatus.FORBIDDEN));

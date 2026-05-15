@@ -1,7 +1,6 @@
 package com.ume.studentsystem.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +24,9 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
-                       AccessDeniedException accessDeniedException) throws IOException, ServletException {
+                       AccessDeniedException ex) throws IOException {
 
-        log.warn("Access denied to: {}", request.getRequestURI(), accessDeniedException);
-
+        log.warn("Access denied to {} : {}", request.getRequestURI(), ex.getMessage());
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType("application/json");
 
@@ -36,7 +34,9 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
         body.put("timestamp", System.currentTimeMillis());
         body.put("status", HttpStatus.FORBIDDEN.value());
         body.put("error", HttpStatus.FORBIDDEN.getReasonPhrase());
-        body.put("message", accessDeniedException.getMessage() != null ? accessDeniedException.getMessage() : "You do not have permission to access this resource");
+        body.put("message", ex.getMessage() != null
+                        ? ex.getMessage()
+                        : "You do not have permission to access this resource");
         body.put("path", request.getRequestURI());
 
         objectMapper.writeValue(response.getOutputStream(), body);
