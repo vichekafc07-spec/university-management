@@ -1,7 +1,6 @@
 package com.ume.studentsystem.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +18,14 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
     private final ObjectMapper objectMapper;
 
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException {
+                         AuthenticationException authException) throws IOException {
 
-        log.warn("Unauthorized access attempt to: {}", request.getRequestURI(), authException);
+        log.warn("Unauthorized access to {} : {}", request.getRequestURI(), authException.getMessage());
 
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType("application/json");
@@ -36,7 +34,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         body.put("timestamp", System.currentTimeMillis());
         body.put("status", HttpStatus.UNAUTHORIZED.value());
         body.put("error", HttpStatus.UNAUTHORIZED.getReasonPhrase());
-        body.put("message", authException.getMessage() != null ? authException.getMessage() : "Authentication required");
+        body.put("message", authException.getMessage() != null
+                        ? authException.getMessage()
+                        : "Authentication required");
         body.put("path", request.getRequestURI());
 
         objectMapper.writeValue(response.getOutputStream(), body);
