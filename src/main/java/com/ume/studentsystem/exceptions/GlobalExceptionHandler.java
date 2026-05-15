@@ -7,6 +7,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestCookieException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -91,5 +92,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest()
                 .body(APIResponse.error(ex.getMessage(),
                         HttpStatus.BAD_REQUEST));
+    }
+
+    @ExceptionHandler(MissingRequestCookieException.class)
+    public ResponseEntity<APIResponse<?>> handleMissingCookie() {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(APIResponse.error(
+                        "Refresh token missing. Please login again.",
+                        HttpStatus.UNAUTHORIZED
+                ));
     }
 }
