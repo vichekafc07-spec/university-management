@@ -1,20 +1,14 @@
 spring:
   application:
     name: StudentSystem
-  datasource:
-    url: ${DB_URL}
-    username: ${DB_NAME}
-    password: ${DB_PASS}
+
+  profiles:
+    active: dev
 
   jwt:
     secretKey: ${JWT_SECRET}
     accessTokenExpiration: ${ACCESS_EXPIRATION}
     refreshTokenExpiration: ${REFRESH_EXPIRATION}
-
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
 
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.yaml
