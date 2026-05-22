@@ -23,7 +23,7 @@ import java.util.Set;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final BlackListedTokenRepository blackListedTokenRepository; // <-- ADDED
+    private final BlackListedTokenRepository blackListedTokenRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
